@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#FFFFFFFF</color>
+    <color name="color_icon">#FFFFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="base_background">#121212</color>
+    <color name="secondary_background">#232323</color>
+    <color name="color_text">#FFFFFF</color>
+    <color name="color_background_image">#E8EEF6</color>
+    <color name="gray">#EAEAEA</color>
+</resources>

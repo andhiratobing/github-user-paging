@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconDuplicates">
+        <ignore path="src/main/res/drawable/user1.webp" />
+        <ignore path="src/main/res/drawable/user10.webp" />
+        <ignore path="src/main/res/drawable/user11.webp" />
+        <ignore path="src/main/res/drawable/user12.webp" />
+        <ignore path="src/main/res/drawable/user2.webp" />
+        <ignore path="src/main/res/drawable/user3.webp" />
+        <ignore path="src/main/res/drawable/user4.webp" />
+        <ignore path="src/main/res/drawable/user5.webp" />
+        <ignore path="src/main/res/drawable/user6.webp" />
+        <ignore path="src/main/res/drawable/user7.webp" />
+        <ignore path="src/main/res/drawable/user8.webp" />
+        <ignore path="src/main/res/drawable/user9.webp" />
+    </issue>
+</lint>

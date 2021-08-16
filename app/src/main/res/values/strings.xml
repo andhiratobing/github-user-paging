@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Github User</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home">Home</string>
+    <string name="icon_home">Icon Home</string>
+    <string name="settings">Settings</string>
+    <string name="icon_setting">Icon Setting</string>
+    <string name="icon_favorite">Icon Favorite</string>
+    <string name="favorite">Favorite</string>
+    <string name="icon_following">Icon following</string>
+    <string name="icon_followers">Icon Followers</string>
+    <string name="icon_star">Icon Star</string>
+    <string name="icon_share">Icon share</string>
+    <string name="share">Share</string>
+    <string name="follow">Follow</string>
+    <string name="icon_scroll">Icon scroll</string>
+    <string name="persons">Persons</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="repository">Repository</string>
+    <string name="icon_company">Icon Company</string>
+    <string name="icon_location">Icon Location</string>
+    <string name="share_detail_user">"Share data %s  "</string>
+    <string name="favorite_users">Favorite users</string>
+    <!--Themes-->
+    <string name="theme_preferences_key">theme_preferences_key</string>
+    <string name="light_theme_preference_value">0</string>
+    <string name="dark_theme_preference_value">1</string>
+    <string name="system_theme_preference_value">2</string>
+    <string name="dark_theme_description">Dark mode</string>
+    <string name="light_theme_description">Light mode</string>
+    <string name="system_theme_description">System default</string>
+    <string-array name="theme_list_array">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System default</item>
+    </string-array>
+
+    <string-array name="theme_entry_array">
+        <item>@string/light_theme_preference_value</item>
+        <item>@string/dark_theme_preference_value</item>
+        <item>@string/system_theme_preference_value</item>
+    </string-array>
+
+</resources>

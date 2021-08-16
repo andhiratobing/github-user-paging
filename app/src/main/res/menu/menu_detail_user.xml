@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itemShare"
+        android:contentDescription="@string/icon_share"
+        android:icon="@drawable/ic_share"
+        android:title="@string/share"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/toogleFavorite"
+        android:contentDescription="@string/icon_favorite"
+        android:icon="@drawable/toggle_favorite"
+        android:title="@string/favorite"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
