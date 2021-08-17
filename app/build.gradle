@@ -50,8 +50,8 @@ dependencies {
     //material design
     implementation 'com.google.android.material:material:1.4.0'
     //navigation component
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha06'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.0-alpha06'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha04'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.0-alpha04'
     //parse the JSON using GSON
     implementation 'com.google.code.gson:gson:2.8.7'
     //recyclerview

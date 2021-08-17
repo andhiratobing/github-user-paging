@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -65,8 +66,18 @@ class DetailUserActivity : AppCompatActivity() {
                     data.follower,
                     data.following
                 )
+                Snackbar.make(
+                    it,
+                    "Successfully added ${data.name} to favorites",
+                    Snackbar.LENGTH_LONG
+                ).show()
             } else {
                 detailUserViewModel.deleteFavorite(data.username)
+                Snackbar.make(
+                    it,
+                    "Successfully removed ${data.name} from favorites",
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
             binding.toggleFav.isChecked = isChecked
         }
