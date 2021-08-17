@@ -30,7 +30,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.HomeViewHolder>(), Filterab
                     val filteredList = ArrayList<UserEntity>()
                     listDataUserFilter.filter {
                         (it.name.contains(char!!))
-                                || (it.company.contains(char))
+                                || (it.username.contains(char))
                                 || (it.following.toString().contains(char))
                                 || (it.follower.toString().contains(char))
                                 || (it.repository.toString().contains(char))

@@ -52,7 +52,12 @@ class FavoriteFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val count = favoriteViewModel.getCountUser()
             withContext(Dispatchers.Main) {
-                "($count users)".also { binding.tvCountFavorite.text = it }
+                if (count > 0){
+                    "($count users)".also { binding.tvCountFavorite.text = it }
+                    binding.tvCountFavorite.visibility = View.VISIBLE
+                }else{
+                    binding.tvCountFavorite.visibility = View.GONE
+                }
             }
         }
     }

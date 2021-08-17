@@ -303,8 +303,8 @@
 
         <androidx.appcompat.widget.AppCompatToggleButton
             android:id="@+id/toggleFav"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/toggle_favorite"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -313,6 +313,7 @@
             app:layout_constraintBottom_toBottomOf="@id/btnFollow"
             app:layout_constraintEnd_toEndOf="@+id/cardViewDetail"
             app:layout_constraintStart_toEndOf="@+id/btnFollow"
-            app:layout_constraintTop_toTopOf="@id/btnFollow" />
+            app:layout_constraintTop_toTopOf="@id/btnFollow"
+            tools:ignore="TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
