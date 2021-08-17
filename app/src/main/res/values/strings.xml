@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Github User</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="home">Home</string>
     <string name="icon_home">Icon Home</string>
     <string name="settings">Settings</string>
@@ -20,7 +19,7 @@
     <string name="repository">Repository</string>
     <string name="icon_company">Icon Company</string>
     <string name="icon_location">Icon Location</string>
-    <string name="share_detail_user">"Share data %s  "</string>
+    <string name="share_detail_user">"Share %s  "</string>
     <string name="favorite_users">Favorite users</string>
     <!--Themes-->
     <string name="theme_preferences_key">theme_preferences_key</string>
@@ -30,6 +29,7 @@
     <string name="dark_theme_description">Dark mode</string>
     <string name="light_theme_description">Light mode</string>
     <string name="system_theme_description">System default</string>
+    <string name="image_splashscreen">Image splashscreen</string>
     <string-array name="theme_list_array">
         <item>Light</item>
         <item>Dark</item>

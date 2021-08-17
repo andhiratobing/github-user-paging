@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base_background"
-    tools:context=".view.activities.DetailUserActivity">
+    tools:context=".view.activities.detailuser.DetailUserActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarDetailUser"
@@ -26,6 +25,7 @@
                 android:id="@+id/toolbarDetailUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 app:navigationIcon="@drawable/ic_left_arrow" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -42,23 +42,8 @@
             app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarDetailUser"
+            tools:ignore="ImageContrastCheck"
             tools:src="@drawable/placeholder_image" />
-
-
-        <androidx.appcompat.widget.AppCompatToggleButton
-            android:id="@+id/toggleFav"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:background="@drawable/toggle_favorite"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintBottom_toBottomOf="@+id/ivAvatar"
-            app:layout_constraintStart_toEndOf="@+id/ivAvatar"
-            app:layout_constraintTop_toTopOf="@+id/ivAvatar" />
-
 
         <TextView
             android:id="@+id/tvName"
@@ -92,102 +77,93 @@
             app:layout_constraintTop_toBottomOf="@+id/tvName"
             tools:text="andhiratobing" />
 
-        <ImageView
-            android:id="@+id/ivCompany"
-            android:layout_width="37dp"
-            android:layout_height="35dp"
-            android:contentDescription="@string/icon_company"
-            android:src="@drawable/ic_company"
-            app:layout_constraintBottom_toBottomOf="@+id/tvCompany"
-            app:layout_constraintEnd_toStartOf="@+id/tvCompany"
-            app:layout_constraintTop_toTopOf="@+id/tvCompany" />
-
-        <TextView
-            android:id="@+id/tvCompany"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:ems="10"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center"
-            android:textColor="@color/color_text"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/tvUsername"
-            app:layout_constraintStart_toStartOf="@+id/tvUsername"
-            app:layout_constraintTop_toBottomOf="@+id/tvUsername"
-            tools:text="Dicoding Indonesia ||@JVMDeveloperID @KotlinID @IDDevOps" />
-
-
-        <ImageView
-            android:id="@+id/ivLocation"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:contentDescription="@string/icon_location"
-            android:src="@drawable/ic_location"
-            app:layout_constraintBottom_toBottomOf="@+id/tvLocation"
-            app:layout_constraintEnd_toStartOf="@+id/tvLocation"
-            app:layout_constraintTop_toTopOf="@+id/tvLocation" />
-
-        <TextView
-            android:id="@+id/tvLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|end"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center"
-            android:textColor="@color/color_text"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/tvCompany"
-            app:layout_constraintStart_toStartOf="@+id/tvCompany"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompany"
-            tools:text="Bandung, Indoenesia" />
-
-        <Button
-            android:id="@+id/btnFollow"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/follow"
-            android:textAllCaps="false"
-            android:textColor="@color/color_text"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
-
-        <View
-            android:id="@+id/view1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnFollow" />
-
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            app:cardCornerRadius="12dp"
+            app:cardCornerRadius="14dp"
             app:cardElevation="0dp"
             app:elevation="0dp"
-            app:layout_constraintEnd_toEndOf="@+id/btnFollow"
-            app:layout_constraintStart_toStartOf="@+id/btnFollow"
-            app:layout_constraintTop_toBottomOf="@+id/view1">
+            app:layout_constraintEnd_toStartOf="@+id/tvUsername"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivCompany"
+                    android:layout_width="37dp"
+                    android:layout_height="35dp"
+                    android:contentDescription="@string/icon_company"
+                    android:src="@drawable/ic_company"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCompany"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCompany"
+                    app:layout_constraintTop_toTopOf="@id/tvCompany" />
+
+                <TextView
+                    android:id="@+id/tvCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:textColor="@color/color_text"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Dicoding Indonesia" />
+
+
+                <ImageView
+                    android:id="@+id/ivLocation"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:contentDescription="@string/icon_location"
+                    android:src="@drawable/ic_location"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvLocation"
+                    app:layout_constraintEnd_toStartOf="@+id/tvLocation"
+                    app:layout_constraintTop_toTopOf="@+id/tvLocation" />
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:textColor="@color/color_text"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvCompany"
+                    app:layout_constraintStart_toStartOf="@+id/tvCompany"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCompany"
+                    tools:text="Bandung, Indoenesia" />
+
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/color_icon"
+                    app:layout_constraintBottom_toTopOf="@+id/lnFollowing"
+                    app:layout_constraintEnd_toEndOf="@+id/tvLocation"
+                    app:layout_constraintStart_toStartOf="@+id/tvLocation"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+
 
                 <LinearLayout
                     android:id="@+id/lnFollowers"
@@ -197,10 +173,10 @@
                     android:layout_margin="16dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/lnFollowing"
                     app:layout_constraintEnd_toStartOf="@+id/lnFollowing"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="@+id/lnFollowing">
 
                     <TextView
                         android:id="@+id/tvFollowers"
@@ -230,12 +206,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="16dp"
+                    android:layout_marginBottom="24dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintEnd_toEndOf="@+id/view1"
+                    app:layout_constraintStart_toStartOf="@+id/view1"
+                    app:layout_constraintTop_toBottomOf="@+id/view1">
 
                     <TextView
                         android:id="@+id/tvFollowing"
@@ -270,10 +247,10 @@
                     android:layout_margin="16dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/lnFollowing"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/lnFollowing"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="@+id/lnFollowing">
 
                     <TextView
                         android:id="@+id/tvRepository"
@@ -299,7 +276,43 @@
 
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/btnFollow"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/color_background_button"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/follow"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/toggleFav"
+            app:layout_constraintStart_toStartOf="@+id/cardViewDetail"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewDetail"
+            tools:ignore="TextContrastCheck" />
+
+
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:id="@+id/toggleFav"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/toggle_favorite"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toBottomOf="@id/btnFollow"
+            app:layout_constraintEnd_toEndOf="@+id/cardViewDetail"
+            app:layout_constraintStart_toEndOf="@+id/btnFollow"
+            app:layout_constraintTop_toTopOf="@id/btnFollow" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

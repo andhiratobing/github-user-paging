@@ -8,14 +8,4 @@
         android:icon="@drawable/ic_share"
         android:title="@string/share"
         app:showAsAction="always" />
-
-
-    <item
-        android:id="@+id/toogleFavorite"
-        android:contentDescription="@string/icon_favorite"
-        android:icon="@drawable/toggle_favorite"
-        android:title="@string/favorite"
-        app:showAsAction="ifRoom" />
-
-
 </menu>

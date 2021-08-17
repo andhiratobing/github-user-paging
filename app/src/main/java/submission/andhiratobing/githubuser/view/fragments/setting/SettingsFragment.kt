@@ -29,7 +29,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         savedInstanceState: Bundle?
     ): View {
         val defaultView = super.onCreateView(inflater, container, savedInstanceState) as View
-        val newLayout = inflater.inflate(R.layout.toolbar_settings, container, false) as ViewGroup
+        val newLayout = inflater.inflate(R.layout.layout_toolbar_settings, container, false) as ViewGroup
         newLayout.addView(defaultView)
         defaultView.setPaddingRelative(0, 120, 0, 0)
         return newLayout

@@ -8,10 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import submission.andhiratobing.githubuser.adapter.FavoriteAdapter
 import submission.andhiratobing.githubuser.data.model.UserEntity
 import submission.andhiratobing.githubuser.databinding.FragmentFavoriteBinding
-import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
+import submission.andhiratobing.githubuser.view.activities.detailuser.DetailUserActivity
+import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
 class FavoriteFragment : Fragment() {
 
@@ -33,6 +38,7 @@ class FavoriteFragment : Fragment() {
 
         initRecyclerView()
         initViewModelFavorite()
+        countFavoriteUser()
     }
 
 
@@ -42,13 +48,21 @@ class FavoriteFragment : Fragment() {
         startActivity(intent)
     }
 
+    private fun countFavoriteUser() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val count = favoriteViewModel.getCountUser()
+            withContext(Dispatchers.Main) {
+                "($count users)".also { binding.tvCountFavorite.text = it }
+            }
+        }
+    }
+
     private fun initRecyclerView() {
         binding.apply {
             favoriteAdapter = FavoriteAdapter()
             rvFavorite.layoutManager = LinearLayoutManager(requireActivity())
             rvFavorite.adapter = favoriteAdapter
             rvFavorite.setHasFixedSize(true)
-
             //Click item
             favoriteAdapter.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
                 override fun onItemClick(data: UserEntity) {
@@ -60,12 +74,15 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun initViewModelFavorite() {
-        favoriteViewModel.getFavoriteUser().observe(viewLifecycleOwner, {
-            if (it != null) {
-//                val list = mapList(it)
-                favoriteAdapter.setListDataUser(it as ArrayList<UserEntity>)
+        CoroutineScope(Dispatchers.IO).launch {
+            withContext(Dispatchers.Main) {
+                favoriteViewModel.getFavoriteUser().observe(viewLifecycleOwner, {
+                    if (it != null) {
+                        favoriteAdapter.setListDataUser(it as ArrayList<UserEntity>)
+                    }
+                })
             }
-        })
+        }
     }
 
     override fun onDestroy() {

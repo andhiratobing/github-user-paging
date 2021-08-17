@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.data.db
+package submission.andhiratobing.githubuser.data.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -15,6 +15,9 @@ interface FavoriteUserDao {
 
     @Query("SELECT * FROM favorite_users ORDER BY username ASC")
     fun getFavoriteUser(): LiveData<List<UserEntity>>
+
+    @Query("SELECT COUNT(*) FROM favorite_users")
+    suspend fun getCountUsers(): Int
 
     @Query("SELECT COUNT(*) FROM favorite_users WHERE username = :username")
     suspend fun getCountFavorite(username: String): Int

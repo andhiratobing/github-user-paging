@@ -31,7 +31,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
         fun bind(data: UserEntity) {
             with(binding) {
                 tvName.text = data.name
-                tvCompany.text = data.company
+                tvUsername.text = data.username
                 tvFollowing.text = data.following.toString()
                 tvFollowers.text = data.follower.toString()
                 tvRepository.text = data.repository.toString()
