@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.view.activities
+package submission.andhiratobing.githubuser.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -6,19 +6,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import submission.andhiratobing.githubuser.data.db.AppDatabase
-import submission.andhiratobing.githubuser.data.db.FavoriteUserDao
+import submission.andhiratobing.githubuser.data.db.dao.FavoriteUserDao
 import submission.andhiratobing.githubuser.data.model.UserEntity
 
 class DetailUserViewModel(application: Application) : AndroidViewModel(application) {
-
-//    private val getFavoriteUser: LiveData<List<UserEntity>>
-//    private val favoriteRepository : FavoriteRepository
-//
-//    init {
-//        val favoriteUserDao = AppDatabase.getDatabase(application)?.favoriteUserDao()
-//        favoriteRepository = FavoriteRepository(favoriteUserDao!!)
-//        getFavoriteUser = favoriteRepository.getFavoriteUser
-//    }
 
     private var favoriteUserDao: FavoriteUserDao?
     private var appDatabase: AppDatabase? = AppDatabase.getDatabase(application)
@@ -35,8 +26,7 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
         location: String,
         repository: Int,
         follower: Int,
-        following: Int
-    ) {
+        following: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             val user = UserEntity(
                 username,

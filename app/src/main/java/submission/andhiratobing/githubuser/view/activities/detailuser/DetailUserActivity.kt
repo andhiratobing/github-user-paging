@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.view.activities
+package submission.andhiratobing.githubuser.view.activities.detailuser
 
 import android.os.Bundle
 import android.view.Menu
@@ -14,6 +14,7 @@ import kotlinx.coroutines.withContext
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.model.UserEntity
 import submission.andhiratobing.githubuser.databinding.ActivityDetailUserBinding
+import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
 
 class DetailUserActivity : AppCompatActivity() {
 
@@ -23,7 +24,6 @@ class DetailUserActivity : AppCompatActivity() {
     companion object {
         const val DATA_USER = "data_user"
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +75,6 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun getData() {
         val data: UserEntity = intent.getParcelableExtra(DATA_USER)!!
-
         binding.apply {
             //Set toolbar with value
             toolbarDetailUser.title = data.username
@@ -101,25 +100,25 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun clickShare() {
-        val dataUser: UserEntity = intent.getParcelableExtra(DATA_USER)!!
+        val data: UserEntity = intent.getParcelableExtra(DATA_USER)!!
         val type = "text/plain"
         ShareCompat.IntentBuilder(this)
             .setType(type)
             .setChooserTitle("Share")
             .setText(
                 resources.getString(
-                    R.string.share_detail_user, "${dataUser.name}\n" +
-                            "Username:${dataUser.username}\n" +
-                            "image url: ${dataUser.avatar}"
+                    R.string.share_detail_user,
+                    "${data.name}\n" +
+                            "Username:${data.username}\n" +
+                            "Company: ${data.company}"
                 )
             )
             .startChooser()
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_detail_user, menu)
-        return true
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -130,9 +129,6 @@ class DetailUserActivity : AppCompatActivity() {
             }
             R.id.itemShare -> {
                 clickShare()
-            }
-            R.id.toogleFavorite -> {
-                checkFavorite()
             }
         }
         return super.onOptionsItemSelected(item)

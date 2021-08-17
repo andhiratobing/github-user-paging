@@ -5,16 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import submission.andhiratobing.githubuser.adapter.UserAdapter
 import submission.andhiratobing.githubuser.data.model.UserEntity
 import submission.andhiratobing.githubuser.databinding.FragmentHomeBinding
-import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
+import submission.andhiratobing.githubuser.view.activities.detailuser.DetailUserActivity
+import submission.andhiratobing.githubuser.viewmodel.HomeViewModel
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -57,7 +59,7 @@ class HomeFragment : Fragment() {
             rvUser.layoutManager = LinearLayoutManager(requireActivity())
             rvUser.adapter = userAdapter
             rvUser.setHasFixedSize(true)
-
+            searchUser.setOnQueryTextListener(this@HomeFragment)
             //Click item
             userAdapter.setOnItemClickCallBack(object : UserAdapter.OnItemClickCallBack {
                 override fun onItemClick(data: UserEntity) {
@@ -66,6 +68,15 @@ class HomeFragment : Fragment() {
             })
 
         }
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        userAdapter.filter.filter(newText)
+        return true
     }
 
     override fun onDestroy() {

@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import submission.andhiratobing.githubuser.data.db.dao.FavoriteUserDao
 import submission.andhiratobing.githubuser.data.model.UserEntity
 
 @Database(entities = [UserEntity::class], version = 1, exportSchema = false)

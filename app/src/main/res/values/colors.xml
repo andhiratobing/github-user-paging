@@ -5,7 +5,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="base_background">#f2f2f2</color>
     <color name="secondary_background">#FFFFFF</color>
+    <color name="color_background_button">#FF9800</color>
     <color name="color_text">#1A1C4D</color>
     <color name="color_background_image">#E8EEF6</color>
+    <color name="color_favorite">#FF3B58</color>
     <color name="gray">#EAEAEA</color>
 </resources>

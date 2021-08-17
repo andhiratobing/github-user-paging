@@ -19,5 +19,5 @@
         android:id="@+id/navSettingFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.setting.SettingsFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/toolbar_settings"/>
+        tools:layout="@layout/layout_toolbar_settings"/>
 </navigation>

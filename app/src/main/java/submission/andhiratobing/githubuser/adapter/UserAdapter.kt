@@ -2,21 +2,53 @@ package submission.andhiratobing.githubuser.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import submission.andhiratobing.githubuser.data.model.UserEntity
 import submission.andhiratobing.githubuser.databinding.ItemUserBinding
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.HomeViewHolder>() {
+class UserAdapter : RecyclerView.Adapter<UserAdapter.HomeViewHolder>(), Filterable {
 
     private lateinit var onItemClickCallBack: OnItemClickCallBack
-    private var listDataUser = ArrayList<UserEntity>()
-
+    private var listDataUser: ArrayList<UserEntity> = ArrayList()
+    private var listDataUserFilter: ArrayList<UserEntity> = ArrayList()
 
     fun setListDataUser(listData: ArrayList<UserEntity>) {
-        listDataUser.clear()
-        listDataUser.addAll(listData)
+        this.listDataUser = listData
+        this.listDataUser = this.listDataUserFilter
+        this.listDataUser.addAll(listData)
         notifyDataSetChanged()
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(char: CharSequence?): FilterResults {
+                val charString = char?.toString() ?: ""
+                listDataUser = if (charString.isEmpty()) listDataUserFilter else {
+                    val filteredList = ArrayList<UserEntity>()
+                    listDataUserFilter.filter {
+                        (it.name.contains(char!!))
+                                || (it.company.contains(char))
+                                || (it.following.toString().contains(char))
+                                || (it.follower.toString().contains(char))
+                                || (it.repository.toString().contains(char))
+                    }.forEach { filteredList.add(it) }
+                    filteredList
+                }
+                return FilterResults().apply { values = listDataUser }
+            }
+
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                listDataUser = if (p1?.values == null)
+                    ArrayList()
+                else
+                    p1.values as ArrayList<UserEntity>
+                notifyDataSetChanged()
+            }
+
+        }
     }
 
 
@@ -26,7 +58,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.HomeViewHolder>() {
         fun bind(data: UserEntity) {
             with(binding) {
                 tvName.text = data.name
-                tvCompany.text = data.company
+                tvUsername.text = data.username
                 tvFollowing.text = data.following.toString()
                 tvFollowers.text = data.follower.toString()
                 tvRepository.text = data.repository.toString()
@@ -68,5 +100,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.HomeViewHolder>() {
     fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack) {
         this.onItemClickCallBack = onItemClickCallBack
     }
+
+
 }
 

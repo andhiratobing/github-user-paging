@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.view.fragments.home
+package submission.andhiratobing.githubuser.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -24,7 +24,6 @@ class HomeViewModel constructor(application: Application) :
     }
 
     init {
-
         _listData.value = fetchDataDummy()
     }
 }
