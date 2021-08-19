@@ -24,20 +24,18 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        fun getDatabase(context: Context): AppDatabase? {
-            if (INSTANCE == null) {
-                synchronized(AppDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.applicationContext,
-                        AppDatabase::class.java,
-                        "github_user"
-                    )
-                        .addMigrations(MIGRATION_1_2)
-                        .allowMainThreadQueries()
-                        .build()
-                }
+        fun getDatabase(context: Context): AppDatabase =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "github_user"
+                )
+                    .addMigrations(MIGRATION_1_2)
+                    .allowMainThreadQueries()
+                    .build()
+                    .also { INSTANCE = it }
             }
-            return INSTANCE
-        }
+
     }
 }

@@ -16,7 +16,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.HomeViewHolder>(), Filterab
     private var listDataUserFilter: ArrayList<UserEntity> = ArrayList()
 
     fun setListDataUser(listData: ArrayList<UserEntity>) {
-        this.listDataUser = listData
+        this.listDataUser.clear()
         this.listDataUser = this.listDataUserFilter
         this.listDataUser.addAll(listData)
         notifyDataSetChanged()
@@ -29,11 +29,14 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.HomeViewHolder>(), Filterab
                 listDataUser = if (charString.isEmpty()) listDataUserFilter else {
                     val filteredList = ArrayList<UserEntity>()
                     listDataUserFilter.filter {
-                        (it.name.contains(char!!))
-                                || (it.username.contains(char))
-                                || (it.following.toString().contains(char))
-                                || (it.follower.toString().contains(char))
-                                || (it.repository.toString().contains(char))
+                        (it.name.lowercase().contains(charString.lowercase()))
+                                || (it.username.lowercase().contains(charString.lowercase()))
+                                || (it.following.toString().lowercase()
+                            .contains(charString.lowercase()))
+                                || (it.follower.toString().lowercase()
+                            .contains(charString.lowercase()))
+                                || (it.repository.toString().lowercase()
+                            .contains(charString.lowercase()))
                     }.forEach { filteredList.add(it) }
                     filteredList
                 }
@@ -82,7 +85,8 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.HomeViewHolder>(), Filterab
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(listDataUser[position])
+        val list = listDataUser[position]
+        holder.bind(list)
 
         holder.itemView.setOnClickListener {
             onItemClickCallBack.onItemClick(listDataUser[holder.bindingAdapterPosition])

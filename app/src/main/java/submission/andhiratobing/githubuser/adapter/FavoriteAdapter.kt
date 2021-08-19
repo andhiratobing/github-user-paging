@@ -55,8 +55,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
     }
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
-        val data = listDataUser[position]
-        holder.bind(data)
+        val list = listDataUser[position]
+        holder.bind(list)
 
         holder.itemView.setOnClickListener {
             onItemClickCallBack.onItemClick(listDataUser[holder.bindingAdapterPosition])

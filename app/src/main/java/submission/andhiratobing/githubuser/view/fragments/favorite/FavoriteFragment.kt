@@ -52,11 +52,13 @@ class FavoriteFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val count = favoriteViewModel.getCountUser()
             withContext(Dispatchers.Main) {
-                if (count > 0){
-                    "($count users)".also { binding.tvCountFavorite.text = it }
-                    binding.tvCountFavorite.visibility = View.VISIBLE
-                }else{
-                    binding.tvCountFavorite.visibility = View.GONE
+                if (count != null) {
+                    if (count > 0){
+                        "($count users)".also { binding.tvCountFavorite.text = it }
+                        binding.tvCountFavorite.visibility = View.VISIBLE
+                    }else{
+                        binding.tvCountFavorite.visibility = View.GONE
+                    }
                 }
             }
         }
@@ -81,7 +83,7 @@ class FavoriteFragment : Fragment() {
     private fun initViewModelFavorite() {
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
-                favoriteViewModel.getFavoriteUser().observe(viewLifecycleOwner, {
+                favoriteViewModel.getFavoriteUser()?.observe(viewLifecycleOwner, {
                     if (it != null) {
                         favoriteAdapter.setListDataUser(it as ArrayList<UserEntity>)
                     }

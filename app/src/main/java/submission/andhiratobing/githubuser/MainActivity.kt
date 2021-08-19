@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (backPressedTime + 2_000 > System.currentTimeMillis()) {
-            backToast!!.cancel()
+            backToast?.cancel()
             super.onBackPressed()
             val intent = Intent(Intent.ACTION_MAIN)
             intent.addCategory(Intent.CATEGORY_HOME)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             return
         } else {
             backToast = Toast.makeText(baseContext, "Press again to exit", Toast.LENGTH_SHORT)
-            backToast!!.show()
+            backToast?.show()
         }
         backPressedTime = System.currentTimeMillis()
     }
