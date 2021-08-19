@@ -16,12 +16,12 @@ class FavoriteViewModel(application: Application) : AndroidViewModel(application
         favoriteUserDao = appDatabase?.favoriteUserDao()
     }
 
-    fun getFavoriteUser(): LiveData<List<UserEntity>> {
-        return favoriteUserDao?.getFavoriteUser()!!
+    fun getFavoriteUser(): LiveData<List<UserEntity>>? {
+        return favoriteUserDao?.getFavoriteUser()
     }
 
-    suspend fun getCountUser(): Int {
-        return favoriteUserDao?.getCountUsers()!!
+    suspend fun getCountUser(): Int? {
+        return favoriteUserDao?.getCountUsers()
     }
 
 

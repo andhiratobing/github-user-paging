@@ -27,7 +27,7 @@
         <entry key="app/src/main/res/drawable/ic_share.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_theme.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/toggle_favorite.xml" value="0.190625" />
-        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.16111111111111112" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.17447916666666666" />

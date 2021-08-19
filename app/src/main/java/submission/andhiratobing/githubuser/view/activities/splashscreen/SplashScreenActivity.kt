@@ -12,6 +12,9 @@ import submission.andhiratobing.githubuser.databinding.ActivitySplashScreenBindi
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
+    companion object{
+        const val delayMilisecond = 3_500L
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,6 @@ class SplashScreenActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3500)
+        }, delayMilisecond)
     }
 }

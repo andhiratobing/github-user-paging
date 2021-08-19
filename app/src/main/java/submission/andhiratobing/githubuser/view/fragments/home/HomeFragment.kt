@@ -56,7 +56,8 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun initRecyclerView() {
         binding.apply {
             userAdapter = UserAdapter()
-            rvUser.layoutManager = LinearLayoutManager(requireActivity())
+            rvUser.layoutManager =
+                LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvUser.adapter = userAdapter
             rvUser.setHasFixedSize(true)
             searchUser.setOnQueryTextListener(this@HomeFragment)

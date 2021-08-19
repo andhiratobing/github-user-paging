@@ -36,10 +36,10 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun checkFavorite() {
-        val data: UserEntity = intent.getParcelableExtra(DATA_USER)!!
+        val data: UserEntity? = intent.getParcelableExtra(DATA_USER)
         var isChecked = false
         CoroutineScope(Dispatchers.IO).launch {
-            val count = detailUserViewModel.getCountFavorite(data.username)
+            val count = data?.username?.let { detailUserViewModel.getCountFavorite(it) }
             withContext(Dispatchers.Main) {
                 if (count != null) {
                     if (count > 0) {
@@ -56,26 +56,28 @@ class DetailUserActivity : AppCompatActivity() {
         binding.toggleFav.setOnClickListener {
             isChecked = !isChecked
             if (isChecked) {
-                detailUserViewModel.addFavorite(
-                    data.username,
-                    data.name,
-                    data.avatar,
-                    data.company,
-                    data.location,
-                    data.repository,
-                    data.follower,
-                    data.following
-                )
+                data?.username?.let { dataUser ->
+                    detailUserViewModel.addFavorite(
+                        dataUser,
+                        data.name,
+                        data.avatar,
+                        data.company,
+                        data.location,
+                        data.repository,
+                        data.follower,
+                        data.following
+                    )
+                }
                 Snackbar.make(
                     it,
-                    "Successfully added ${data.name} to favorites",
+                    "Successfully added ${data?.name} to favorites",
                     Snackbar.LENGTH_LONG
                 ).show()
             } else {
-                detailUserViewModel.deleteFavorite(data.username)
+                data?.let { dataUser -> detailUserViewModel.deleteFavorite(dataUser.username) }
                 Snackbar.make(
                     it,
-                    "Successfully removed ${data.name} from favorites",
+                    "Successfully removed ${data?.name} from favorites",
                     Snackbar.LENGTH_LONG
                 ).show()
             }
