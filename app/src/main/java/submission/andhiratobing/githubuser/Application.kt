@@ -1,9 +1,12 @@
-package submission.andhiratobing.githubuser.util.theme
+package submission.andhiratobing.githubuser
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import dagger.hilt.android.HiltAndroidApp
+import submission.andhiratobing.githubuser.util.theme.ThemeProvider
 
-class ThemeApplication: Application() {
+@HiltAndroidApp
+class Application : Application() {
 
     override fun onCreate() {
         super.onCreate()

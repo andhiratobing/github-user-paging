@@ -9,10 +9,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import dagger.hilt.android.AndroidEntryPoint
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.util.theme.ThemeProvider
 
-
+@AndroidEntryPoint
 class SettingsFragment : PreferenceFragmentCompat() {
 
     private val themeProvider by lazy { ThemeProvider(requireActivity()) }
@@ -29,7 +30,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         savedInstanceState: Bundle?
     ): View {
         val defaultView = super.onCreateView(inflater, container, savedInstanceState) as View
-        val newLayout = inflater.inflate(R.layout.layout_toolbar_settings, container, false) as ViewGroup
+        val newLayout =
+            inflater.inflate(R.layout.layout_toolbar_settings, container, false) as ViewGroup
         newLayout.addView(defaultView)
         defaultView.setPaddingRelative(0, 120, 0, 0)
         return newLayout

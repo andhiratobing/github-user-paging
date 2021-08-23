@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/navHomeFragment">
+    app:startDestination="@id/navSearchFragment">
 
     <fragment
-        android:id="@+id/navHomeFragment"
-        android:name="submission.andhiratobing.githubuser.view.fragments.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navSearchFragment"
+        android:name="submission.andhiratobing.githubuser.view.fragments.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+
     <fragment
         android:id="@+id/navFavoriteFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.favorite.FavoriteFragment"
@@ -19,5 +20,6 @@
         android:id="@+id/navSettingFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.setting.SettingsFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/layout_toolbar_settings"/>
+        tools:layout="@layout/layout_toolbar_settings" />
+
 </navigation>
