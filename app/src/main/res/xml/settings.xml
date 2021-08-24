@@ -1,20 +1,36 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
+        app:icon="@drawable/ic_language"
+        app:iconSpaceReserved="false"
+        app:key="language_category"
+        app:title="@string/language">
+
+        <Preference
+            app:dialogTitle="@string/choose_language"
+            app:iconSpaceReserved="true"
+            app:key="@string/language_preferences_key"
+            app:title="@string/choose_language" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
         app:icon="@drawable/ic_theme"
         app:iconSpaceReserved="false"
         app:key="theme_category"
-        app:title="Theme">
+        app:title="@string/theme">
 
         <ListPreference
             app:defaultValue="@string/system_theme_preference_value"
-            app:dialogTitle="Choose theme"
+            app:dialogTitle="@string/choose_theme"
             app:entries="@array/theme_list_array"
             app:entryValues="@array/theme_entry_array"
             app:iconSpaceReserved="true"
             app:key="@string/theme_preferences_key"
-            app:title="Choose theme" />
+            app:title="@string/choose_theme" />
 
     </PreferenceCategory>
+
 
 </PreferenceScreen>

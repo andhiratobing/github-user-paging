@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github User</string>
+    <string name="home">Utama</string>
+    <string name="icon_home">Icon Utama</string>
+    <string name="settings">Pengaturan</string>
+    <string name="icon_setting">Icon Pengaturan</string>
+    <string name="icon_favorite">Icon Favorit</string>
+    <string name="favorite">Favorit</string>
+    <string name="icon_following">Icon Mengikuti</string>
+    <string name="icon_followers">Icon Pengikut</string>
+    <string name="icon_star">Icon Bintang</string>
+    <string name="icon_share">Icon Berbagi</string>
+    <string name="share">Bagikan</string>
+    <string name="follow">Ikuti</string>
+    <string name="persons">Orang</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="repository">Gudang</string>
+    <string name="icon_company">Icon Perusahaan</string>
+    <string name="icon_location">Icon Lokasi</string>
+    <string name="share_detail_user">"Bagikan %s  "</string>
+    <string name="favorite_users">Pengguna favorit</string>
+    <!--Themes-->
+    <string name="theme_preferences_key">tombol preferensi tema</string>
+    <string name="light_theme_preference_value">0</string>
+    <string name="dark_theme_preference_value">1</string>
+    <string name="system_theme_preference_value">2</string>
+    <string name="dark_theme_description">Mode gelap</string>
+    <string name="light_theme_description">Mode terang</string>
+    <string name="system_theme_description">Standart sistem</string>
+    <string name="image_splashscreen">Gambar splashscreen</string>
+    <string-array name="theme_list_array">
+        <item>Terang</item>
+        <item>Gelap</item>
+        <item>Standart sistem</item>
+    </string-array>
+
+    <string-array name="theme_entry_array">
+        <item>@string/light_theme_preference_value</item>
+        <item>@string/dark_theme_preference_value</item>
+        <item>@string/system_theme_preference_value</item>
+    </string-array>
+
+    <!--language-->
+    <string name="language_preferences_key">language_preferences_key</string>
+    <string name="language">Bahasa</string>
+    <string name="choose_language">Pilih bahasa</string>
+    <string name="theme">Tema</string>
+    <string name="choose_theme">Pilih tema</string>
+
+
+    <string name="all_data_loaded">Semua data telah di muat</string>
+    <string name="no_internet_connection">Tidak ada koneksi internet</string>
+    <string name="no_results">Tidak ada hasil</string>
+    <string name="retry">Ulangi</string>
+</resources>

@@ -1,6 +1,8 @@
 package submission.andhiratobing.githubuser.view.fragments.setting
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,14 +23,27 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
-        setThemePreference()
+
+    }
+
+    override fun onPreferenceTreeClick(preference: Preference?): Boolean {
+        return when (preference?.key){
+            getString(R.string.language_preferences_key) -> {
+                val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(mIntent)
+                true
+            }
+            getString(R.string.theme_preferences_key) -> {
+                setThemePreference()
+                true
+            }else -> super.onPreferenceTreeClick(preferenceScreen)
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        savedInstanceState: Bundle?): View {
         val defaultView = super.onCreateView(inflater, container, savedInstanceState) as View
         val newLayout =
             inflater.inflate(R.layout.layout_toolbar_settings, container, false) as ViewGroup

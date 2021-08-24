@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/card_background"
+    android:background="@color/base_background"
     tools:context=".view.fragments.search.SearchFragment">
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/searchUser"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -24,11 +24,12 @@
         android:inputType="text"
         android:lines="1"
         android:maxLines="1"
+        android:animateLayoutChanges="true"
         android:queryHint="Search users..."
         android:textColor="#1A1C4D"
         android:textDirection="inherit"
         android:textSize="16sp"
-        android:theme="@style/Widget.AppCompat.SearchView.ActionBar"
+        android:theme="@style/Widget.AppCompat.Light.SearchView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

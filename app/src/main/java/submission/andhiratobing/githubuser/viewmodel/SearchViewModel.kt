@@ -17,28 +17,13 @@ class SearchViewModel @Inject constructor(
     state: SavedStateHandle
 ) : ViewModel() {
 
-//    private var currentQueryValue: String? = null
-//    private var currentSearchResult: Flow<PagingData<UserResponseItem>>? = null
-//
-//    fun getSearchUser(query: String, shouldForceRefresh: Boolean = false): Flow<PagingData<UserResponseItem>> {
-//        val lastResult = currentSearchResult
-//        if (query == currentQueryValue && lastResult != null && !shouldForceRefresh) {
-//            return lastResult
-//        }
-//        currentQueryValue = query
-//        val newResult: Flow<PagingData<UserResponseItem>> =
-//            userRepository.getSearchResults(query).cachedIn(viewModelScope)
-//        currentSearchResult = newResult
-//        return newResult
-//    }
-
     private val currentQuery = state.getLiveData(CURRENT_QUERY, DEFAULT_QUERY)
 
     val search = currentQuery.switchMap { queryString ->
-        userRepository.getSearchResults(queryString).cachedIn(viewModelScope)
+        userRepository.setSearchUsers(queryString).cachedIn(viewModelScope)
     }
 
-    fun searchUser(query: String) {
+    fun getSearchUser(query: String) {
         currentQuery.value = query
     }
 

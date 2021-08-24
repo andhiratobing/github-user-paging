@@ -1,54 +1,68 @@
-//package submission.andhiratobing.githubuser.viewmodel
+package submission.andhiratobing.githubuser.viewmodel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
+import submission.andhiratobing.githubuser.data.remote.repositories.UserRepository
+import javax.inject.Inject
+
+
+@HiltViewModel
+@ExperimentalCoroutinesApi
+class DetailUserViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : ViewModel() {
+
+
+
+    fun getDetailUsers(login: String) {
+        viewModelScope.launch {
+            userRepository.setDetailUser(login)
+        }
+    }
+
+
+}
+
+
+//private var favoriteUserDao: FavoriteUserDao?
+//private var appDatabase: AppDatabase? = AppDatabase.getDatabase(application)
 //
-//import android.app.Application
-//import androidx.lifecycle.AndroidViewModel
-//import kotlinx.coroutines.CoroutineScope
-//import kotlinx.coroutines.Dispatchers
-//import kotlinx.coroutines.launch
-//import submission.andhiratobing.githubuser.data.local.dao.FavoriteUserDao
-//import submission.andhiratobing.githubuser.data.local.db.AppDatabase
-//import submission.andhiratobing.githubuser.data.local.entities.UserFavorite
+//init {
+//    favoriteUserDao = appDatabase?.favoriteUserDao()
+//}
 //
-//class DetailUserViewModel(application: Application) : AndroidViewModel(application) {
-//
-//    private var favoriteUserDao: FavoriteUserDao?
-//    private var appDatabase: AppDatabase? = AppDatabase.getDatabase(application)
-//
-//    init {
-//        favoriteUserDao = appDatabase?.favoriteUserDao()
+//fun addFavorite(
+//    username: String,
+//    name: String,
+//    avatar_url: String,
+//    company: String,
+//    location: String,
+//    repository: Int,
+//    follower: Int,
+//    following: Int) {
+//    CoroutineScope(Dispatchers.IO).launch {
+//        val user = UserFavorite(
+//            username,
+//            name,
+//            avatar_url,
+//            company,
+//            location,
+//            repository,
+//            follower,
+//            following
+//        )
+//        favoriteUserDao?.addFavoriteUser(user)
 //    }
+//}
 //
-//    fun addFavorite(
-//        username: String,
-//        name: String,
-//        avatar_url: String,
-//        company: String,
-//        location: String,
-//        repository: Int,
-//        follower: Int,
-//        following: Int) {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val user = UserFavorite(
-//                username,
-//                name,
-//                avatar_url,
-//                company,
-//                location,
-//                repository,
-//                follower,
-//                following
-//            )
-//            favoriteUserDao?.addFavoriteUser(user)
-//        }
+//
+//suspend fun getCountFavorite(username: String) = favoriteUserDao?.getCountFavorite(username)
+//
+//fun deleteFavorite(username: String) {
+//    CoroutineScope(Dispatcherzs.IO).launch {
+//        favoriteUserDao?.deleteFavoriteUser(username)
 //    }
-//
-//
-//    suspend fun getCountFavorite(username: String) = favoriteUserDao?.getCountFavorite(username)
-//
-//    fun deleteFavorite(username: String) {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            favoriteUserDao?.deleteFavoriteUser(username)
-//        }
-//    }
-//
 //}

@@ -1,8 +1,6 @@
 package submission.andhiratobing.githubuser
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,10 +14,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-
-    //initializing back pressed
-    private var backPressedTime: Long = 0
-    private var backToast: Toast? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,18 +33,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onBackPressed() {
-        if (backPressedTime + 2_000 > System.currentTimeMillis()) {
-            backToast?.cancel()
-            super.onBackPressed()
-            val intent = Intent(Intent.ACTION_MAIN)
-            intent.addCategory(Intent.CATEGORY_HOME)
-            startActivity(intent)
-            return
-        } else {
-            backToast = Toast.makeText(baseContext, "Press again to exit", Toast.LENGTH_SHORT)
-            backToast?.show()
-        }
-        backPressedTime = System.currentTimeMillis()
-    }
 }

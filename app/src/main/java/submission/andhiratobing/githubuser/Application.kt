@@ -12,5 +12,6 @@ class Application : Application() {
         super.onCreate()
         val theme = ThemeProvider(this).getThemeFromPreferences()
         AppCompatDelegate.setDefaultNightMode(theme)
+
     }
 }

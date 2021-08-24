@@ -19,18 +19,11 @@ class SearchLoadStateAdapter(private val retry: () -> Unit) :
             binding.tvLoadStateRetry.setOnClickListener { retry.invoke() }
         }
 
-
         fun bind(loadState: LoadState) {
             with(binding) {
-
                 progressBarLoadSatate.isVisible = loadState is LoadState.Loading
                 tvLoadStateRetry.isVisible = loadState !is LoadState.Loading
                 tvLoadStateError.isVisible = loadState !is LoadState.Loading
-
-                if (loadState is LoadState.Error) {
-                    tvLoadStateError.text = loadState.error.localizedMessage
-
-                }
             }
         }
     }

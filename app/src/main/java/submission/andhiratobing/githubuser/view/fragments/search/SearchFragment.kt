@@ -1,14 +1,13 @@
 package submission.andhiratobing.githubuser.view.fragments.search
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -17,6 +16,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.remote.adapter.SearchAdapter
 import submission.andhiratobing.githubuser.data.remote.adapter.SearchLoadStateAdapter
+import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentSearchBinding
 import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
 
@@ -29,6 +29,7 @@ class SearchFragment : Fragment() {
     private var searchAdapter = SearchAdapter()
     private val searchViewModel: SearchViewModel by viewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,10 +41,12 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         initAdapter()
         initProcess()
         initSearch()
+
+        //send data to detail user
+        onClickListener()
     }
 
     private fun initProcess() {
@@ -59,20 +62,22 @@ class SearchFragment : Fragment() {
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvUser.setHasFixedSize(true)
 
-            rvUser.adapter = searchAdapter.withLoadStateHeaderAndFooter(
-                header = SearchLoadStateAdapter { searchAdapter.retry() },
+            rvUser.adapter = searchAdapter.withLoadStateFooter(
                 footer = SearchLoadStateAdapter { searchAdapter.retry() }
             )
             searchAdapter.addLoadStateListener { loadState ->
-
-                progressBar.isVisible = loadState.source.refresh is LoadState.Loading
-
                 rvUser.isVisible = loadState.source.refresh is LoadState.NotLoading
+                progressBar.isVisible = loadState.source.refresh is LoadState.NotLoading
+                progressBar.isVisible = loadState.source.append is LoadState.Loading
 
-                //error handling no result searching
-                if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached && searchAdapter.itemCount < 1
-                ) {
+
+                //handling searching
+                if (loadState.append.endOfPaginationReached && searchAdapter.itemCount > 1){
+                    progressBar.isVisible = false
+                    rvUser.isVisible = true
+                    tvSearchNoResult.isVisible = false
+                }else if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached && searchAdapter.itemCount < 1) {
                     rvUser.isVisible = false
                     tvSearchNoResult.isVisible = true
                 } else {
@@ -92,15 +97,11 @@ class SearchFragment : Fragment() {
                             Snackbar.LENGTH_LONG
                         ).show()
                     } else {
-                        AlertDialog.Builder(requireActivity())
-                            .setTitle(R.string.error)
-                            .setMessage(R.string.no_internet_connection)
-                            .setNegativeButton(R.string.cancel) { dialog, _ ->
-                                dialog.dismiss()
-                            }
-                            .setPositiveButton(R.string.retry) { _, _ ->
-                                searchAdapter.retry()
-                            }.show()
+                        Snackbar.make(
+                            binding.rvUser,
+                            R.string.no_internet_connection,
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
@@ -108,11 +109,12 @@ class SearchFragment : Fragment() {
     }
 
     private fun initSearch() {
-        binding.searchUser.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchUser.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 p0?.let {
                     binding.rvUser.scrollToPosition(0)
-                    searchViewModel.searchUser(it)
+                    searchViewModel.getSearchUser(it)
                 }
                 return true
             }
@@ -120,8 +122,21 @@ class SearchFragment : Fragment() {
             override fun onQueryTextChange(p0: String?): Boolean {
                 return true
             }
-
         })
+    }
+
+
+    private fun onClickListener() {
+        searchAdapter.setOnItemClickCallBack(object : SearchAdapter.OnItemClickCallBack {
+            override fun onItemClick(data: UserResponseItem) {
+                sendDataToDetailUser(data)
+            }
+        })
+    }
+
+    private fun sendDataToDetailUser(data: UserResponseItem) {
+        val action = SearchFragmentDirections.actionNavSearchFragmentToDetailUserFragment(data)
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {
