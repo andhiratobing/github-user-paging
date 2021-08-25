@@ -16,9 +16,11 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import submission.andhiratobing.githubuser.R
+import submission.andhiratobing.githubuser.data.remote.adapter.SectionPageAdapter
 import submission.andhiratobing.githubuser.databinding.FragmentDetailUserBinding
 import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
@@ -32,8 +34,12 @@ class DetailUserFragment : Fragment() {
     private val binding get() = _binding!!
     private val args by navArgs<DetailUserFragmentArgs>()
     private val detailUserViewModel: DetailUserViewModel by viewModels()
-    private val favoriteViewModel : FavoriteViewModel by viewModels()
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
+    private lateinit var sectionPageAdapter: SectionPageAdapter
 
+    companion object {
+        const val DATA_USER = "data_user"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +64,7 @@ class DetailUserFragment : Fragment() {
 
         getDataFromParcelable()
         initDetailUserViewModel()
+        initTabLayout()
 
     }
 
@@ -69,6 +76,22 @@ class DetailUserFragment : Fragment() {
         detailUserViewModel.setDetailUsers().observe(viewLifecycleOwner, { data ->
 
             when {
+                data.name === null -> {
+                    binding.tvName.isVisible = false
+                }
+                else -> {
+                    binding.tvName.isVisible = true
+                }
+            }
+            when {
+                data?.bio === null -> {
+                    binding.tvBio.isVisible = false
+                }
+                else -> {
+                    binding.tvBio.isVisible = true
+                }
+            }
+            when {
                 data.company === null -> {
                     binding.tvCompany.isVisible = false
                     binding.ivCompany.isVisible = false
@@ -76,15 +99,6 @@ class DetailUserFragment : Fragment() {
                 else -> {
                     binding.tvCompany.isVisible = true
                     binding.ivCompany.isVisible = true
-                }
-            }
-
-            when {
-                data?.bio === null -> {
-                    binding.tvBio.isVisible = false
-                }
-                else -> {
-                    binding.tvBio.isVisible = true
                 }
             }
 
@@ -141,11 +155,15 @@ class DetailUserFragment : Fragment() {
                         data.following,
                         data.followers,
                         data.repository)
-                    Snackbar.make(it, "Successfully added ${data.username} to favorites", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(it,
+                        "Successfully added ${data.username} to favorites",
+                        Snackbar.LENGTH_SHORT).show()
                 } else {
                     favoriteViewModel.deleteFavorite(data.id)
                 }
-                Snackbar.make(it, "Successfully removed ${data.username} from favorites", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(it,
+                    "Successfully removed ${data.username} from favorites",
+                    Snackbar.LENGTH_SHORT).show()
             }
             binding.toggleFav.isChecked = isChecked
         })
@@ -207,6 +225,29 @@ class DetailUserFragment : Fragment() {
                 )
             )
             .startChooser()
+    }
+
+
+    private fun initTabLayout() {
+
+        val bundle = Bundle()
+        bundle.putString(DATA_USER, args.user.username)
+
+        binding.apply {
+            sectionPageAdapter = SectionPageAdapter(this@DetailUserFragment, bundle)
+            viewPager.adapter = sectionPageAdapter
+
+            //set tablayout mediator
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                when (position) {
+                    0 -> tab.setIcon(R.drawable.ic_following)
+                    1 -> tab.setIcon(R.drawable.ic_followers)
+                    2 -> tab.setIcon(R.drawable.ic_repository)
+                }
+            }.attach()
+
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -52,6 +52,22 @@
             android:name="user"
             app:argType="submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem" />
     </fragment>
+    <fragment
+        android:id="@+id/followingFragment"
+        android:name="submission.andhiratobing.githubuser.view.fragments.home.detailuser.FollowingFragment"
+        android:label="fragment_following"
+        tools:layout="@layout/fragment_following"/>
+
+    <fragment
+        android:id="@+id/followersFragment"
+        android:name="submission.andhiratobing.githubuser.view.fragments.home.detailuser.FollowersFragment"
+        android:label="fragment_followers"
+        tools:layout="@layout/fragment_followers" />
+    <fragment
+        android:id="@+id/repositoryFragment"
+        android:name="submission.andhiratobing.githubuser.view.fragments.home.detailuser.RepositoryFragment"
+        android:label="fragment_repository"
+        tools:layout="@layout/fragment_repository" />
 
 
 </navigation>

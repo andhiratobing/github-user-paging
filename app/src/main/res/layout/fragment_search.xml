@@ -48,7 +48,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/persons"
+            android:text="@string/results"
             android:visibility="gone"
             tools:visibility="visible"
             android:textColor="@color/color_text"

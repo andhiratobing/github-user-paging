@@ -14,8 +14,8 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import submission.andhiratobing.githubuser.R
-import submission.andhiratobing.githubuser.data.remote.adapter.SearchAdapter
-import submission.andhiratobing.githubuser.data.remote.adapter.SearchLoadStateAdapter
+import submission.andhiratobing.githubuser.data.remote.adapter.searchusers.SearchAdapter
+import submission.andhiratobing.githubuser.data.remote.adapter.searchusers.SearchLoadStateAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentSearchBinding
 import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
@@ -66,8 +66,7 @@ class SearchFragment : Fragment() {
     private fun initAdapter() {
         binding.apply {
             searchAdapter = SearchAdapter()
-            rvUser.layoutManager =
-                LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+            rvUser.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvUser.setHasFixedSize(true)
 
 

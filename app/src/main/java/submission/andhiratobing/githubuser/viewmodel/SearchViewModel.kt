@@ -20,7 +20,7 @@ class SearchViewModel @Inject constructor(
     private val currentQuery = state.getLiveData(CURRENT_QUERY, DEFAULT_QUERY)
 
     val search = currentQuery.switchMap { queryString ->
-        userRepository.setSearchUsers(queryString).cachedIn(viewModelScope)
+        userRepository.searchUsers(queryString).cachedIn(viewModelScope)
     }
 
     fun getSearchUser(query: String) {

@@ -17,7 +17,13 @@ data class DetailUserResponse(
     val bio: String?,
     val location: String?,
     val following: Int,
+    @SerializedName("following_url")
+    val following_url: String,
     val followers: Int,
+    @SerializedName("followers_url")
+    val followers_url: String,
     @SerializedName("public_repos")
-    val repository: Int
+    val repository: Int,
+    @SerializedName("repos_url")
+    val repos_url: String
 ): Parcelable

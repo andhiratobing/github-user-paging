@@ -21,7 +21,6 @@ class FavoriteViewModel @Inject constructor(
 
     suspend fun getCountUsers() = favoriteRepository.getCountUsers()
 
-    /*Favorite*/
 
     fun addFavoriteUser(
         id: Int,

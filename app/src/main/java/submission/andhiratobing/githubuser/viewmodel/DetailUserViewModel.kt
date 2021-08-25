@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 @ExperimentalCoroutinesApi
 class DetailUserViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : ViewModel() {
 
 
@@ -24,7 +24,7 @@ class DetailUserViewModel @Inject constructor(
 
     fun getDetailUsers(username: String) {
         viewModelScope.launch {
-            userRepository.setDetailUser(username)
+            userRepository.detailUser(username)
         }
     }
 

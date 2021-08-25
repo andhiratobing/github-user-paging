@@ -2,57 +2,87 @@ package submission.andhiratobing.githubuser.data.local.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
-import submission.andhiratobing.githubuser.databinding.ItemUserBinding
+import submission.andhiratobing.githubuser.databinding.ItemFavoriteUserBinding
+import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
 
-class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
+class FavoriteAdapter :
+    ListAdapter<FavoriteEntity, FavoriteAdapter.FavoriteViewHolder>(FAVORITE_COMPARATOR) {
 
     private lateinit var onItemClickCallBack: OnItemClickCallBack
-    private var listDataUser = ArrayList<FavoriteEntity>()
-
-    interface OnItemClickCallBack {
-        fun onItemClick(data: FavoriteEntity)
-    }
 
     fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack) {
         this.onItemClickCallBack = onItemClickCallBack
     }
 
-    fun setListDataUser(listData: List<FavoriteEntity>) {
-        listDataUser = listData as ArrayList<FavoriteEntity>
+
+    interface OnItemClickCallBack {
+        fun onItemClick(data: FavoriteEntity)
     }
 
-    inner class FavoriteViewHolder(private val binding: ItemUserBinding) :
+
+    companion object {
+        private val FAVORITE_COMPARATOR = object : DiffUtil.ItemCallback<FavoriteEntity>() {
+            override fun areItemsTheSame(
+                oldItem: FavoriteEntity,
+                newItem: FavoriteEntity,
+            ): Boolean = oldItem.id == newItem.id
+
+
+            override fun areContentsTheSame(
+                oldItem: FavoriteEntity,
+                newItem: FavoriteEntity,
+            ): Boolean = oldItem == newItem
+        }
+    }
+
+
+    inner class FavoriteViewHolder(private val binding: ItemFavoriteUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(data: FavoriteEntity) {
             with(binding) {
+                tvName.text = data.name
                 tvUsername.text = data.username
+                tvFollowing.text = data.following.asFormattedDecimals()
+                tvFollowers.text = data.followers.asFormattedDecimals()
+                tvRepository.text = data.repository.asFormattedDecimals()
 
                 Glide.with(itemView.context)
                     .load(data.avatar)
-                    .placeholder(submission.andhiratobing.githubuser.R.drawable.placeholder_image)
+                    .placeholder(R.drawable.placeholder_image)
                     .into(ivAvatar)
+
+                binding.tvName.isVisible = data.name.isNotBlank()
+
             }
 
-
             binding.root.setOnClickListener {
-                onItemClickCallBack.onItemClick(data)
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                    val itemPosition = getItem(bindingAdapterPosition)
+                    if (itemPosition != null) {
+                        onItemClickCallBack.onItemClick(data)
+                    }
+                }
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
-        val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FavoriteViewHolder(binding)
-    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        FavoriteViewHolder(ItemFavoriteUserBinding.inflate(LayoutInflater.from(parent.context),
+            parent,
+            false))
+
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
-        val list = listDataUser[position]
-        holder.bind(list)
-
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = listDataUser.size
 }

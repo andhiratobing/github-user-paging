@@ -72,6 +72,7 @@ class FavoriteFragment : Fragment() {
                 }
 
             })
+
         }
     }
 
@@ -80,7 +81,8 @@ class FavoriteFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 favoriteViewModel.getAllFavoriteUser().observe(viewLifecycleOwner, {
                     if (it != null) {
-                        favoriteAdapter.setListDataUser(it)
+                        favoriteAdapter.submitList(it as ArrayList<FavoriteEntity>)
+
                     }
                 })
             }

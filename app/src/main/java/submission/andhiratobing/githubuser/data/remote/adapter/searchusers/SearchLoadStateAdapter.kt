@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.data.remote.adapter
+package submission.andhiratobing.githubuser.data.remote.adapter.searchusers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
