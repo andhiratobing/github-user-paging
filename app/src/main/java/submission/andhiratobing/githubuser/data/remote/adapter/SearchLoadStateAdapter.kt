@@ -23,7 +23,6 @@ class SearchLoadStateAdapter(private val retry: () -> Unit) :
             with(binding) {
                 progressBarLoadSatate.isVisible = loadState is LoadState.Loading
                 tvLoadStateRetry.isVisible = loadState !is LoadState.Loading
-                tvLoadStateError.isVisible = loadState !is LoadState.Loading
             }
         }
     }

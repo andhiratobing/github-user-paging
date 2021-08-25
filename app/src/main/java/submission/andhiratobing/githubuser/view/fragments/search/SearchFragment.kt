@@ -47,6 +47,14 @@ class SearchFragment : Fragment() {
 
         //send data to detail user
         onClickListener()
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            searchViewModel.search.observe(viewLifecycleOwner, {
+                searchAdapter.submitData(lifecycle, it)
+                searchAdapter.retry()
+                binding.swipeRefreshLayout.isRefreshing = false
+            })
+        }
     }
 
     private fun initProcess() {
@@ -62,27 +70,28 @@ class SearchFragment : Fragment() {
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvUser.setHasFixedSize(true)
 
+
             rvUser.adapter = searchAdapter.withLoadStateFooter(
                 footer = SearchLoadStateAdapter { searchAdapter.retry() }
             )
             searchAdapter.addLoadStateListener { loadState ->
                 rvUser.isVisible = loadState.source.refresh is LoadState.NotLoading
-                progressBar.isVisible = loadState.source.refresh is LoadState.NotLoading
-                progressBar.isVisible = loadState.source.append is LoadState.Loading
-
+                progressBar.isVisible = loadState.source.refresh is LoadState.Loading
 
                 //handling searching
-                if (loadState.append.endOfPaginationReached && searchAdapter.itemCount > 1){
-                    progressBar.isVisible = false
-                    rvUser.isVisible = true
-                    tvSearchNoResult.isVisible = false
-                }else if (loadState.source.refresh is LoadState.NotLoading &&
+                if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached && searchAdapter.itemCount < 1) {
                     rvUser.isVisible = false
                     tvSearchNoResult.isVisible = true
-                } else {
+                    tvTitlePersons.isVisible = false
+                } else if (searchAdapter.itemCount <=0){
+                    rvUser.isVisible = false
+                    tvSearchNoResult.isVisible = false
+                    tvTitlePersons.isVisible = false
+                }else {
                     rvUser.isVisible = true
                     tvSearchNoResult.isVisible = false
+                    tvTitlePersons.isVisible = true
                 }
 
                 val errorState = loadState.source.append as? LoadState.Error

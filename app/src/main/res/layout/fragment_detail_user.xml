@@ -56,10 +56,12 @@
             android:textColor="@color/color_text"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/ivAvatar"
             app:layout_constraintStart_toStartOf="@id/ivAvatar"
             app:layout_constraintTop_toBottomOf="@+id/ivAvatar"
-            tools:text="Andhi Ratobing" />
+            tools:text="Andhi Ratobing"
+            tools:visibility="visible" />
 
 
         <TextView
@@ -78,6 +80,25 @@
             tools:text="andhiratobing" />
 
 
+        <TextView
+            android:id="@+id/tvBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:textColor="@color/color_text"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tvUsername"
+            app:layout_constraintStart_toStartOf="@id/tvUsername"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername"
+            tools:text="AKJBFKJBFJBFJKBCJFKBAJKBFJKABSKJSAFKBBAFAKJB"
+            tools:visibility="visible" />
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewDetail"
             android:layout_width="match_parent"
@@ -88,9 +109,9 @@
             app:cardCornerRadius="14dp"
             app:cardElevation="0dp"
             app:elevation="0dp"
-            app:layout_constraintEnd_toStartOf="@+id/tvUsername"
+            app:layout_constraintEnd_toStartOf="@+id/tvBio"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvUsername">
+            app:layout_constraintTop_toBottomOf="@+id/tvBio">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -102,9 +123,11 @@
                     android:layout_height="35dp"
                     android:contentDescription="@string/icon_company"
                     android:src="@drawable/ic_company"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/tvCompany"
                     app:layout_constraintEnd_toStartOf="@+id/tvCompany"
-                    app:layout_constraintTop_toTopOf="@id/tvCompany" />
+                    app:layout_constraintTop_toTopOf="@id/tvCompany"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tvCompany"
@@ -116,10 +139,12 @@
                     android:gravity="center"
                     android:textColor="@color/color_text"
                     android:textSize="12sp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Dicoding Indonesia" />
+                    tools:text="Dicoding Indonesia"
+                    tools:visibility="visible" />
 
 
                 <ImageView
@@ -128,9 +153,11 @@
                     android:layout_height="35dp"
                     android:contentDescription="@string/icon_location"
                     android:src="@drawable/ic_location"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/tvLocation"
                     app:layout_constraintEnd_toStartOf="@+id/tvLocation"
-                    app:layout_constraintTop_toTopOf="@+id/tvLocation" />
+                    app:layout_constraintTop_toTopOf="@+id/tvLocation"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tvLocation"
@@ -144,10 +171,12 @@
                     android:gravity="center"
                     android:textColor="@color/color_text"
                     android:textSize="12sp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/tvCompany"
                     app:layout_constraintStart_toStartOf="@+id/tvCompany"
                     app:layout_constraintTop_toBottomOf="@+id/tvCompany"
-                    tools:text="Bandung, Indoenesia" />
+                    tools:text="Bandung, Indoenesia"
+                    tools:visibility="visible" />
 
 
                 <View
@@ -321,9 +350,9 @@
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

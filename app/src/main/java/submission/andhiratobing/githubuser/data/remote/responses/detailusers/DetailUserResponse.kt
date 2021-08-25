@@ -8,14 +8,15 @@ import kotlinx.parcelize.Parcelize
 data class DetailUserResponse(
     @SerializedName("login")
     val username: String,
+    @SerializedName("name")
     val name: String,
     @SerializedName("avatar_url")
     val avatar: String,
+    val company: String?,
     val bio: String?,
     val location: String?,
-    val company: String?,
     val following: Int,
     val followers: Int,
     @SerializedName("public_repos")
-    val repository: Int?
-) : Parcelable
+    val repository: Int
+): Parcelable

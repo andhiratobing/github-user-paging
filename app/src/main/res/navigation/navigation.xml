@@ -9,28 +9,46 @@
         android:id="@+id/navSearchFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
 
         <action
             android:id="@+id/action_navSearchFragment_to_detailUserFragment"
             app:destination="@id/detailUserFragment" />
+        <action
+            android:id="@+id/anim"
+            app:destination="@id/detailUserFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down"/>
     </fragment>
 
     <fragment
         android:id="@+id/navFavoriteFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_navFavoriteFragment_to_detailUserFragment"
+            app:destination="@id/detailUserFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down" />
+
+    </fragment>
     <fragment
         android:id="@+id/navSettingFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.setting.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/layout_toolbar_settings" />
+
     <fragment
         android:id="@+id/detailUserFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.search.detailuser.DetailUserFragment"
         android:label="fragment_detail_user"
-        tools:layout="@layout/fragment_detail_user" >
+        tools:layout="@layout/fragment_detail_user">
+
         <argument
             android:name="user"
             app:argType="submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem" />

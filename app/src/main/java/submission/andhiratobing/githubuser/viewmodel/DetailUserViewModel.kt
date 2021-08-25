@@ -1,68 +1,53 @@
 package submission.andhiratobing.githubuser.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
+import submission.andhiratobing.githubuser.data.local.entities.UserEntity
+import submission.andhiratobing.githubuser.data.local.repositories.FavoriteRepository
 import submission.andhiratobing.githubuser.data.remote.repositories.UserRepository
+import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
 import javax.inject.Inject
 
 
 @HiltViewModel
 @ExperimentalCoroutinesApi
 class DetailUserViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val favoriteRepository: FavoriteRepository,
 ) : ViewModel() {
 
 
+    fun setDetailUsers(): LiveData<DetailUserResponse> {
+        return userRepository.detailUserMutableLiveData
+    }
 
-    fun getDetailUsers(login: String) {
+    fun getDetailUsers(username: String) {
         viewModelScope.launch {
-            userRepository.setDetailUser(login)
+            userRepository.setDetailUser(username)
         }
     }
 
 
+    /*Favorite*/
+
+    fun addFavoriteUser(id: Int, username: String, avatar: String) {
+        viewModelScope.launch {
+            favoriteRepository.addFavoriteUser(
+                UserEntity(id, username, avatar)
+            )
+        }
+    }
+
+    suspend fun getCountFavoriteUsers(id: Int): Int = favoriteRepository.getCountFavoriteUsers(id)
+
+    fun deleteFavorite(id: Int) {
+        viewModelScope.launch {
+            favoriteRepository.deleteFavoriteUser(id)
+        }
+    }
+
 }
-
-
-//private var favoriteUserDao: FavoriteUserDao?
-//private var appDatabase: AppDatabase? = AppDatabase.getDatabase(application)
-//
-//init {
-//    favoriteUserDao = appDatabase?.favoriteUserDao()
-//}
-//
-//fun addFavorite(
-//    username: String,
-//    name: String,
-//    avatar_url: String,
-//    company: String,
-//    location: String,
-//    repository: Int,
-//    follower: Int,
-//    following: Int) {
-//    CoroutineScope(Dispatchers.IO).launch {
-//        val user = UserFavorite(
-//            username,
-//            name,
-//            avatar_url,
-//            company,
-//            location,
-//            repository,
-//            follower,
-//            following
-//        )
-//        favoriteUserDao?.addFavoriteUser(user)
-//    }
-//}
-//
-//
-//suspend fun getCountFavorite(username: String) = favoriteUserDao?.getCountFavorite(username)
-//
-//fun deleteFavorite(username: String) {
-//    CoroutineScope(Dispatcherzs.IO).launch {
-//        favoriteUserDao?.deleteFavoriteUser(username)
-//    }
-//}

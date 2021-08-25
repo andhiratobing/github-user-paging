@@ -1,28 +1,23 @@
-//package submission.andhiratobing.githubuser.viewmodel
-//
-//import android.app.Application
-//import androidx.lifecycle.AndroidViewModel
-//import androidx.lifecycle.LiveData
-//import submission.andhiratobing.githubuser.data.local.dao.FavoriteUserDao
-//import submission.andhiratobing.githubuser.data.local.db.AppDatabase
-//import submission.andhiratobing.githubuser.data.local.entities.UserFavorite
-//
-//class FavoriteViewModel(application: Application) : AndroidViewModel(application) {
-//
-//    private var favoriteUserDao: FavoriteUserDao?
-//    private var appDatabase: AppDatabase? = AppDatabase.getDatabase(application)
-//
-//    init {
-//        favoriteUserDao = appDatabase?.favoriteUserDao()
-//    }
-//
-//    fun getFavoriteUser(): LiveData<List<UserFavorite>>? {
-//        return favoriteUserDao?.getFavoriteUser()
-//    }
-//
-//    suspend fun getCountUser(): Int? {
-//        return favoriteUserDao?.getCountUsers()
-//    }
-//
-//
-//}
+package submission.andhiratobing.githubuser.viewmodel
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import submission.andhiratobing.githubuser.data.local.entities.UserEntity
+import submission.andhiratobing.githubuser.data.local.repositories.FavoriteRepository
+import javax.inject.Inject
+
+@HiltViewModel
+class FavoriteViewModel @Inject constructor(
+    private val favoriteRepository: FavoriteRepository
+) : ViewModel() {
+
+
+    fun getAllFavoriteUser(): LiveData<List<UserEntity>> {
+        return favoriteRepository.getAllFavoriteUser()
+    }
+
+    suspend fun getCountUsers() = favoriteRepository.getCountUsers()
+
+
+}
