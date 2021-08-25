@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DetailUserResponse(
+    val id: Int,
     @SerializedName("login")
     val username: String,
     @SerializedName("name")

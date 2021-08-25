@@ -5,16 +5,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import submission.andhiratobing.githubuser.data.local.entities.UserEntity
+import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 
 @Dao
 interface FavoriteUserDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addFavoriteUser(user: UserEntity)
+    suspend fun addFavoriteUser(user: FavoriteEntity)
 
     @Query("SELECT * FROM favorite_users ORDER BY id ASC")
-    fun getAllFavoriteUser(): LiveData<List<UserEntity>>
+    fun getAllFavoriteUser(): LiveData<List<FavoriteEntity>>
 
     @Query("SELECT COUNT(*) FROM favorite_users")
     suspend fun getCountUsers(): Int

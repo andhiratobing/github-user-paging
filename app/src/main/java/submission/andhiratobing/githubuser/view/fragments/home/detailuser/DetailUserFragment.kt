@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.view.fragments.search.detailuser
+package submission.andhiratobing.githubuser.view.fragments.home.detailuser
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -22,6 +22,7 @@ import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.databinding.FragmentDetailUserBinding
 import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
+import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
@@ -31,6 +32,8 @@ class DetailUserFragment : Fragment() {
     private val binding get() = _binding!!
     private val args by navArgs<DetailUserFragmentArgs>()
     private val detailUserViewModel: DetailUserViewModel by viewModels()
+    private val favoriteViewModel : FavoriteViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +58,6 @@ class DetailUserFragment : Fragment() {
 
         getDataFromParcelable()
         initDetailUserViewModel()
-        checkFavorite()
 
     }
 
@@ -107,7 +109,47 @@ class DetailUserFragment : Fragment() {
                 tvFollowers.text = data.followers.asFormattedDecimals()
                 tvRepository.text = data.repository.asFormattedDecimals()
             }
+
+
+            var isChecked = false
+            CoroutineScope(Dispatchers.IO).launch {
+                withContext(Dispatchers.Main) {
+                    val count: Int = favoriteViewModel.getCountFavoriteUsers(data.id)
+                    withContext(Dispatchers.Main) {
+                        if (count > 0) {
+                            binding.toggleFav.isChecked = true
+                            isChecked = true
+                        } else {
+                            binding.toggleFav.isChecked = false
+                            isChecked = false
+                        }
+                    }
+                }
+            }
+
+            binding.toggleFav.setOnClickListener {
+                isChecked = !isChecked
+                if (isChecked) {
+                    favoriteViewModel.addFavoriteUser(
+                        data.id,
+                        data.username,
+                        data.name,
+                        data.avatar,
+                        data.company,
+                        data.bio,
+                        data.location,
+                        data.following,
+                        data.followers,
+                        data.repository)
+                    Snackbar.make(it, "Successfully added ${data.username} to favorites", Snackbar.LENGTH_LONG).show()
+                } else {
+                    favoriteViewModel.deleteFavorite(data.id)
+                }
+                Snackbar.make(it, "Successfully removed ${data.username} from favorites", Snackbar.LENGTH_LONG).show()
+            }
+            binding.toggleFav.isChecked = isChecked
         })
+
     }
 
 
@@ -150,39 +192,6 @@ class DetailUserFragment : Fragment() {
 
         }
     }
-
-
-    private fun checkFavorite() {
-        val args = args.user
-        var isChecked = false
-        CoroutineScope(Dispatchers.IO).launch {
-            val count: Int = detailUserViewModel.getCountFavoriteUsers(args.id)
-            withContext(Dispatchers.Main) {
-                if (count > 0) {
-                    binding.toggleFav.isChecked = true
-                    isChecked = true
-                } else {
-                    binding.toggleFav.isChecked = false
-                    isChecked = false
-                }
-            }
-        }
-
-        binding.toggleFav.setOnClickListener {
-            isChecked = !isChecked
-            if (isChecked) {
-                detailUserViewModel.addFavoriteUser(args.id, args.username, args.avatar)
-                Snackbar.make(it, "Successfully added ${args.username} to favorites", Snackbar.LENGTH_LONG).show()
-            } else {
-                detailUserViewModel.deleteFavorite(args.id)
-            }
-            Snackbar.make(it,
-                "Successfully removed ${args.username} from favorites",
-                Snackbar.LENGTH_LONG).show()
-        }
-        binding.toggleFav.isChecked = isChecked
-    }
-
 
     private fun clickShare() {
         val arguments = args.user

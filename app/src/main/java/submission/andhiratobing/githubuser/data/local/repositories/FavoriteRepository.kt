@@ -2,7 +2,7 @@ package submission.andhiratobing.githubuser.data.local.repositories
 
 import androidx.lifecycle.LiveData
 import submission.andhiratobing.githubuser.data.local.dao.FavoriteUserDao
-import submission.andhiratobing.githubuser.data.local.entities.UserEntity
+import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,11 +12,11 @@ class FavoriteRepository @Inject constructor(
 ) {
 
 
-    suspend fun addFavoriteUser(data: UserEntity) {
+    suspend fun addFavoriteUser(data: FavoriteEntity) {
         favoriteUserDao.addFavoriteUser(data)
     }
 
-    fun getAllFavoriteUser() : LiveData<List<UserEntity>>{
+    fun getAllFavoriteUser() : LiveData<List<FavoriteEntity>>{
         return favoriteUserDao.getAllFavoriteUser()
     }
 

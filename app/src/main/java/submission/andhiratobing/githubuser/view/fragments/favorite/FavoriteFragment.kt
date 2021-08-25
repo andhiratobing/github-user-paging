@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -13,6 +14,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import submission.andhiratobing.githubuser.data.local.adapter.FavoriteAdapter
+import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
+import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentFavoriteBinding
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
@@ -23,7 +26,6 @@ class FavoriteFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var favoriteAdapter: FavoriteAdapter
     private val favoriteViewModel: FavoriteViewModel by viewModels()
-//    private val args  by navArgs<FavoriteFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,15 +45,13 @@ class FavoriteFragment : Fragment() {
 
 
     private fun countFavoriteUser() {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             val count = favoriteViewModel.getCountUsers()
-            withContext(Dispatchers.Main) {
-                if (count > 0) {
-                    "($count users)".also { binding.tvCountFavorite.text = it }
-                    binding.tvCountFavorite.visibility = View.VISIBLE
-                } else {
-                    binding.tvCountFavorite.visibility = View.GONE
-                }
+            if (count > 0) {
+                "($count users)".also { binding.tvCountFavorite.text = it }
+                binding.tvCountFavorite.visibility = View.VISIBLE
+            } else {
+                binding.tvCountFavorite.visibility = View.GONE
             }
         }
     }
@@ -63,23 +63,27 @@ class FavoriteFragment : Fragment() {
             rvFavorite.adapter = favoriteAdapter
             rvFavorite.setHasFixedSize(true)
             //Click item
-//            favoriteAdapter.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
-//                override fun onItemClick(data: UserEntity) {
-//                    val action = FavoriteFragmentDirections.actionNavFavoriteFragmentToDetailUserFragment(data)
-//                    findNavController().navigate(action)
-//                }
-//            })
+            favoriteAdapter.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
 
+                override fun onItemClick(data: FavoriteEntity) {
+                    val user = UserResponseItem( data.username,data.id, data.avatar)
+                    val action = FavoriteFragmentDirections.actionNavFavoriteFragmentToDetailUserFragment(user)
+                    findNavController().navigate(action)
+                }
+
+            })
         }
     }
 
     private fun initViewModelFavorite() {
-        CoroutineScope(Dispatchers.Main).launch {
-            favoriteViewModel.getAllFavoriteUser().observe(viewLifecycleOwner, {
-                if (it != null) {
-                    favoriteAdapter.setListDataUser(it)
-                }
-            })
+        CoroutineScope(Dispatchers.IO).launch {
+            withContext(Dispatchers.Main) {
+                favoriteViewModel.getAllFavoriteUser().observe(viewLifecycleOwner, {
+                    if (it != null) {
+                        favoriteAdapter.setListDataUser(it)
+                    }
+                })
+            }
 
         }
     }

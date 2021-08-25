@@ -1,7 +1,6 @@
 package submission.andhiratobing.githubuser.data.remote.responses.searchusers
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 

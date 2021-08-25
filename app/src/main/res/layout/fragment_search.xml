@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/base_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.fragments.search.SearchFragment">
+    tools:context=".view.fragments.home.SearchFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

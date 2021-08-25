@@ -4,31 +4,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import submission.andhiratobing.githubuser.data.local.entities.UserEntity
+import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.databinding.ItemUserBinding
 
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
     private lateinit var onItemClickCallBack: OnItemClickCallBack
-    private var listDataUser = ArrayList<UserEntity>()
+    private var listDataUser = ArrayList<FavoriteEntity>()
 
     interface OnItemClickCallBack {
-        fun onItemClick(data: UserEntity)
+        fun onItemClick(data: FavoriteEntity)
     }
 
     fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack) {
         this.onItemClickCallBack = onItemClickCallBack
     }
 
-    fun setListDataUser(listData: List<UserEntity>) {
-        listDataUser.clear()
-        listDataUser = listData as ArrayList<UserEntity>
-        notifyDataSetChanged()
+    fun setListDataUser(listData: List<FavoriteEntity>) {
+        listDataUser = listData as ArrayList<FavoriteEntity>
     }
 
     inner class FavoriteViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: UserEntity) {
+        fun bind(data: FavoriteEntity) {
             with(binding) {
                 tvUsername.text = data.username
 
@@ -36,6 +34,11 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
                     .load(data.avatar)
                     .placeholder(submission.andhiratobing.githubuser.R.drawable.placeholder_image)
                     .into(ivAvatar)
+            }
+
+
+            binding.root.setOnClickListener {
+                onItemClickCallBack.onItemClick(data)
             }
         }
     }
@@ -49,9 +52,6 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
         val list = listDataUser[position]
         holder.bind(list)
 
-        holder.itemView.setOnClickListener {
-            onItemClickCallBack.onItemClick(listDataUser[holder.bindingAdapterPosition])
-        }
     }
 
     override fun getItemCount(): Int = listDataUser.size

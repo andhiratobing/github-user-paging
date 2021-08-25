@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.view.fragments.search
+package submission.andhiratobing.githubuser.view.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -138,14 +138,10 @@ class SearchFragment : Fragment() {
     private fun onClickListener() {
         searchAdapter.setOnItemClickCallBack(object : SearchAdapter.OnItemClickCallBack {
             override fun onItemClick(data: UserResponseItem) {
-                sendDataToDetailUser(data)
+                val action = SearchFragmentDirections.actionNavSearchFragmentToDetailUserFragment(data)
+                findNavController().navigate(action)
             }
         })
-    }
-
-    private fun sendDataToDetailUser(data: UserResponseItem) {
-        val action = SearchFragmentDirections.actionNavSearchFragmentToDetailUserFragment(data)
-        findNavController().navigate(action)
     }
 
     override fun onDestroy() {
