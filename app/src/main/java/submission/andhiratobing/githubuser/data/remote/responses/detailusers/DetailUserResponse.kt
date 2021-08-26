@@ -26,4 +26,4 @@ data class DetailUserResponse(
     val repository: Int,
     @SerializedName("repos_url")
     val repos_url: String
-): Parcelable
+) : Parcelable

@@ -14,5 +14,6 @@ class Constants {
         const val NETWORK_PREFETCHDISTACE = 5
         const val NETWORK_INITIALLOADSIZE = 10
         const val CURRENT_SEARCH_QUERY_KEY = "current_query"
+
     }
 }

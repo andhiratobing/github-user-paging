@@ -17,7 +17,8 @@ class RepositoryFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?, ): View {
+        savedInstanceState: Bundle?,
+    ): View {
         _binding = FragmentRepositoryBinding.inflate(inflater, container, false)
         return binding.root
 

@@ -20,7 +20,7 @@ interface FavoriteUserDao {
     suspend fun getCountUsers(): Int
 
     @Query("SELECT COUNT(*) FROM favorite_users WHERE id = :id")
-    suspend fun getCountFavorite(id : Int): Int
+    suspend fun getCountFavorite(id: Int): Int
 
     @Query("DELETE FROM favorite_users WHERE id = :id ")
     suspend fun deleteFavoriteUser(id: Int): Int

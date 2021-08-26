@@ -1,24 +1,23 @@
 package submission.andhiratobing.githubuser.view.fragments.favorite
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import submission.andhiratobing.githubuser.data.local.adapter.FavoriteAdapter
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentFavoriteBinding
+import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
@@ -66,9 +65,10 @@ class FavoriteFragment : Fragment() {
             favoriteAdapter.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
 
                 override fun onItemClick(data: FavoriteEntity) {
-                    val user = UserResponseItem( data.username,data.id, data.avatar)
-                    val action = FavoriteFragmentDirections.actionNavFavoriteFragmentToDetailUserFragment(user)
-                    findNavController().navigate(action)
+                    val user = UserResponseItem(data.username, data.id, data.avatar)
+                    val intent = Intent(requireActivity(), DetailUserActivity::class.java)
+                    intent.putExtra(DetailUserActivity.DATA_USER, user)
+                    startActivity(intent)
                 }
 
             })

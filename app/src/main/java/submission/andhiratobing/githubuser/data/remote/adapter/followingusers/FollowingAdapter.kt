@@ -30,22 +30,26 @@ class FollowingAdapter :
 
     inner class FollowingViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(data: FollowingResponse){
-                with(binding){
-                    tvUsername.text = data.username
+        fun bind(data: FollowingResponse) {
+            with(binding) {
+                tvUsername.text = data.username
 
-                    Glide.with(itemView.context)
-                        .load(data.avatar)
-                        .placeholder(R.drawable.placeholder_image)
-                        .into(ivAvatar)
-                }
+                Glide.with(itemView.context)
+                    .load(data.avatar)
+                    .placeholder(R.drawable.placeholder_image)
+                    .into(ivAvatar)
             }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowingViewHolder =
-        FollowingViewHolder(ItemUserBinding.inflate(LayoutInflater.from(parent.context),
-            parent,
-            false))
+        FollowingViewHolder(
+            ItemUserBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
 
     override fun onBindViewHolder(holder: FollowingViewHolder, position: Int) =

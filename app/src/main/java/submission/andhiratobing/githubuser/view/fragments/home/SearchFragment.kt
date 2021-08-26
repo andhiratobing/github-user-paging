@@ -1,5 +1,6 @@
 package submission.andhiratobing.githubuser.view.fragments.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -18,6 +18,7 @@ import submission.andhiratobing.githubuser.data.remote.adapter.searchusers.Searc
 import submission.andhiratobing.githubuser.data.remote.adapter.searchusers.SearchLoadStateAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentSearchBinding
+import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
 
 @AndroidEntryPoint
@@ -66,7 +67,8 @@ class SearchFragment : Fragment() {
     private fun initAdapter() {
         binding.apply {
             searchAdapter = SearchAdapter()
-            rvUser.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+            rvUser.layoutManager =
+                LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvUser.setHasFixedSize(true)
 
 
@@ -79,15 +81,16 @@ class SearchFragment : Fragment() {
 
                 //handling searching
                 if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached && searchAdapter.itemCount < 1) {
+                    loadState.append.endOfPaginationReached && searchAdapter.itemCount < 1
+                ) {
                     rvUser.isVisible = false
                     tvSearchNoResult.isVisible = true
                     tvTitlePersons.isVisible = false
-                } else if (searchAdapter.itemCount <=0){
+                } else if (searchAdapter.itemCount <= 0) {
                     rvUser.isVisible = false
                     tvSearchNoResult.isVisible = false
                     tvTitlePersons.isVisible = false
-                }else {
+                } else {
                     rvUser.isVisible = true
                     tvSearchNoResult.isVisible = false
                     tvTitlePersons.isVisible = true
@@ -137,8 +140,9 @@ class SearchFragment : Fragment() {
     private fun onClickListener() {
         searchAdapter.setOnItemClickCallBack(object : SearchAdapter.OnItemClickCallBack {
             override fun onItemClick(data: UserResponseItem) {
-                val action = SearchFragmentDirections.actionNavSearchFragmentToDetailUserFragment(data)
-                findNavController().navigate(action)
+                val intent = Intent(requireActivity(), DetailUserActivity::class.java)
+                intent.putExtra(DetailUserActivity.DATA_USER, data)
+                startActivity(intent)
             }
         })
     }

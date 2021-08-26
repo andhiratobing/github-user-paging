@@ -32,8 +32,8 @@ class FavoriteViewModel @Inject constructor(
         location: String?,
         following: Int,
         followers: Int,
-        repository: Int)
-    {
+        repository: Int
+    ) {
         viewModelScope.launch {
             favoriteRepository.addFavoriteUser(
                 FavoriteEntity(
@@ -46,7 +46,8 @@ class FavoriteViewModel @Inject constructor(
                     location,
                     following,
                     followers,
-                    repository)
+                    repository
+                )
             )
         }
     }

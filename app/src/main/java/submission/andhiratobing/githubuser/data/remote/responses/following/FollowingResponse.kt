@@ -12,4 +12,4 @@ data class FollowingResponse(
     val id: Int,
     @SerializedName("avatar_url")
     val avatar: String
-): Parcelable
+) : Parcelable

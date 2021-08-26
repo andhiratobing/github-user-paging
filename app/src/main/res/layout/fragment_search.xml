@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:drawableStart="@drawable/ic_search"
             android:fontFamily="@font/poppins_regular"
@@ -49,13 +49,13 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/results"
-            android:visibility="gone"
-            tools:visibility="visible"
             android:textColor="@color/color_text"
             android:textSize="18sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchUser" />
+            app:layout_constraintTop_toBottomOf="@+id/searchUser"
+            tools:visibility="visible" />
 
 
         <androidx.recyclerview.widget.RecyclerView

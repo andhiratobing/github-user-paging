@@ -6,10 +6,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
-<<<<<<< HEAD
 import submission.andhiratobing.githubuser.data.remote.responses.following.FollowingResponse
-=======
->>>>>>> origin/submission_2
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponse
 import submission.andhiratobing.githubuser.util.Constants.Companion.API_GITHUB_KEY
 
@@ -20,18 +17,13 @@ interface ApiService {
     suspend fun searchUsers(
         @Query("q") query: String,
         @Query("page") page: Int,
-<<<<<<< HEAD
         @Query("per_page") perPage: Int,
-=======
-        @Query("per_page") perPage: Int
->>>>>>> origin/submission_2
     ): UserResponse
 
 
     @GET("users/{username}")
     @Headers("Authorization: token $API_GITHUB_KEY")
     fun detailUsers(
-<<<<<<< HEAD
         @Path("username") username: String,
     ): Call<DetailUserResponse>
 
@@ -55,9 +47,4 @@ interface ApiService {
     suspend fun getRepository(
         @Path("username") username: String,
     ): Call<List<UserResponse>>
-=======
-        @Path("username") username: String
-    ): Call<DetailUserResponse>
->>>>>>> origin/submission_2
-
 }

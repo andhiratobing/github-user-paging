@@ -14,6 +14,7 @@ class SearchAdapter :
     PagingDataAdapter<UserResponseItem, SearchAdapter.SearchViewHolder>(SEARCH_USER_COMPARATOR) {
 
     private lateinit var onItemClickCallBack: OnItemClickCallBack
+
     //Click callback item
     interface OnItemClickCallBack {
         fun onItemClick(data: UserResponseItem)
@@ -44,9 +45,9 @@ class SearchAdapter :
 
         init {
             binding.root.setOnClickListener {
-                if (bindingAdapterPosition != RecyclerView.NO_POSITION){
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                     val itemPosition = getItem(bindingAdapterPosition)
-                    if (itemPosition!=null){
+                    if (itemPosition != null) {
                         onItemClickCallBack.onItemClick(itemPosition)
                     }
                 }

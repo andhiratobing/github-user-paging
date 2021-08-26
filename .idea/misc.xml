@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.16111111111111112" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.17447916666666666" />
-        <entry key="app/src/main/res/layout/fragment_detail_user.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/fragment_detail_user.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_followers.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/layout/fragment_following.xml" value="0.17447916666666666" />

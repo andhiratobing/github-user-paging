@@ -16,7 +16,7 @@ class FavoriteRepository @Inject constructor(
         favoriteUserDao.addFavoriteUser(data)
     }
 
-    fun getAllFavoriteUser() : LiveData<List<FavoriteEntity>>{
+    fun getAllFavoriteUser(): LiveData<List<FavoriteEntity>> {
         return favoriteUserDao.getAllFavoriteUser()
     }
 
@@ -24,7 +24,7 @@ class FavoriteRepository @Inject constructor(
 
 
     suspend fun getCountUsers(): Int {
-     return favoriteUserDao.getCountUsers()
+        return favoriteUserDao.getCountUsers()
     }
 
     suspend fun deleteFavoriteUser(id: Int) {

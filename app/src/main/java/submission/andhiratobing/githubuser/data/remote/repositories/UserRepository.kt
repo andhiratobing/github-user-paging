@@ -29,12 +29,7 @@ class UserRepository
 
     val detailUserMutableLiveData = MutableLiveData<DetailUserResponse>()
 
-<<<<<<< HEAD
     fun searchUsers(query: String): LiveData<PagingData<UserResponseItem>> {
-=======
-
-    fun setSearchUsers(query: String): LiveData<PagingData<UserResponseItem>> {
->>>>>>> origin/submission_2
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
@@ -48,36 +43,18 @@ class UserRepository
     }
 
 
-<<<<<<< HEAD
     fun detailUser(login: String) {
         apiService.detailUsers(login).enqueue(object : Callback<DetailUserResponse> {
             override fun onResponse(
                 call: Call<DetailUserResponse>,
                 response: Response<DetailUserResponse>,
             ) {
-                if (response.isSuccessful) {
-=======
-     fun setDetailUser(login: String) {
-        apiService.detailUsers(login).enqueue(object : Callback<DetailUserResponse> {
-            override fun onResponse(
-                call: Call<DetailUserResponse>,
-                response: Response<DetailUserResponse>) {
-                if (response.isSuccessful){
->>>>>>> origin/submission_2
-                    detailUserMutableLiveData.postValue(response.body())
-                }
+                detailUserMutableLiveData.postValue(response.body())
             }
 
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-<<<<<<< HEAD
                 t.message?.let { Log.e("Failure", it) }
-=======
-                t.message?.let { Log.e("Failure",it) }
->>>>>>> origin/submission_2
             }
-
         })
     }
-
-
 }

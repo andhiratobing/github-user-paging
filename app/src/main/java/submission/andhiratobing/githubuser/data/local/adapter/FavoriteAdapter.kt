@@ -76,9 +76,13 @@ class FavoriteAdapter :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        FavoriteViewHolder(ItemFavoriteUserBinding.inflate(LayoutInflater.from(parent.context),
-            parent,
-            false))
+        FavoriteViewHolder(
+            ItemFavoriteUserBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
