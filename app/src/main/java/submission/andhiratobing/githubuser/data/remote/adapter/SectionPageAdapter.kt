@@ -1,6 +1,5 @@
 package submission.andhiratobing.githubuser.data.remote.adapter
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -11,10 +10,10 @@ import submission.andhiratobing.githubuser.view.fragments.home.detailuser.Follow
 import submission.andhiratobing.githubuser.view.fragments.home.detailuser.RepositoryFragment
 
 @ExperimentalCoroutinesApi
-class SectionPageAdapter(fragment: FragmentManager, lifecycle: Lifecycle, bundle: Bundle) :
+class SectionPageAdapter(fragment: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragment, lifecycle) {
 
-    private var bundleData: Bundle = bundle
+    var username: String? = null
 
     override fun getItemCount(): Int = 3
 
@@ -22,11 +21,10 @@ class SectionPageAdapter(fragment: FragmentManager, lifecycle: Lifecycle, bundle
     override fun createFragment(position: Int): Fragment {
         var fragment = Fragment()
         when (position) {
-            0 -> fragment = FollowingFragment()
-            1 -> fragment = FollowersFragment()
-            2 -> fragment = RepositoryFragment()
+            0 -> fragment = FollowingFragment.newInstance(username)
+            1 -> fragment = FollowersFragment.newInstance(username)
+            2 -> fragment = RepositoryFragment.newInstance(username)
         }
-        fragment.arguments = this.bundleData
 
         return fragment
     }

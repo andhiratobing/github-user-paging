@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.local.adapter.FavoriteAdapter
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
@@ -37,9 +38,19 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            countFavoriteUser()
+            favoriteViewModel.getAllFavoriteUser().observe(viewLifecycleOwner,{
+                favoriteAdapter.submitList(it)
+                binding.swipeRefreshLayout.isRefreshing = false
+            })
+        }
+
         initRecyclerView()
         initViewModelFavorite()
         countFavoriteUser()
+
+
     }
 
 
@@ -47,7 +58,7 @@ class FavoriteFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             val count = favoriteViewModel.getCountUsers()
             if (count > 0) {
-                "($count users)".also { binding.tvCountFavorite.text = it }
+                "(${count} ${resources.getString(R.string.users)})".also { binding.tvCountFavorite.text = it }
                 binding.tvCountFavorite.visibility = View.VISIBLE
             } else {
                 binding.tvCountFavorite.visibility = View.GONE

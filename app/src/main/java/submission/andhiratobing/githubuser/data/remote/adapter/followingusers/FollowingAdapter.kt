@@ -10,7 +10,7 @@ import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.remote.responses.following.FollowingResponse
 import submission.andhiratobing.githubuser.databinding.ItemUserBinding
 
-class FollowingAdapter :
+class FollowingAdapter:
     ListAdapter<FollowingResponse, FollowingAdapter.FollowingViewHolder>(FOLLOWING_COMPARATOR) {
 
     companion object {
@@ -28,10 +28,9 @@ class FollowingAdapter :
     }
 
 
-    inner class FollowingViewHolder(private val binding: ItemUserBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class FollowingViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: FollowingResponse) {
-            with(binding) {
+            binding.apply {
                 tvUsername.text = data.username
 
                 Glide.with(itemView.context)
@@ -52,7 +51,9 @@ class FollowingAdapter :
         )
 
 
-    override fun onBindViewHolder(holder: FollowingViewHolder, position: Int) =
-        holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: FollowingViewHolder, position: Int) {
+        val itemPosition = getItem(position)
+        holder.bind(itemPosition)
+    }
 }
 

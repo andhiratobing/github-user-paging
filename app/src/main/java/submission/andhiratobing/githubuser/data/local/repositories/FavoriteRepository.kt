@@ -8,12 +8,36 @@ import javax.inject.Singleton
 
 @Singleton
 class FavoriteRepository @Inject constructor(
-    private val favoriteUserDao: FavoriteUserDao,
+    private val favoriteUserDao: FavoriteUserDao
 ) {
 
 
-    suspend fun addFavoriteUser(data: FavoriteEntity) {
-        favoriteUserDao.addFavoriteUser(data)
+    suspend fun addFavoriteUser(
+        id: Int,
+        username: String,
+        name: String?,
+        avatar: String?,
+        company: String?,
+        bio: String?,
+        location: String?,
+        following: Int?,
+        followers: Int?,
+        repository: Int?
+    ) {
+        favoriteUserDao.addFavoriteUser(
+            FavoriteEntity(
+                id,
+                username,
+                name ?: "",
+                avatar ?: "",
+                company ?: "",
+                bio ?: "",
+                location ?: "",
+                following ?: 0,
+                followers ?: 0,
+                repository ?: 0
+            )
+        )
     }
 
     fun getAllFavoriteUser(): LiveData<List<FavoriteEntity>> {

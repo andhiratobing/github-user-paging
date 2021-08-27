@@ -8,33 +8,33 @@ import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
 import submission.andhiratobing.githubuser.data.remote.api.ApiService
-import submission.andhiratobing.githubuser.data.remote.responses.following.FollowingResponse
+import submission.andhiratobing.githubuser.data.remote.responses.followers.FollowersResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class FollowingRepository
+class FollowersRepository
 @Inject constructor(
     private val apiService: ApiService,
 ) {
-    private var _followingMutableLiveData = MutableLiveData<List<FollowingResponse>>()
-    val followingLiveData: LiveData<List<FollowingResponse>> get() = _followingMutableLiveData
+    private var _followersMutableLiveData = MutableLiveData<List<FollowersResponse>>()
+    val followersLiveData: LiveData<List<FollowersResponse>> get() = _followersMutableLiveData
 
 
-    fun following(username: String) {
+    fun followers(username: String) {
         try {
-            apiService.getFollowing(username)
-                .enqueue(object : Callback<List<FollowingResponse>> {
+            apiService.getFollowers(username)
+                .enqueue(object : Callback<List<FollowersResponse>> {
                     override fun onResponse(
-                        call: Call<List<FollowingResponse>>,
-                        response: Response<List<FollowingResponse>>,
+                        call: Call<List<FollowersResponse>>,
+                        response: Response<List<FollowersResponse>>,
                     ) {
                         if (response.isSuccessful) {
-                            _followingMutableLiveData.postValue(response.body())
+                            _followersMutableLiveData.postValue(response.body())
                         }
                     }
 
-                    override fun onFailure(call: Call<List<FollowingResponse>>, t: Throwable) {
+                    override fun onFailure(call: Call<List<FollowersResponse>>, t: Throwable) {
                         t.message?.let { Log.e("Failure", it) }
                     }
 

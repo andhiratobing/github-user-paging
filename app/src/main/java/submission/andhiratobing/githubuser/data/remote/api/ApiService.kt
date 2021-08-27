@@ -6,7 +6,9 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
+import submission.andhiratobing.githubuser.data.remote.responses.followers.FollowersResponse
 import submission.andhiratobing.githubuser.data.remote.responses.following.FollowingResponse
+import submission.andhiratobing.githubuser.data.remote.responses.repos.ReposResponse
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponse
 import submission.andhiratobing.githubuser.util.Constants.Companion.API_GITHUB_KEY
 
@@ -39,12 +41,12 @@ interface ApiService {
     @Headers("Authorization: token $API_GITHUB_KEY")
     fun getFollowers(
         @Path("username") username: String,
-    ): Call<List<UserResponse>>
+    ): Call<List<FollowersResponse>>
 
 
     @GET("users/{username}/repos")
     @Headers("Authorization: token $API_GITHUB_KEY")
-    suspend fun getRepository(
+    fun getRepository(
         @Path("username") username: String,
-    ): Call<List<UserResponse>>
+    ): Call<List<ReposResponse>>
 }

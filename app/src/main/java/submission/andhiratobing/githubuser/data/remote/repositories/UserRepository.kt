@@ -10,6 +10,7 @@ import androidx.paging.liveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.HttpException
 import retrofit2.Response
 import submission.andhiratobing.githubuser.data.remote.api.ApiService
 import submission.andhiratobing.githubuser.data.remote.paging.UserPagingSource
@@ -27,7 +28,9 @@ import javax.inject.Singleton
 class UserRepository
 @Inject constructor(private val apiService: ApiService) {
 
-    val detailUserMutableLiveData = MutableLiveData<DetailUserResponse>()
+    private var _detailUserMutableLiveData = MutableLiveData<DetailUserResponse>()
+    val detailUserLiveData: LiveData<DetailUserResponse> get() = _detailUserMutableLiveData
+
 
     fun searchUsers(query: String): LiveData<PagingData<UserResponseItem>> {
         return Pager(
@@ -43,18 +46,22 @@ class UserRepository
     }
 
 
-    fun detailUser(login: String) {
-        apiService.detailUsers(login).enqueue(object : Callback<DetailUserResponse> {
-            override fun onResponse(
-                call: Call<DetailUserResponse>,
-                response: Response<DetailUserResponse>,
-            ) {
-                detailUserMutableLiveData.postValue(response.body())
-            }
+     fun detailUser(login: String) {
+        try {
+            apiService.detailUsers(login).enqueue(object : Callback<DetailUserResponse> {
+                override fun onResponse(
+                    call: Call<DetailUserResponse>,
+                    response: Response<DetailUserResponse>,
+                ) {
+                    _detailUserMutableLiveData.postValue(response.body())
+                }
 
-            override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                t.message?.let { Log.e("Failure", it) }
-            }
-        })
+                override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
+                    t.message?.let { Log.e("Failure", it) }
+                }
+            })
+        } catch (e: HttpException) {
+            e.printStackTrace()
+        }
     }
 }

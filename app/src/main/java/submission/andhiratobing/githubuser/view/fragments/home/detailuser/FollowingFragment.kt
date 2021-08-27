@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,21 +14,35 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import submission.andhiratobing.githubuser.data.remote.adapter.followingusers.FollowingAdapter
+import submission.andhiratobing.githubuser.R
+import submission.andhiratobing.githubuser.data.remote.adapter.followingusers.FollowAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.following.FollowingResponse
 import submission.andhiratobing.githubuser.databinding.FragmentFollowingBinding
-import submission.andhiratobing.githubuser.view.activities.DetailUserActivity.Companion.DATA_USER
 import submission.andhiratobing.githubuser.viewmodel.FollowingViewModel
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class FollowingFragment : Fragment() {
+class FollowingFragment : Fragment(R.layout.fragment_following) {
 
     private var _binding: FragmentFollowingBinding? = null
     private val binding get() = _binding!!
     private val followingViewModel: FollowingViewModel by activityViewModels()
-    private lateinit var followingAdapter: FollowingAdapter
+//    private lateinit var followingAdapter: FollowingAdapter
+    private lateinit var followingAdapter: FollowAdapter
 
+
+    companion object {
+        private const val ARG_USERNAME = "args_username"
+
+        fun newInstance(username: String?): FollowingFragment {
+            val bundle = Bundle()
+            bundle.putString(ARG_USERNAME, username)
+
+            return FollowingFragment().apply {
+                arguments = bundle
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,35 +56,46 @@ class FollowingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerView()
-        initViewModel()
-    }
+        initObserver()
 
-    private fun initViewModel() {
         //get bundle from detail user fragment
-        val username = arguments?.getString(DATA_USER).toString()
-        CoroutineScope(Dispatchers.Main).launch {
-            followingViewModel.getFollowing(username)
+        arguments?.getString(ARG_USERNAME).let { data ->
+            Log.d("getUsername", "$data")
+            CoroutineScope(Dispatchers.Main).launch {
+                data?.let { followingViewModel.getFollowing(it) }
+            }
         }
 
+
     }
+
+    private fun initObserver(){
+        initLoading(true)
+        followingViewModel.setFollowing().observe(viewLifecycleOwner) { following ->
+            followingAdapter.setList(following as ArrayList<FollowingResponse>)
+            Log.d("Data", "${followingAdapter.itemCount}")
+            initLoading(false)
+        }
+    }
+
 
     private fun initRecyclerView() {
         binding.apply {
+            followingAdapter = FollowAdapter()
             rvFollowing.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvFollowing.setHasFixedSize(true)
-            followingAdapter = FollowingAdapter()
             rvFollowing.adapter = followingAdapter
 
-            followingViewModel.setFollowing().observe(viewLifecycleOwner, {
-                if (it != null) {
-                    followingAdapter.submitList(it as ArrayList<FollowingResponse>)
-                    Log.d("Data", "${followingAdapter.itemCount}")
-                }
-            })
         }
     }
 
+    private fun initLoading(state: Boolean){
+        binding.progressBar.isVisible = when(state){
+            true -> true
+            false -> false
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

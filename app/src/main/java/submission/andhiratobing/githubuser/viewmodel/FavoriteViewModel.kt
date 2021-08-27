@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.data.local.repositories.FavoriteRepository
+import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,32 +23,19 @@ class FavoriteViewModel @Inject constructor(
     suspend fun getCountUsers() = favoriteRepository.getCountUsers()
 
 
-    fun addFavoriteUser(
-        id: Int,
-        username: String,
-        name: String,
-        avatar: String,
-        company: String?,
-        bio: String?,
-        location: String?,
-        following: Int,
-        followers: Int,
-        repository: Int
-    ) {
+    fun addFavoriteUser(detailUserResponse: DetailUserResponse) {
         viewModelScope.launch {
             favoriteRepository.addFavoriteUser(
-                FavoriteEntity(
-                    id,
-                    username,
-                    name,
-                    avatar,
-                    company,
-                    bio,
-                    location,
-                    following,
-                    followers,
-                    repository
-                )
+                detailUserResponse.id,
+                detailUserResponse.username,
+                detailUserResponse.name,
+                detailUserResponse.avatar,
+                detailUserResponse.company,
+                detailUserResponse.bio,
+                detailUserResponse.location,
+                detailUserResponse.following,
+                detailUserResponse.followers,
+                detailUserResponse.repository
             )
         }
     }

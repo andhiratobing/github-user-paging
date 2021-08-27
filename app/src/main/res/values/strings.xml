@@ -54,6 +54,7 @@
     <string name="retry">retry</string>
     <string name="search_users">Search username…</string>
     <string name="follow_message">following activity can\'t be done</string>
+    <string name="users">Users</string>
 
 
 </resources>

@@ -12,13 +12,12 @@ import javax.inject.Inject
 @HiltViewModel
 class FollowingViewModel
 @Inject constructor(
-    private val followingRepository: FollowingRepository,
+    private val followingRepository: FollowingRepository
 ) : ViewModel() {
 
 
-    fun setFollowing(): LiveData<List<FollowingResponse>> {
-        return followingRepository.followingMutableLiveData
-    }
+    fun setFollowing(): LiveData<List<FollowingResponse>> = followingRepository.followingLiveData
+
 
     fun getFollowing(username: String) {
         viewModelScope.launch {

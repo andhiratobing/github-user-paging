@@ -21,6 +21,17 @@
         android:name="submission.andhiratobing.githubuser.view.fragments.setting.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/layout_toolbar_settings" />
+    <activity
+        android:id="@+id/detailUserActivity"
+        android:name="submission.andhiratobing.githubuser.view.activities.DetailUserActivity"
+        android:label="activity_detail_user"
+        tools:layout="@layout/activity_detail_user" />
+    <fragment
+        android:id="@+id/followingFragment"
+        android:name="submission.andhiratobing.githubuser.view.fragments.home.detailuser.FollowingFragment"
+        android:label="fragment_following"
+        tools:layout="@layout/fragment_following" >
+    </fragment>
 
 
 </navigation>

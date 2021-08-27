@@ -19,7 +19,7 @@ class DetailUserViewModel @Inject constructor(
 
 
     fun setDetailUsers(): LiveData<DetailUserResponse> {
-        return userRepository.detailUserMutableLiveData
+        return userRepository.detailUserLiveData
     }
 
     fun getDetailUsers(username: String) {

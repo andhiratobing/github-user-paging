@@ -56,4 +56,5 @@
     <string name="retry">Ulangi</string>
     <string name="search_users">Pencarian nama pengguna…</string>
     <string name="follow_message">aktivitas mengikuti belum dapat dilakukan</string>
+    <string name="users">pengguna</string>
 </resources>
