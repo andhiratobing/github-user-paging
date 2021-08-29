@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.data.local.adapter
+package submission.andhiratobing.githubuser.adapter.local
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

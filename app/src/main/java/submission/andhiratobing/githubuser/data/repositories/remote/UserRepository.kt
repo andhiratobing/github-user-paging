@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.data.remote.repositories
+package submission.andhiratobing.githubuser.data.repositories.remote
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -20,6 +20,7 @@ import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_INIT
 import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_MAX_SIZE
 import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PAGE_SIZE
 import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PREFETCHDISTACE
+import submission.andhiratobing.githubuser.util.network.NetworkState
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -27,6 +28,10 @@ import javax.inject.Singleton
 @ExperimentalCoroutinesApi
 class UserRepository
 @Inject constructor(private val apiService: ApiService) {
+
+    //network handle
+    private val _networkState = MutableLiveData<NetworkState>()
+    val networkState: LiveData<NetworkState> get() = _networkState
 
     private var _detailUserMutableLiveData = MutableLiveData<DetailUserResponse>()
     val detailUserLiveData: LiveData<DetailUserResponse> get() = _detailUserMutableLiveData
@@ -46,17 +51,20 @@ class UserRepository
     }
 
 
-     fun detailUser(login: String) {
+    fun detailUser(login: String) {
         try {
+            _networkState.postValue(NetworkState.LOADING)
             apiService.detailUsers(login).enqueue(object : Callback<DetailUserResponse> {
                 override fun onResponse(
                     call: Call<DetailUserResponse>,
-                    response: Response<DetailUserResponse>,
+                    response: Response<DetailUserResponse>
                 ) {
+                    _networkState.postValue(NetworkState.LOADED)
                     _detailUserMutableLiveData.postValue(response.body())
                 }
 
                 override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
+                    _networkState.postValue(NetworkState.FAILED)
                     t.message?.let { Log.e("Failure", it) }
                 }
             })

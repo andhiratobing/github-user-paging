@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +12,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import submission.andhiratobing.githubuser.data.remote.adapter.reposusers.ReposAdapter
+import submission.andhiratobing.githubuser.adapter.remote.reposusers.ReposAdapter
 import submission.andhiratobing.githubuser.databinding.FragmentRepositoryBinding
+import submission.andhiratobing.githubuser.util.network.NetworkState
 import submission.andhiratobing.githubuser.viewmodel.RepositoryViewModel
 
 @AndroidEntryPoint
@@ -59,19 +59,26 @@ class RepositoryFragment : Fragment() {
             }
         }
 
+        initStatusNetwork()
         initRecyclerView()
         initObserver()
 
     }
 
-
     private fun initObserver(){
-        initLoading(true)
         repositoryViewModel.setRepository().observe(viewLifecycleOwner) { repos ->
             reposAdapter.setList(repos)
             Log.d("Data", "${reposAdapter.itemCount}")
-            initLoading(false)
         }
+    }
+
+    private fun initStatusNetwork(){
+        repositoryViewModel.setNetworkState().observe(viewLifecycleOwner,{ network ->
+            binding.apply {
+                progressBar.visibility = if (network == NetworkState.LOADING) View.VISIBLE else View.GONE
+                tvMessage.visibility = if (network == NetworkState.FAILED) View.VISIBLE else View.GONE
+            }
+        })
     }
 
 
@@ -84,17 +91,6 @@ class RepositoryFragment : Fragment() {
 
         }
     }
-
-    private fun initLoading(state: Boolean){
-        binding.progressBar.isVisible = when(state){
-            true -> true
-            false -> false
-        }
-    }
-
-
-
-
 
     override fun onDestroy() {
         super.onDestroy()

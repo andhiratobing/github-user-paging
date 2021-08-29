@@ -53,6 +53,7 @@
     <string name="all_data_loaded">Semua data telah di muat</string>
     <string name="no_internet_connection">Tidak ada koneksi internet</string>
     <string name="no_results">Tidak ada hasil</string>
+    <string name="something_went_wrong">Maaf ada kesalahan</string>
     <string name="retry">Ulangi</string>
     <string name="search_users">Pencarian nama pengguna…</string>
     <string name="follow_message">aktivitas mengikuti belum dapat dilakukan</string>

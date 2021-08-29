@@ -12,9 +12,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import submission.andhiratobing.githubuser.data.remote.adapter.followersusers.FollowersAdapter
+import submission.andhiratobing.githubuser.adapter.remote.followersusers.FollowersAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.followers.FollowersResponse
 import submission.andhiratobing.githubuser.databinding.FragmentFollowersBinding
+import submission.andhiratobing.githubuser.util.network.NetworkState
 import submission.andhiratobing.githubuser.viewmodel.FollowersViewModel
 
 @AndroidEntryPoint
@@ -50,6 +51,8 @@ class FollowersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initStatusNetwork()
+        initObserver()
         initRecyclerView()
 
         arguments?.getString(ARG_USERNAME).let { data ->
@@ -58,14 +61,25 @@ class FollowersFragment : Fragment() {
                 data?.let { followersViewModel.getFolloers(it) }
             }
         }
+    }
 
+
+    private fun initObserver(){
         followersViewModel.setFollowers().observe(viewLifecycleOwner) { following ->
             followersAdapter.setList(following as ArrayList<FollowersResponse>)
             Log.d("Data", "${followersAdapter.itemCount}")
-
         }
     }
 
+
+    private fun initStatusNetwork(){
+        followersViewModel.setNetworkState().observe(viewLifecycleOwner,{ network ->
+            binding.apply {
+                progressBar.visibility = if (network == NetworkState.LOADING) View.VISIBLE else View.GONE
+                tvMessage.visibility = if (network == NetworkState.FAILED) View.VISIBLE else View.GONE
+            }
+        })
+    }
 
 
     private fun initRecyclerView() {
@@ -75,7 +89,6 @@ class FollowersFragment : Fragment() {
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvFollowers.setHasFixedSize(true)
             rvFollowers.adapter = followersAdapter
-
         }
     }
 

@@ -1,27 +1,22 @@
 package submission.andhiratobing.githubuser.view.activities
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
-import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import submission.andhiratobing.githubuser.R
-import submission.andhiratobing.githubuser.data.remote.adapter.SectionPageAdapter
+import submission.andhiratobing.githubuser.adapter.SectionPageAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ActivityDetailUserBinding
 import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
+import submission.andhiratobing.githubuser.util.network.NetworkState
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
@@ -47,6 +42,7 @@ class DetailUserActivity : AppCompatActivity() {
             Snackbar.make(it, getString(R.string.follow_message), Snackbar.LENGTH_LONG).show()
         }
 
+        initStatusNetwork()
         initObserver()
         getDataFromParcelable()
         getDetailUser()
@@ -74,6 +70,15 @@ class DetailUserActivity : AppCompatActivity() {
                 tvRepository.text = dataObserveDetailUser.repository.asFormattedDecimals()
             }
             addFavoriteUser(dataObserveDetailUser)
+        })
+    }
+
+    private fun initStatusNetwork(){
+        detailUserViewModel.setNetworkState().observe(this,{ network ->
+            binding.apply {
+                progressBar.visibility = if (network == NetworkState.LOADING) View.VISIBLE else View.GONE
+
+            }
         })
     }
 
@@ -130,9 +135,7 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun getDataFromParcelable() {
         val data: UserResponseItem? = intent.getParcelableExtra(DATA_USER)
-
         if (data != null){
-            binding.progressBar.isVisible = true
             binding.apply {
                 //Set toolbar with value
                 toolbarDetailUser.title = data.username
@@ -142,29 +145,6 @@ class DetailUserActivity : AppCompatActivity() {
                 tvUsername.text = data.username
                 Glide.with(this@DetailUserActivity).load(data.avatar)
                     .placeholder(R.drawable.placeholder_image)
-                    .listener(object : RequestListener<Drawable> {
-                        override fun onLoadFailed(
-                            e: GlideException?,
-                            model: Any?,
-                            target: Target<Drawable>?,
-                            isFirstResource: Boolean,
-                        ): Boolean {
-                            progressBar.isVisible = true
-                            return false
-                        }
-
-                        override fun onResourceReady(
-                            resource: Drawable?,
-                            model: Any?,
-                            target: Target<Drawable>?,
-                            dataSource: DataSource?,
-                            isFirstResource: Boolean,
-                        ): Boolean {
-                            tvUsername.isVisible = true
-                            progressBar.isVisible = false
-                            return false
-                        }
-                    })
                     .into(ivAvatar)
             }
         }
@@ -193,8 +173,6 @@ class DetailUserActivity : AppCompatActivity() {
             sectionPageAdapter = SectionPageAdapter(supportFragmentManager, lifecycle)
             sectionPageAdapter.username = data?.username
             viewPager.adapter = sectionPageAdapter
-
-
 
             //set tablayout mediator
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->

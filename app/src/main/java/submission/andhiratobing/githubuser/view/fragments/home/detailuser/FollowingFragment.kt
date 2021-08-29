@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,9 +14,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import submission.andhiratobing.githubuser.R
-import submission.andhiratobing.githubuser.data.remote.adapter.followingusers.FollowAdapter
+import submission.andhiratobing.githubuser.adapter.remote.followingusers.FollowAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.following.FollowingResponse
 import submission.andhiratobing.githubuser.databinding.FragmentFollowingBinding
+import submission.andhiratobing.githubuser.util.network.NetworkState
 import submission.andhiratobing.githubuser.viewmodel.FollowingViewModel
 
 @ExperimentalCoroutinesApi
@@ -54,7 +54,7 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initStatusNetwork()
         initRecyclerView()
         initObserver()
 
@@ -70,12 +70,19 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
     }
 
     private fun initObserver(){
-        initLoading(true)
         followingViewModel.setFollowing().observe(viewLifecycleOwner) { following ->
             followingAdapter.setList(following as ArrayList<FollowingResponse>)
             Log.d("Data", "${followingAdapter.itemCount}")
-            initLoading(false)
         }
+    }
+
+    private fun initStatusNetwork(){
+        followingViewModel.setNetworkState().observe(viewLifecycleOwner,{ network ->
+            binding.apply {
+                progressBar.visibility = if (network == NetworkState.LOADING) View.VISIBLE else View.GONE
+                tvMessage.visibility = if (network == NetworkState.FAILED) View.VISIBLE else View.GONE
+            }
+        })
     }
 
 
@@ -90,12 +97,6 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
         }
     }
 
-    private fun initLoading(state: Boolean){
-        binding.progressBar.isVisible = when(state){
-            true -> true
-            false -> false
-        }
-    }
 
     override fun onDestroy() {
         super.onDestroy()

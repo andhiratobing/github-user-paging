@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.data.local.repositories
+package submission.andhiratobing.githubuser.data.repositories.local
 
 import androidx.lifecycle.LiveData
 import submission.andhiratobing.githubuser.data.local.dao.FavoriteUserDao

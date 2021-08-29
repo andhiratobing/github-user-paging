@@ -10,12 +10,13 @@ import submission.andhiratobing.githubuser.data.remote.responses.followers.Follo
 import submission.andhiratobing.githubuser.data.remote.responses.following.FollowingResponse
 import submission.andhiratobing.githubuser.data.remote.responses.repos.ReposResponse
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponse
+import submission.andhiratobing.githubuser.util.Constants.Companion.ACCEPT_VERSION
 import submission.andhiratobing.githubuser.util.Constants.Companion.API_GITHUB_KEY
 
 interface ApiService {
 
     @GET("search/users")
-    @Headers("Authorization: token $API_GITHUB_KEY")
+    @Headers("Accept: $ACCEPT_VERSION","Authorization: token $API_GITHUB_KEY")
     suspend fun searchUsers(
         @Query("q") query: String,
         @Query("page") page: Int,
@@ -24,28 +25,28 @@ interface ApiService {
 
 
     @GET("users/{username}")
-    @Headers("Authorization: token $API_GITHUB_KEY")
+    @Headers("Accept: $ACCEPT_VERSION","Authorization: token $API_GITHUB_KEY")
     fun detailUsers(
         @Path("username") username: String,
     ): Call<DetailUserResponse>
 
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token $API_GITHUB_KEY")
+    @Headers("Accept: $ACCEPT_VERSION","Authorization: token $API_GITHUB_KEY")
     fun getFollowing(
         @Path("username") username: String
     ): Call<List<FollowingResponse>>
 
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token $API_GITHUB_KEY")
+    @Headers("Accept: $ACCEPT_VERSION","Authorization: token $API_GITHUB_KEY")
     fun getFollowers(
         @Path("username") username: String,
     ): Call<List<FollowersResponse>>
 
 
     @GET("users/{username}/repos")
-    @Headers("Authorization: token $API_GITHUB_KEY")
+    @Headers("Accept: $ACCEPT_VERSION","Authorization: token $API_GITHUB_KEY")
     fun getRepository(
         @Path("username") username: String,
     ): Call<List<ReposResponse>>

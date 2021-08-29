@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.data.remote.adapter.reposusers
+package submission.andhiratobing.githubuser.adapter.remote.reposusers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

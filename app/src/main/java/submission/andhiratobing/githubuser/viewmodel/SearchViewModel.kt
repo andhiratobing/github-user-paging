@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import submission.andhiratobing.githubuser.data.remote.repositories.UserRepository
+import submission.andhiratobing.githubuser.data.repositories.remote.UserRepository
 import javax.inject.Inject
 
 @HiltViewModel

@@ -6,10 +6,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import submission.andhiratobing.githubuser.data.remote.repositories.UserRepository
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
+import submission.andhiratobing.githubuser.data.repositories.remote.UserRepository
+import submission.andhiratobing.githubuser.util.network.NetworkState
 import javax.inject.Inject
-
 
 @HiltViewModel
 @ExperimentalCoroutinesApi
@@ -17,6 +17,8 @@ class DetailUserViewModel @Inject constructor(
     private val userRepository: UserRepository,
 ) : ViewModel() {
 
+
+    fun setNetworkState(): LiveData<NetworkState> = userRepository.networkState
 
     fun setDetailUsers(): LiveData<DetailUserResponse> {
         return userRepository.detailUserLiveData

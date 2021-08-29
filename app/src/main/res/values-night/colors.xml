@@ -5,6 +5,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="base_background">#121212</color>
     <color name="secondary_background">#232323</color>
+    <color name="color_background_button">#FF9800</color>
     <color name="color_text">#FFFFFF</color>
     <color name="color_favorite">#FF3B58</color>
     <color name="color_background_image">#E8EEF6</color>

@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.data.remote.adapter
+package submission.andhiratobing.githubuser.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

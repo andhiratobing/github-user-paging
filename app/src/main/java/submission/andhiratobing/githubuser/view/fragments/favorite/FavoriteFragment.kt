@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import submission.andhiratobing.githubuser.R
-import submission.andhiratobing.githubuser.data.local.adapter.FavoriteAdapter
+import submission.andhiratobing.githubuser.adapter.local.FavoriteAdapter
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentFavoriteBinding

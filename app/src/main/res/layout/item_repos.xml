@@ -43,5 +43,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tvNameRepos"
         tools:text="Belajar android best practice melalui kurikulum dicoding " />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
