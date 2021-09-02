@@ -15,6 +15,7 @@
         <ignore path="src/main/res/drawable/user9.webp" />
     </issue>
     <issue id="IconLocation">
+        <ignore path="src/main/res/drawable/placeholder_image.webp" />
         <ignore path="src/main/res/drawable/user5.webp" />
     </issue>
 </lint>

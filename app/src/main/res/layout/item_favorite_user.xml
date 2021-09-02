@@ -27,8 +27,8 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/ivAvatar"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:scaleType="fitCenter"
                 app:riv_border_color="#A9F3E2"
                 app:riv_corner_radius="16dp"

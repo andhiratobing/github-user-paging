@@ -62,7 +62,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-
     private fun setThemePreference() {
         themePreference?.onPreferenceChangeListener =
             Preference.OnPreferenceChangeListener { _, newValue ->

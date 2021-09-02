@@ -30,7 +30,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:ems="9"
         android:fontFamily="@font/poppins_regular"
@@ -42,5 +41,104 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNameRepos"
         tools:text="Belajar android best practice melalui kurikulum dicoding " />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivColorLanguage"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+    <TextView
+        android:id="@+id/tvLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/dimen_10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivColorLanguage"
+        app:layout_constraintStart_toEndOf="@+id/ivColorLanguage"
+        app:layout_constraintTop_toTopOf="@+id/ivColorLanguage"
+        tools:text="Kotlin" />
+
+    <ImageView
+        android:id="@+id/ivStar"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/icon_star"
+        android:src="@drawable/ic_star"
+        app:layout_constraintStart_toEndOf="@id/tvLanguage"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+
+    <TextView
+        android:id="@+id/tvCountStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/dimen_10sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivStar"
+        app:layout_constraintStart_toEndOf="@id/ivStar"
+        app:layout_constraintTop_toTopOf="@id/ivStar"
+        tools:text="60k" />
+
+
+    <ImageView
+        android:id="@+id/ivFork"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/icon_fork"
+        android:src="@drawable/ic_fork"
+        app:layout_constraintStart_toEndOf="@id/tvCountStar"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+    <TextView
+        android:id="@+id/tvCountFork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/dimen_10sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivFork"
+        app:layout_constraintStart_toEndOf="@id/ivFork"
+        app:layout_constraintTop_toTopOf="@id/ivFork"
+        tools:text="60k" />
+
+
+    <ImageView
+        android:id="@+id/ivIssue"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/icon_issue"
+        android:src="@drawable/ic_issue"
+        app:layout_constraintStart_toEndOf="@id/tvCountFork"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+    <TextView
+        android:id="@+id/tvCountIssue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/dimen_10sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivIssue"
+        app:layout_constraintStart_toEndOf="@id/ivIssue"
+        app:layout_constraintTop_toTopOf="@id/ivIssue"
+        tools:text="60k" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

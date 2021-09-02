@@ -13,8 +13,9 @@ import kotlinx.coroutines.*
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.adapter.local.FavoriteAdapter
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
-import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
+import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentFavoriteBinding
+import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
@@ -49,16 +50,13 @@ class FavoriteFragment : Fragment() {
         initRecyclerView()
         initViewModelFavorite()
         countFavoriteUser()
-
-
     }
-
 
     private fun countFavoriteUser() {
         CoroutineScope(Dispatchers.Main).launch {
             val count = favoriteViewModel.getCountUsers()
             if (count > 0) {
-                "(${count} ${resources.getString(R.string.users)})".also { binding.tvCountFavorite.text = it }
+                "(${count.asFormattedDecimals()} ${resources.getString(R.string.users)})".also { binding.tvCountFavorite.text = it }
                 binding.tvCountFavorite.visibility = View.VISIBLE
             } else {
                 binding.tvCountFavorite.visibility = View.GONE
@@ -83,7 +81,6 @@ class FavoriteFragment : Fragment() {
                 }
 
             })
-
         }
     }
 
@@ -93,11 +90,9 @@ class FavoriteFragment : Fragment() {
                 favoriteViewModel.getAllFavoriteUser().observe(viewLifecycleOwner, {
                     if (it != null) {
                         favoriteAdapter.submitList(it as ArrayList<FavoriteEntity>)
-
                     }
                 })
             }
-
         }
     }
 

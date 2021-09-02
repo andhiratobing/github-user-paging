@@ -2,6 +2,7 @@ package submission.andhiratobing.githubuser.view.fragments.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +15,9 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import submission.andhiratobing.githubuser.R
-import submission.andhiratobing.githubuser.adapter.remote.searchusers.SearchAdapter
-import submission.andhiratobing.githubuser.adapter.remote.searchusers.SearchLoadStateAdapter
-import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
+import submission.andhiratobing.githubuser.adapter.remote.paging.searchusers.SearchAdapter
+import submission.andhiratobing.githubuser.adapter.remote.paging.searchusers.SearchLoadStateAdapter
+import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentSearchBinding
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
@@ -61,6 +62,7 @@ class SearchFragment : Fragment() {
     private fun initProcess() {
         searchViewModel.search.observe(viewLifecycleOwner, {
             searchAdapter.submitData(lifecycle, it)
+            Log.d("data", "$it")
         })
     }
 
@@ -76,13 +78,13 @@ class SearchFragment : Fragment() {
                 footer = SearchLoadStateAdapter { searchAdapter.retry() }
             )
             searchAdapter.addLoadStateListener { loadState ->
+
                 rvUser.isVisible = loadState.source.refresh is LoadState.NotLoading
                 progressBar.isVisible = loadState.source.refresh is LoadState.Loading
 
                 //handling searching
                 if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached && searchAdapter.itemCount < 1
-                ) {
+                    loadState.append.endOfPaginationReached && searchAdapter.itemCount <= 0) {
                     rvUser.isVisible = false
                     tvSearchNoResult.isVisible = true
                     tvTitlePersons.isVisible = false
@@ -123,9 +125,9 @@ class SearchFragment : Fragment() {
         binding.searchUser.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                p0?.let {
+                p0?.let { query ->
                     binding.rvUser.scrollToPosition(0)
-                    searchViewModel.getSearchUser(it)
+                    searchViewModel.getSearchUser(query)
                 }
                 return true
             }
@@ -135,7 +137,6 @@ class SearchFragment : Fragment() {
             }
         })
     }
-
 
     private fun onClickListener() {
         searchAdapter.setOnItemClickCallBack(object : SearchAdapter.OnItemClickCallBack {

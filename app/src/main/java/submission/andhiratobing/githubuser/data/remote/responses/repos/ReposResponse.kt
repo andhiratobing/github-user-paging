@@ -8,7 +8,8 @@ import kotlinx.parcelize.Parcelize
 data class ReposResponse(
     val id: Int,
     val name: String,
-    val description: String,
+    val description: String?,
+    val language: String?,
     @SerializedName("forks_count")
     val forksCount: Int,
     @SerializedName("open_issues")

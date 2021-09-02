@@ -12,15 +12,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
+import submission.andhiratobing.githubuser.adapter.remote.paging.searchusers.UserPagingSource
 import submission.andhiratobing.githubuser.data.remote.api.ApiService
-import submission.andhiratobing.githubuser.data.remote.paging.UserPagingSource
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
-import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
-import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_INITIALLOADSIZE
-import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_MAX_SIZE
+import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
+import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_INITIAL_LOAD_SIZE
 import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PAGE_SIZE
-import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PREFETCHDISTACE
-import submission.andhiratobing.githubuser.util.network.NetworkState
+import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PRE_FETCH_DISTACE
+import submission.andhiratobing.githubuser.util.state.ResourceState
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -30,8 +29,8 @@ class UserRepository
 @Inject constructor(private val apiService: ApiService) {
 
     //network handle
-    private val _networkState = MutableLiveData<NetworkState>()
-    val networkState: LiveData<NetworkState> get() = _networkState
+    private val _networkState = MutableLiveData<ResourceState>()
+    val networkState: LiveData<ResourceState> get() = _networkState
 
     private var _detailUserMutableLiveData = MutableLiveData<DetailUserResponse>()
     val detailUserLiveData: LiveData<DetailUserResponse> get() = _detailUserMutableLiveData
@@ -41,10 +40,9 @@ class UserRepository
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
-                maxSize = NETWORK_MAX_SIZE,
                 enablePlaceholders = false,
-                prefetchDistance = NETWORK_PREFETCHDISTACE,
-                initialLoadSize = NETWORK_INITIALLOADSIZE
+                prefetchDistance = NETWORK_PRE_FETCH_DISTACE,
+                initialLoadSize = NETWORK_INITIAL_LOAD_SIZE
             ),
             pagingSourceFactory = { UserPagingSource(apiService, query) }
         ).liveData
@@ -53,18 +51,20 @@ class UserRepository
 
     fun detailUser(login: String) {
         try {
-            _networkState.postValue(NetworkState.LOADING)
+            _networkState.postValue(ResourceState.LOADING)
             apiService.detailUsers(login).enqueue(object : Callback<DetailUserResponse> {
                 override fun onResponse(
                     call: Call<DetailUserResponse>,
                     response: Response<DetailUserResponse>
                 ) {
-                    _networkState.postValue(NetworkState.LOADED)
-                    _detailUserMutableLiveData.postValue(response.body())
+                    if (response.isSuccessful) {
+                        _networkState.postValue(ResourceState.LOADED)
+                        _detailUserMutableLiveData.postValue(response.body())
+                    }
                 }
 
                 override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                    _networkState.postValue(NetworkState.FAILED)
+                    _networkState.postValue(ResourceState.FAILED)
                     t.message?.let { Log.e("Failure", it) }
                 }
             })

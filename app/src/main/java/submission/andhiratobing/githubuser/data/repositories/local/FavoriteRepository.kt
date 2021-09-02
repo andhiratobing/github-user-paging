@@ -11,7 +11,6 @@ class FavoriteRepository @Inject constructor(
     private val favoriteUserDao: FavoriteUserDao
 ) {
 
-
     suspend fun addFavoriteUser(
         id: Int,
         username: String,

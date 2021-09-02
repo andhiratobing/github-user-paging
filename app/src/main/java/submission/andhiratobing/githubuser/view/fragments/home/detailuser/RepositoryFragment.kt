@@ -1,44 +1,32 @@
 package submission.andhiratobing.githubuser.view.fragments.home.detailuser
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import submission.andhiratobing.githubuser.adapter.remote.reposusers.ReposAdapter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import submission.andhiratobing.githubuser.R
+import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.RepoSAdapterPaging
+import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.ReposLoadStateAdapter
 import submission.andhiratobing.githubuser.databinding.FragmentRepositoryBinding
-import submission.andhiratobing.githubuser.util.network.NetworkState
+import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.RepositoryViewModel
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class RepositoryFragment : Fragment() {
 
-
     private var _binding: FragmentRepositoryBinding? = null
     private val binding get() = _binding!!
-    private val repositoryViewModel: RepositoryViewModel by activityViewModels()
-    private lateinit var reposAdapter: ReposAdapter
-
-    companion object {
-        private const val ARG_USERNAME = "args_username"
-
-        fun newInstance(username: String?): RepositoryFragment {
-            val bundle = Bundle()
-            bundle.putString(ARG_USERNAME, username)
-
-            return RepositoryFragment().apply {
-                arguments = bundle
-            }
-        }
-    }
-
+    private val repositoryViewModel: RepositoryViewModel by viewModels()
+    private lateinit var reposAdapter: RepoSAdapterPaging
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,44 +39,72 @@ class RepositoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //get bundle from detail user fragment
-        arguments?.getString(ARG_USERNAME).let { data ->
-            Log.d("getUsername", "$data")
-            CoroutineScope(Dispatchers.Main).launch {
-                data?.let { repositoryViewModel.getRepository(it) }
-            }
-        }
-
-        initStatusNetwork()
-        initRecyclerView()
         initObserver()
-
+        initAdapter()
+        setDataRepos()
     }
 
-    private fun initObserver(){
-        repositoryViewModel.setRepository().observe(viewLifecycleOwner) { repos ->
-            reposAdapter.setList(repos)
-            Log.d("Data", "${reposAdapter.itemCount}")
+    private fun setDataRepos() {
+        val username = arguments?.getString(DetailUserActivity.DATA_USER)
+        if (username != null) repositoryViewModel.setRepository(username)
+    }
+
+    private fun initObserver() {
+        repositoryViewModel.getRepository().observe(viewLifecycleOwner) {
+            reposAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }
 
-    private fun initStatusNetwork(){
-        repositoryViewModel.setNetworkState().observe(viewLifecycleOwner,{ network ->
-            binding.apply {
-                progressBar.visibility = if (network == NetworkState.LOADING) View.VISIBLE else View.GONE
-                tvMessage.visibility = if (network == NetworkState.FAILED) View.VISIBLE else View.GONE
-            }
-        })
-    }
-
-
-    private fun initRecyclerView() {
+    private fun initAdapter() {
         binding.apply {
-            reposAdapter = ReposAdapter()
-            rvRepos.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+            reposAdapter = RepoSAdapterPaging()
+            rvRepos.layoutManager =
+                LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvRepos.setHasFixedSize(true)
             rvRepos.adapter = reposAdapter
 
+
+            rvRepos.adapter = reposAdapter.withLoadStateHeaderAndFooter(
+                header = ReposLoadStateAdapter { reposAdapter.retry() },
+                footer = ReposLoadStateAdapter { reposAdapter.retry() }
+            )
+            reposAdapter.addLoadStateListener { loadState ->
+                rvRepos.isVisible = loadState.source.refresh is LoadState.NotLoading
+                progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+                ivNotFound.isVisible = loadState.source.refresh is LoadState.Error
+                tvMessage.isVisible = loadState.source.refresh is LoadState.Error
+
+                //handling
+                if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached && reposAdapter.itemCount < 1) {
+                    rvRepos.isVisible = false
+                    ivNotFound.isVisible = true
+                    tvMessage.isVisible = true
+                } else {
+                    ivNotFound.isVisible = false
+                    tvMessage.isVisible = false
+                }
+
+                val errorState = loadState.source.append as? LoadState.Error
+                    ?: loadState.source.prepend as? LoadState.Error
+                    ?: loadState.append as? LoadState.Error
+                    ?: loadState.prepend as? LoadState.Error
+                errorState?.let {
+                    if (errorState.endOfPaginationReached) {
+                        Snackbar.make(
+                            binding.rvRepos,
+                            "${R.string.all_data_loaded}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    } else {
+                        Snackbar.make(
+                            binding.rvRepos,
+                            R.string.no_internet_connection,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
         }
     }
 

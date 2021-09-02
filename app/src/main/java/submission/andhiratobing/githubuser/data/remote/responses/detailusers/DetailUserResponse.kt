@@ -10,12 +10,12 @@ data class DetailUserResponse(
     @SerializedName("login")
     val username: String,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("avatar_url")
-    val avatar: String,
-    val company: String,
-    val bio: String,
-    val location: String,
+    val avatar: String?,
+    val company: String?,
+    val bio: String?,
+    val location: String?,
     val following: Int,
     @SerializedName("following_url")
     val following_url: String,

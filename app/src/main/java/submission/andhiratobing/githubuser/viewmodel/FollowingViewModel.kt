@@ -1,13 +1,11 @@
 package submission.andhiratobing.githubuser.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import submission.andhiratobing.githubuser.data.remote.responses.following.FollowingResponse
+import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.data.repositories.remote.FollowingRepository
-import submission.andhiratobing.githubuser.util.network.NetworkState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,15 +14,15 @@ class FollowingViewModel
     private val followingRepository: FollowingRepository
 ) : ViewModel() {
 
-    fun setNetworkState(): LiveData<NetworkState> = followingRepository.networkState
+    private val followingMutableLiveData = MutableLiveData<String>()
 
-    fun setFollowing(): LiveData<List<FollowingResponse>> = followingRepository.followingLiveData
-
-
-    fun getFollowing(username: String) {
-        viewModelScope.launch {
-            followingRepository.following(username)
+    fun getFollowing(): LiveData<PagingData<UserResponseItem>> =
+        followingMutableLiveData.switchMap { username ->
+            followingRepository.following(username).cachedIn(viewModelScope)
         }
+
+    fun setFollowing(username: String) {
+        this.followingMutableLiveData.value = username
     }
 
 

@@ -13,10 +13,10 @@ import kotlinx.coroutines.*
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.adapter.SectionPageAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
-import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
+import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ActivityDetailUserBinding
 import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
-import submission.andhiratobing.githubuser.util.network.NetworkState
+import submission.andhiratobing.githubuser.util.state.ResourceState
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
@@ -47,42 +47,57 @@ class DetailUserActivity : AppCompatActivity() {
         getDataFromParcelable()
         getDetailUser()
         initTabLayout()
-
     }
 
-    private fun initObserver(){
-        detailUserViewModel.setDetailUsers().observe(this, { dataObserveDetailUser ->
-//            if (dataObserveDetailUser == null) {
-//                binding.tvName.visibility = View.GONE
-//                binding.tvBio.visibility = View.GONE
-//                binding.tvCompany.visibility = View.GONE
-//                binding.ivCompany.visibility = View.GONE
-//                binding.tvLocation.visibility = View.GONE
-//                binding.ivLocation.visibility = View.GONE
-//            } else {
+    private fun initObserver() {
+        detailUserViewModel.setDetailUsers().observe(this, {
             binding.apply {
-                tvName.text = dataObserveDetailUser.name
-                tvCompany.text = dataObserveDetailUser.company
-                tvBio.text = dataObserveDetailUser.bio
-                tvLocation.text = dataObserveDetailUser.location
-                tvFollowing.text = dataObserveDetailUser.following.asFormattedDecimals()
-                tvFollowers.text = dataObserveDetailUser.followers.asFormattedDecimals()
-                tvRepository.text = dataObserveDetailUser.repository.asFormattedDecimals()
+                if (it.name.isNullOrEmpty()) {
+                    tvName.visibility = View.GONE
+                } else {
+                    tvName.text = it.name
+                    tvName.visibility = View.VISIBLE
+                }
+                if (it.company.isNullOrEmpty()) {
+                    tvCompany.visibility = View.GONE
+                    ivCompany.visibility = View.GONE
+                } else {
+                    tvCompany.text = it.company
+                    tvCompany.visibility = View.VISIBLE
+                    ivCompany.visibility = View.VISIBLE
+                }
+                if (it.bio.isNullOrEmpty()) {
+                    tvBio.visibility = View.GONE
+                } else {
+                    tvBio.text = it.bio
+                    tvBio.visibility = View.VISIBLE
+                }
+                if (it.location.isNullOrEmpty()) {
+                    ivLocation.visibility = View.GONE
+                    tvLocation.visibility = View.GONE
+                } else {
+                    tvLocation.text = it.location
+                    ivLocation.visibility = View.VISIBLE
+                    tvLocation.visibility = View.VISIBLE
+                }
+
+                tvFollowing.text = it.following.asFormattedDecimals()
+                tvFollowers.text = it.followers.asFormattedDecimals()
+                tvRepository.text = it.repository.asFormattedDecimals()
             }
-            addFavoriteUser(dataObserveDetailUser)
+
+            addFavoriteUser(it)
         })
     }
 
-    private fun initStatusNetwork(){
-        detailUserViewModel.setNetworkState().observe(this,{ network ->
+    private fun initStatusNetwork() {
+        detailUserViewModel.setNetworkState().observe(this, { status ->
             binding.apply {
-                progressBar.visibility = if (network == NetworkState.LOADING) View.VISIBLE else View.GONE
-
+                progressBar.visibility =
+                    if (status == ResourceState.LOADING) View.VISIBLE else View.GONE
             }
         })
     }
-
-
 
     private fun getDetailUser() {
         val dataFromUserResponse: UserResponseItem? = intent.getParcelableExtra(DATA_USER)
@@ -117,17 +132,18 @@ class DetailUserActivity : AppCompatActivity() {
                 favoriteViewModel.addFavoriteUser(dataFromDetailUserr)
                 Snackbar.make(
                     it,
-                    "Successfully added ${dataFromDetailUserr.username} to favorites",
+                    "${dataFromDetailUserr.username} ${resources.getString(R.string.success_add_favorite)}",
                     Snackbar.LENGTH_SHORT
                 ).show()
             } else {
                 favoriteViewModel.deleteFavorite(dataFromDetailUserr.id)
+                Snackbar.make(
+                    it,
+                    "${dataFromDetailUserr.username} ${resources.getString(R.string.remove_favorite)}",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
-            Snackbar.make(
-                it,
-                "Successfully removed ${dataFromDetailUserr.username} from favorites",
-                Snackbar.LENGTH_SHORT
-            ).show()
+
         }
         binding.toggleFav.isChecked = isChecked
     }
@@ -135,7 +151,7 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun getDataFromParcelable() {
         val data: UserResponseItem? = intent.getParcelableExtra(DATA_USER)
-        if (data != null){
+        if (data != null) {
             binding.apply {
                 //Set toolbar with value
                 toolbarDetailUser.title = data.username
@@ -155,7 +171,7 @@ class DetailUserActivity : AppCompatActivity() {
         val type = "text/plain"
         ShareCompat.IntentBuilder(this)
             .setType(type)
-            .setChooserTitle("Share")
+            .setChooserTitle(getString(R.string.share))
             .setText(
                 resources.getString(
                     R.string.share_detail_user,
@@ -169,9 +185,10 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun initTabLayout() {
         val data: UserResponseItem? = intent.getParcelableExtra(DATA_USER)
+        val bundle = Bundle()
+        bundle.putString(DATA_USER, data?.username)
         binding.apply {
-            sectionPageAdapter = SectionPageAdapter(supportFragmentManager, lifecycle)
-            sectionPageAdapter.username = data?.username
+            sectionPageAdapter = SectionPageAdapter(supportFragmentManager, lifecycle, bundle)
             viewPager.adapter = sectionPageAdapter
 
             //set tablayout mediator
@@ -182,9 +199,7 @@ class DetailUserActivity : AppCompatActivity() {
                     2 -> tab.setIcon(R.drawable.ic_repository)
                 }
             }.attach()
-
         }
-
     }
 
 

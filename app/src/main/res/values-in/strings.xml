@@ -10,6 +10,8 @@
     <string name="icon_following">Icon Mengikuti</string>
     <string name="icon_followers">Icon Pengikut</string>
     <string name="icon_star">Icon Bintang</string>
+    <string name="icon_fork">Icon Fork</string>
+    <string name="icon_issue">Icon Masalah</string>
     <string name="icon_share">Icon Berbagi</string>
     <string name="share">Bagikan</string>
     <string name="follow">Ikuti</string>
@@ -53,9 +55,15 @@
     <string name="all_data_loaded">Semua data telah di muat</string>
     <string name="no_internet_connection">Tidak ada koneksi internet</string>
     <string name="no_results">Tidak ada hasil</string>
-    <string name="something_went_wrong">Maaf ada kesalahan</string>
     <string name="retry">Ulangi</string>
     <string name="search_users">Pencarian nama pengguna…</string>
     <string name="follow_message">aktivitas mengikuti belum dapat dilakukan</string>
     <string name="users">pengguna</string>
+    <string name="tab_layout">Tab layout</string>
+    <string name="success_add_favorite">berhasil ditambahkan ke favorit</string>
+    <string name="remove_favorite">berhasil dihapus dari favorit</string>
+    <string name="following_does_not_exist">Data tidak ada</string>
+    <string name="followers_does_not_exist">Data tidak ada</string>
+    <string name="repository_does_not_exist">Data tidak ada</string>
+    <string name="image_not_found">Gambar tidak tersedia</string>
 </resources>

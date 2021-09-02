@@ -10,7 +10,6 @@ import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
     [FavoriteEntity::class],
     version = 1, exportSchema = false
 )
-
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun favoriteUserDao(): FavoriteUserDao

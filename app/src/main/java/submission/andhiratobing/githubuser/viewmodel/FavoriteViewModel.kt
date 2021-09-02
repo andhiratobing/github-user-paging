@@ -24,7 +24,6 @@ class FavoriteViewModel @Inject constructor(
         return favoriteRepository.getCountUsers()
     }
 
-
     fun addFavoriteUser(detailUserResponse: DetailUserResponse) {
         viewModelScope.launch {
             favoriteRepository.addFavoriteUser(

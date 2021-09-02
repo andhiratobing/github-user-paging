@@ -9,6 +9,8 @@
     <string name="icon_following">Icon following</string>
     <string name="icon_followers">Icon Followers</string>
     <string name="icon_star">Icon Star</string>
+    <string name="icon_fork">Icon Fork</string>
+    <string name="icon_issue">Icon Issue</string>
     <string name="icon_share">Icon share</string>
     <string name="share">Share</string>
     <string name="follow">Follow</string>
@@ -51,12 +53,17 @@
     <string name="all_data_loaded">All data loaded</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="no_results">No results</string>
-    <string name="something_went_wrong">Something went wrong, check your internet connection</string>
     <string name="retry">retry</string>
     <string name="search_users">Search username…</string>
     <string name="follow_message">following activity can\'t be done</string>
     <string name="users">Users</string>
     <string name="tab_layout">Tab layout</string>
+    <string name="success_add_favorite">successfully added to favorites</string>
+    <string name="remove_favorite">successfully removed from favorites</string>
+    <string name="following_does_not_exist">Following does not exist</string>
+    <string name="followers_does_not_exist">Followers does not exist</string>
+    <string name="repository_does_not_exist">Repository does not exist</string>
+    <string name="image_not_found">Image not found</string>
 
 
 </resources>

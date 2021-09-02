@@ -9,4 +9,39 @@
     <color name="color_text">#1A1C4D</color>
     <color name="color_background_image">#E8EEF6</color>
     <color name="color_favorite">#FF3B58</color>
+
+
+    <!--programming language color-->
+    <color name="language_color_kotlin">#A97BFF</color>
+    <color name="language_color_dart">#00B4AB</color>
+    <color name="language_color_java">#b07219</color>
+    <color name="language_color_javascript">#f1e05a</color>
+    <color name="language_color_python">#3572A5</color>
+    <color name="language_color_html">#e34c26</color>
+    <color name="language_color_css">#563d7c</color>
+    <color name="language_color_php">#4F5D95</color>
+    <color name="language_color_swift">#F05138</color>
+    <color name="language_color_objective_c">#438eff</color>
+    <color name="language_color_shell">#89e051</color>
+    <color name="language_color_c">#555555</color>
+    <color name="language_color_cplus">#f34b7d</color>
+    <color name="language_color_ccresh">#178600</color>
+    <color name="language_color_ruby">#701516</color>
+    <color name="language_color_jupiter_notebook">#DA5B0B</color>
+    <color name="language_color_go">#00ADD8</color>
+    <color name="language_color_type_script">#2b7489</color>
+    <color name="language_color_vue">#41b883</color>
+    <color name="language_color_rascal">#fffaa0</color>
+    <color name="language_color_starlark">#76d275</color>
+    <color name="language_color_r">#198CE7</color>
+    <color name="language_color_o_caml">#3be133</color>
+    <color name="language_color_gosu">#82937f</color>
+    <color name="language_color_graph_ql">#e10098</color>
+    <color name="language_color_groovy">#4298b8</color>
+    <color name="language_color_julia">#a270ba</color>
+    <color name="language_color_docker_file">#384d54</color>
+    <color name="language_color_matlab">#e16737</color>
+    <color name="language_color_power_shell">#012456</color>
+    <color name="language_color_other">#455a64</color>
+
 </resources>

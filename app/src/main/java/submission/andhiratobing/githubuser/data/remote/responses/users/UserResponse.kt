@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.data.remote.responses.searchusers
+package submission.andhiratobing.githubuser.data.remote.responses.users
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

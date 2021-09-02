@@ -8,7 +8,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
 import submission.andhiratobing.githubuser.data.repositories.remote.UserRepository
-import submission.andhiratobing.githubuser.util.network.NetworkState
+import submission.andhiratobing.githubuser.util.state.ResourceState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,7 +18,7 @@ class DetailUserViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    fun setNetworkState(): LiveData<NetworkState> = userRepository.networkState
+    fun setNetworkState(): LiveData<ResourceState> = userRepository.networkState
 
     fun setDetailUsers(): LiveData<DetailUserResponse> {
         return userRepository.detailUserLiveData

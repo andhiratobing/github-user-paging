@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base_background"
-    tools:context=".view.activities.DetailUserActivity">
+    tools:context=".view.activities.DetailUserActivity"
+    tools:ignore="Overdraw">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -22,6 +23,7 @@
             android:id="@+id/toolbarDetailUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_left_arrow" />
@@ -53,7 +55,7 @@
                 android:id="@+id/collapsingToolbarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
+                app:contentScrim="@color/base_background"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -183,8 +185,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center|end"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginBottom="24dp"
+                                android:layout_marginTop="24dp"
                                 android:ems="10"
                                 android:fontFamily="@font/poppins_medium"
                                 android:gravity="center"
@@ -203,7 +204,7 @@
                                 android:layout_marginStart="40dp"
                                 android:layout_marginTop="24dp"
                                 android:layout_marginEnd="40dp"
-                                android:layout_marginBottom="16dp"
+                                android:layout_marginBottom="8dp"
                                 android:background="@color/color_icon"
                                 app:layout_constraintBottom_toTopOf="@+id/lnFollowing"
                                 app:layout_constraintEnd_toEndOf="@+id/tvLocation"
@@ -242,7 +243,7 @@
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/followers"
                                     android:textColor="@color/color_text"
-                                    android:textSize="16sp" />
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -278,7 +279,7 @@
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/following"
                                     android:textColor="@color/color_text"
-                                    android:textSize="16sp"
+                                    android:textSize="14sp"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -316,7 +317,7 @@
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/repository"
                                     android:textColor="@color/color_text"
-                                    android:textSize="16sp"
+                                    android:textSize="14sp"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
                             </LinearLayout>
@@ -331,13 +332,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginBottom="16dp"
                         android:backgroundTint="@color/color_background_button"
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/follow"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/toggleFav"
                         app:layout_constraintStart_toStartOf="@+id/cardViewDetail"
                         app:layout_constraintTop_toBottomOf="@+id/cardViewDetail"
@@ -365,53 +367,44 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarTabLayout"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                app:layout_collapseMode="pin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnFollow"
-                app:layout_scrollFlags="scroll|enterAlways">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/base_background"
-                    android:contentDescription="@string/tab_layout"
-                    android:fillViewport="true"
-                    android:labelFor="@id/tabLayout"
-                    app:tabGravity="fill"
-                    app:tabIndicatorAnimationMode="elastic"
-                    app:tabIndicatorColor="@color/color_text"
-                    app:tabIndicatorFullWidth="true"
-                    app:tabIndicatorGravity="bottom"
-                    app:tabIndicatorHeight="1dp"
-                    app:tabMode="fixed"
-                    app:tabTextAppearance="@style/Widget.MaterialComponents.TabLayout"
-                    app:tabTextColor="@color/color_text" />
-            </androidx.appcompat.widget.Toolbar>
+                android:background="@color/base_background"
+                android:contentDescription="@string/tab_layout"
+                android:fillViewport="true"
+                android:labelFor="@id/tabLayout"
+                app:tabGravity="fill"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/color_text"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorGravity="bottom"
+                app:tabIndicatorHeight="1dp"
+                app:tabMode="fixed"
+                app:tabTextAppearance="@style/Widget.MaterialComponents.TabLayout"
+                app:tabTextColor="@color/color_text" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

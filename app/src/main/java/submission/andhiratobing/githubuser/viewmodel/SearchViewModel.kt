@@ -17,10 +17,11 @@ class SearchViewModel @Inject constructor(
     state: SavedStateHandle
 ) : ViewModel() {
 
+
     private val currentQuery = state.getLiveData(CURRENT_QUERY, DEFAULT_QUERY)
 
-    val search = currentQuery.switchMap { queryString ->
-        userRepository.searchUsers(queryString).cachedIn(viewModelScope)
+    val search = currentQuery.switchMap {
+        userRepository.searchUsers(it).cachedIn(viewModelScope)
     }
 
     fun getSearchUser(query: String) {
@@ -29,13 +30,7 @@ class SearchViewModel @Inject constructor(
 
     companion object {
         private const val CURRENT_QUERY = "current_query"
-        private const val DEFAULT_QUERY = ""
+        private const val DEFAULT_QUERY = "android"
     }
 
-
 }
-
-
-
-
-

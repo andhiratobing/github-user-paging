@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.adapter.remote.searchusers
+package submission.andhiratobing.githubuser.adapter.remote.paging.followingusers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import submission.andhiratobing.githubuser.R
-import submission.andhiratobing.githubuser.data.remote.responses.searchusers.UserResponseItem
+import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ItemUserBinding
 
-class SearchAdapter :
-    PagingDataAdapter<UserResponseItem, SearchAdapter.SearchViewHolder>(SEARCH_USER_COMPARATOR) {
+class FollowingAdapterPaging :
+    PagingDataAdapter<UserResponseItem, FollowingAdapterPaging.FollowingViewHolder>(
+        FOLLOWING_COMPARATOR) {
 
     private lateinit var onItemClickCallBack: OnItemClickCallBack
 
-    //Click callback item
+    //click callback item
     interface OnItemClickCallBack {
         fun onItemClick(data: UserResponseItem)
     }
@@ -24,23 +25,22 @@ class SearchAdapter :
         this.onItemClickCallBack = onItemClickCallBack
     }
 
-
     companion object {
-        private val SEARCH_USER_COMPARATOR = object : DiffUtil.ItemCallback<UserResponseItem>() {
+        private val FOLLOWING_COMPARATOR = object : DiffUtil.ItemCallback<UserResponseItem>() {
             override fun areItemsTheSame(
                 oldItem: UserResponseItem,
-                newItem: UserResponseItem
-            ): Boolean = (oldItem.id == newItem.id) || (oldItem.username == newItem.username)
+                newItem: UserResponseItem,
+            ): Boolean = oldItem.id == newItem.id
 
             override fun areContentsTheSame(
                 oldItem: UserResponseItem,
-                newItem: UserResponseItem
+                newItem: UserResponseItem,
             ): Boolean = oldItem == newItem
-
         }
     }
 
-    inner class SearchViewHolder(private val binding: ItemUserBinding) :
+
+    inner class FollowingViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -54,21 +54,20 @@ class SearchAdapter :
             }
         }
 
-        fun bind(userItem: UserResponseItem) {
+        fun bind(data: UserResponseItem) {
             binding.apply {
-                tvUsername.text = userItem.username
+                tvUsername.text = data.username
 
                 Glide.with(itemView.context)
-                    .load(userItem.avatar)
-                    .centerCrop()
-                    .error(R.drawable.placeholder_image)
+                    .load(data.avatar)
+                    .placeholder(R.drawable.placeholder_image)
                     .into(ivAvatar)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder =
-        SearchViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowingViewHolder =
+        FollowingViewHolder(
             ItemUserBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -76,8 +75,8 @@ class SearchAdapter :
             )
         )
 
-
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FollowingViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
 }
+

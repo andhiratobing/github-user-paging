@@ -21,11 +21,9 @@ class FavoriteAdapter :
         this.onItemClickCallBack = onItemClickCallBack
     }
 
-
     interface OnItemClickCallBack {
         fun onItemClick(data: FavoriteEntity)
     }
-
 
     companion object {
         private val FAVORITE_COMPARATOR = object : DiffUtil.ItemCallback<FavoriteEntity>() {
@@ -59,7 +57,8 @@ class FavoriteAdapter :
                     .placeholder(R.drawable.placeholder_image)
                     .into(ivAvatar)
 
-                binding.tvName.isVisible = data.name.isNotBlank()
+                if (data.name.isNullOrEmpty()) binding.tvName.isVisible = false
+                else tvName.isVisible = true
 
             }
 

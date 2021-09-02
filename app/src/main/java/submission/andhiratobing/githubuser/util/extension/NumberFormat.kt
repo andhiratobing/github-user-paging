@@ -4,11 +4,11 @@ import java.util.*
 
 object NumberFormat {
 
-
     private val suffixes = TreeMap<Long, String>().apply {
         put(1_000L, "k")
         put(1_000_000L, "M")
-        put(1_000_000_000L, "G")
+        put(1_000_000_000L, "B")
+        put(1_000_000_000_000, "T")
     }
 
     private fun format(value: Long): String? {
@@ -36,7 +36,6 @@ object NumberFormat {
                 }
             }
         }
-
     }
 
     private fun Long.asFormattedDecimals() = format(this)

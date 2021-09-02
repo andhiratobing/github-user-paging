@@ -14,7 +14,7 @@ data class FavoriteEntity(
     val id: Int,
     @ColumnInfo(name = "username")
     val username: String,
-    val name: String,
+    val name: String?,
     @ColumnInfo(name = "avatar_url")
     val avatar: String,
     val company: String?,

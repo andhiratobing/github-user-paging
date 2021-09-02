@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.adapter.remote.searchusers
+package submission.andhiratobing.githubuser.adapter.remote.paging.followingusers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,10 +8,10 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import submission.andhiratobing.githubuser.databinding.LayoutLoadStateBinding
 
-class SearchLoadStateAdapter(private val retry: () -> Unit) :
-    LoadStateAdapter<SearchLoadStateAdapter.UserLoadStateViewHolder>() {
+class FollowingLoadStateAdapter(private val retry: () -> Unit) :
+    LoadStateAdapter<FollowingLoadStateAdapter.FollowingLoadStateViewHolder>() {
 
-    inner class UserLoadStateViewHolder(
+    inner class FollowingLoadStateViewHolder(
         private val binding: LayoutLoadStateBinding,
         retry: () -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -30,14 +30,14 @@ class SearchLoadStateAdapter(private val retry: () -> Unit) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         loadState: LoadState
-    ): UserLoadStateViewHolder {
+    ): FollowingLoadStateViewHolder {
         val binding =
             LayoutLoadStateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return UserLoadStateViewHolder(binding, retry)
+        return FollowingLoadStateViewHolder(binding, retry)
     }
 
 
-    override fun onBindViewHolder(holder: UserLoadStateViewHolder, loadState: LoadState) {
+    override fun onBindViewHolder(holder: FollowingLoadStateViewHolder, loadState: LoadState) {
         holder.bind(loadState)
     }
 

@@ -1,56 +1,34 @@
 package submission.andhiratobing.githubuser.data.repositories.remote
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.HttpException
-import retrofit2.Response
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
+import submission.andhiratobing.githubuser.adapter.remote.paging.followersusers.FollowersPagingSource
 import submission.andhiratobing.githubuser.data.remote.api.ApiService
-import submission.andhiratobing.githubuser.data.remote.responses.followers.FollowersResponse
-import submission.andhiratobing.githubuser.util.network.NetworkState
+import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
+import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_INITIAL_LOAD_SIZE
+import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PAGE_SIZE
+import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PRE_FETCH_DISTACE
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class FollowersRepository
 @Inject constructor(
-    private val apiService: ApiService,
+    private val apiService: ApiService
 ) {
 
-    //network handle
-    private val _networkState = MutableLiveData<NetworkState>()
-    val networkState: LiveData<NetworkState> get() = _networkState
-
-    private var _followersMutableLiveData = MutableLiveData<List<FollowersResponse>>()
-    val followersLiveData: LiveData<List<FollowersResponse>> get() = _followersMutableLiveData
-
-
-    fun followers(username: String) {
-        _networkState.postValue(NetworkState.LOADING)
-        try {
-            apiService.getFollowers(username)
-                .enqueue(object : Callback<List<FollowersResponse>> {
-                    override fun onResponse(
-                        call: Call<List<FollowersResponse>>,
-                        response: Response<List<FollowersResponse>>,
-                    ) {
-                        if (response.isSuccessful) {
-                            _networkState.postValue(NetworkState.LOADED)
-                            _followersMutableLiveData.postValue(response.body())
-                        }
-                    }
-
-                    override fun onFailure(call: Call<List<FollowersResponse>>, t: Throwable) {
-                        _networkState.postValue(NetworkState.FAILED)
-                        t.message?.let { Log.e("Failure", it) }
-                    }
-
-                })
-        } catch (e: HttpException) {
-            e.printStackTrace()
-            e.message?.let { Log.e("Failure", it) }
-        }
+    fun followers(username: String): LiveData<PagingData<UserResponseItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false,
+                prefetchDistance = NETWORK_PRE_FETCH_DISTACE,
+                initialLoadSize = NETWORK_INITIAL_LOAD_SIZE
+            ),
+            pagingSourceFactory = { FollowersPagingSource(apiService, username) }
+        ).liveData
     }
 }

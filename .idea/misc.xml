@@ -21,28 +21,31 @@
         <entry key="app/src/main/res/drawable/ic_favorite_not_active.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_followers.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_following.xml" value="0.190625" />
+        <entry key="app/src/main/res/drawable/ic_fork.xml" value="0.190625" />
+        <entry key="app/src/main/res/drawable/ic_issue.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_language.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_left_arrow.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_repository.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_share.xml" value="0.190625" />
+        <entry key="app/src/main/res/drawable/ic_star.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_theme.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/toggle_favorite.xml" value="0.190625" />
-        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.16111111111111112" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_detail_user.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_followers.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/layout/fragment_followers.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_following.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_repository.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.1648148148148148" />
         <entry key="app/src/main/res/layout/item_favorite_user.xml" value="0.17447916666666666" />
-        <entry key="app/src/main/res/layout/item_repos.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/item_repos.xml" value="0.18" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.18" />
         <entry key="app/src/main/res/layout/item_userr.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/layout_checked_favorite.xml" value="0.17447916666666666" />
