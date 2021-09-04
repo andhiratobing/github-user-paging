@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.util.extension
+package submission.andhiratobing.githubuser.util.extension.number
 
 import java.util.*
 
@@ -8,7 +8,7 @@ object NumberFormat {
         put(1_000L, "k")
         put(1_000_000L, "M")
         put(1_000_000_000L, "B")
-        put(1_000_000_000_000, "T")
+        put(1_000_000_000_000L, "T")
     }
 
     private fun format(value: Long): String? {
@@ -23,7 +23,7 @@ object NumberFormat {
                 return value.toString()
             }
             else -> {
-                val e = this.suffixes.floorEntry(value)
+                val e = suffixes.floorEntry(value)
 
                 return e?.run<MutableMap.MutableEntry<Long, String>, String> {
                     val divideBy = e.key

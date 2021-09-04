@@ -5,10 +5,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ItemUserBinding
+import submission.andhiratobing.githubuser.util.extension.image.LoadImage.loadImage
 
 class SearchAdapter :
     PagingDataAdapter<UserResponseItem, SearchAdapter.SearchViewHolder>(SEARCH_USER_COMPARATOR) {
@@ -22,21 +21,6 @@ class SearchAdapter :
 
     fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack) {
         this.onItemClickCallBack = onItemClickCallBack
-    }
-
-    companion object {
-        private val SEARCH_USER_COMPARATOR = object : DiffUtil.ItemCallback<UserResponseItem>() {
-            override fun areItemsTheSame(
-                oldItem: UserResponseItem,
-                newItem: UserResponseItem
-            ): Boolean = (oldItem.id == newItem.id) || (oldItem.username == newItem.username)
-
-            override fun areContentsTheSame(
-                oldItem: UserResponseItem,
-                newItem: UserResponseItem
-            ): Boolean = oldItem == newItem
-
-        }
     }
 
     inner class SearchViewHolder(private val binding: ItemUserBinding) :
@@ -56,12 +40,7 @@ class SearchAdapter :
         fun bind(userItem: UserResponseItem) {
             binding.apply {
                 tvUsername.text = userItem.username
-
-                Glide.with(itemView.context)
-                    .load(userItem.avatar)
-                    .centerCrop()
-                    .error(R.drawable.placeholder_image)
-                    .into(ivAvatar)
+                ivAvatar.loadImage(userItem.avatar)
             }
         }
     }
@@ -78,4 +57,20 @@ class SearchAdapter :
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
+
+    companion object {
+        private val SEARCH_USER_COMPARATOR = object : DiffUtil.ItemCallback<UserResponseItem>() {
+            override fun areItemsTheSame(
+                oldItem: UserResponseItem,
+                newItem: UserResponseItem
+            ): Boolean = (oldItem.id == newItem.id) || (oldItem.username == newItem.username)
+
+            override fun areContentsTheSame(
+                oldItem: UserResponseItem,
+                newItem: UserResponseItem
+            ): Boolean = oldItem == newItem
+
+        }
+    }
+
 }

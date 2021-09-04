@@ -15,7 +15,7 @@ import submission.andhiratobing.githubuser.adapter.SectionPageAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ActivityDetailUserBinding
-import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
+import submission.andhiratobing.githubuser.util.extension.number.NumberFormat.asFormattedDecimals
 import submission.andhiratobing.githubuser.util.state.ResourceState
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
@@ -28,10 +28,6 @@ class DetailUserActivity : AppCompatActivity() {
     private val detailUserViewModel: DetailUserViewModel by viewModels()
     private val favoriteViewModel: FavoriteViewModel by viewModels()
     private lateinit var sectionPageAdapter: SectionPageAdapter
-
-    companion object {
-        const val DATA_USER = "data_user"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -194,8 +190,8 @@ class DetailUserActivity : AppCompatActivity() {
             //set tablayout mediator
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 when (position) {
-                    0 -> tab.setIcon(R.drawable.ic_following)
-                    1 -> tab.setIcon(R.drawable.ic_followers)
+                    0 -> tab.setIcon(R.drawable.ic_followers)
+                    1 -> tab.setIcon(R.drawable.ic_following)
                     2 -> tab.setIcon(R.drawable.ic_repository)
                 }
             }.attach()
@@ -219,6 +215,10 @@ class DetailUserActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        const val DATA_USER = "data_user"
     }
 
 }

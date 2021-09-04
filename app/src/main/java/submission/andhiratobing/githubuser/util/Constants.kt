@@ -9,6 +9,8 @@ class Constants {
         const val BACK_PRESS_TIME = 2_000L
         const val BASE_URL = "https://api.github.com/"
         const val ACCEPT_VERSION = "application/vnd.github.v3+json"
+        const val DATABASE_NAME = "github_users"
+        const val TABLE_NAME_FAVORITE = "favorite_users"
         const val API_GITHUB_KEY = BuildConfig.API_GITHUB_KEY
         const val DELAY_MILLISECOND = 3_500L
         const val START_PAGE_INDEX = 1

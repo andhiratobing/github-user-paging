@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.util.color
+package submission.andhiratobing.githubuser.util.extension.color
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -10,7 +10,7 @@ import submission.andhiratobing.githubuser.R
 
 object ColorLanguage {
 
-    fun setColorLangauge(imageView: ImageView, language: String?) {
+    fun setColorLanguage(imageView: ImageView, language: String?) {
         imageView.visibility = if (language == null) View.GONE else View.VISIBLE
         if (language.isNullOrEmpty()) return
         imageView.setImageDrawable(getColorLanguage(imageView, language))

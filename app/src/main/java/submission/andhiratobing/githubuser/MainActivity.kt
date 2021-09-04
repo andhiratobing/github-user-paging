@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             return
         } else {
-            backToast = Toast.makeText(baseContext, "Press again to exit", Toast.LENGTH_SHORT)
+            backToast = Toast.makeText(baseContext, getString(R.string.press_again_to_exit), Toast.LENGTH_SHORT)
             backToast?.show()
         }
         backPressedTime = System.currentTimeMillis()

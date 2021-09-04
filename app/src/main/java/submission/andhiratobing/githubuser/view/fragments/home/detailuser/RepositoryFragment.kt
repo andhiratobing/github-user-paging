@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import submission.andhiratobing.githubuser.R
-import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.RepoSAdapterPaging
+import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.ReposAdapterPaging
 import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.ReposLoadStateAdapter
 import submission.andhiratobing.githubuser.databinding.FragmentRepositoryBinding
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
@@ -24,9 +24,9 @@ import submission.andhiratobing.githubuser.viewmodel.RepositoryViewModel
 class RepositoryFragment : Fragment() {
 
     private var _binding: FragmentRepositoryBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding as FragmentRepositoryBinding
     private val repositoryViewModel: RepositoryViewModel by viewModels()
-    private lateinit var reposAdapter: RepoSAdapterPaging
+    private lateinit var reposAdapter: ReposAdapterPaging
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +57,7 @@ class RepositoryFragment : Fragment() {
 
     private fun initAdapter() {
         binding.apply {
-            reposAdapter = RepoSAdapterPaging()
+            reposAdapter = ReposAdapterPaging()
             rvRepos.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rvRepos.setHasFixedSize(true)

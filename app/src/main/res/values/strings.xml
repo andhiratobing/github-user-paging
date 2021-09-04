@@ -64,6 +64,7 @@
     <string name="followers_does_not_exist">Followers does not exist</string>
     <string name="repository_does_not_exist">Repository does not exist</string>
     <string name="image_not_found">Image not found</string>
+    <string name="press_again_to_exit">Press again to exit</string>
 
 
 </resources>

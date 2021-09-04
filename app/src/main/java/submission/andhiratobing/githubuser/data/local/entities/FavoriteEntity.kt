@@ -5,10 +5,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
+import submission.andhiratobing.githubuser.util.Constants.Companion.TABLE_NAME_FAVORITE
 
 
 @Parcelize
-@Entity(tableName = "favorite_users")
+@Entity(tableName = TABLE_NAME_FAVORITE)
 data class FavoriteEntity(
     @PrimaryKey
     val id: Int,

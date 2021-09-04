@@ -9,6 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import submission.andhiratobing.githubuser.data.local.dao.FavoriteUserDao
 import submission.andhiratobing.githubuser.data.local.db.AppDatabase
+import submission.andhiratobing.githubuser.util.Constants.Companion.DATABASE_NAME
 import javax.inject.Singleton
 
 @Module
@@ -18,7 +19,7 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext application: Context) =
-        Room.databaseBuilder(application, AppDatabase::class.java, "github_users").build()
+        Room.databaseBuilder(application, AppDatabase::class.java, DATABASE_NAME).build()
 
 
     @Provides

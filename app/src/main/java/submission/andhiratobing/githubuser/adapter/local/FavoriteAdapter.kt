@@ -6,11 +6,10 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.databinding.ItemFavoriteUserBinding
-import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
+import submission.andhiratobing.githubuser.util.extension.image.LoadImage.loadImage
+import submission.andhiratobing.githubuser.util.extension.number.NumberFormat.asFormattedDecimals
 
 class FavoriteAdapter :
     ListAdapter<FavoriteEntity, FavoriteAdapter.FavoriteViewHolder>(FAVORITE_COMPARATOR) {
@@ -25,22 +24,6 @@ class FavoriteAdapter :
         fun onItemClick(data: FavoriteEntity)
     }
 
-    companion object {
-        private val FAVORITE_COMPARATOR = object : DiffUtil.ItemCallback<FavoriteEntity>() {
-            override fun areItemsTheSame(
-                oldItem: FavoriteEntity,
-                newItem: FavoriteEntity,
-            ): Boolean = oldItem.id == newItem.id
-
-
-            override fun areContentsTheSame(
-                oldItem: FavoriteEntity,
-                newItem: FavoriteEntity,
-            ): Boolean = oldItem == newItem
-        }
-    }
-
-
     inner class FavoriteViewHolder(private val binding: ItemFavoriteUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -51,12 +34,7 @@ class FavoriteAdapter :
                 tvFollowing.text = data.following.asFormattedDecimals()
                 tvFollowers.text = data.followers.asFormattedDecimals()
                 tvRepository.text = data.repository.asFormattedDecimals()
-
-                Glide.with(itemView.context)
-                    .load(data.avatar)
-                    .placeholder(R.drawable.placeholder_image)
-                    .into(ivAvatar)
-
+                ivAvatar.loadImage(data.avatar)
                 if (data.name.isNullOrEmpty()) binding.tvName.isVisible = false
                 else tvName.isVisible = true
 
@@ -73,7 +51,6 @@ class FavoriteAdapter :
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         FavoriteViewHolder(
             ItemFavoriteUserBinding.inflate(
@@ -86,6 +63,21 @@ class FavoriteAdapter :
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         holder.bind(getItem(position))
+    }
+
+    companion object {
+        private val FAVORITE_COMPARATOR = object : DiffUtil.ItemCallback<FavoriteEntity>() {
+            override fun areItemsTheSame(
+                oldItem: FavoriteEntity,
+                newItem: FavoriteEntity,
+            ): Boolean = oldItem.id == newItem.id
+
+
+            override fun areContentsTheSame(
+                oldItem: FavoriteEntity,
+                newItem: FavoriteEntity,
+            ): Boolean = oldItem == newItem
+        }
     }
 
 }

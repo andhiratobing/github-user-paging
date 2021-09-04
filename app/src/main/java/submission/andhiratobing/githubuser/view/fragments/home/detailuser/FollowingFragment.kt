@@ -26,7 +26,7 @@ import submission.andhiratobing.githubuser.viewmodel.FollowingViewModel
 class FollowingFragment : Fragment(R.layout.fragment_following) {
 
     private var _binding: FragmentFollowingBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding as FragmentFollowingBinding
     private val followingViewModel: FollowingViewModel by viewModels()
     private lateinit var followingAdapter: FollowingAdapterPaging
 

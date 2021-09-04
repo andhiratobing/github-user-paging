@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ItemUserBinding
+import submission.andhiratobing.githubuser.util.extension.image.LoadImage.loadImage
 
 class FollowingAdapterPaging :
     PagingDataAdapter<UserResponseItem, FollowingAdapterPaging.FollowingViewHolder>(
-        FOLLOWING_COMPARATOR) {
+        FOLLOWING_COMPARATOR
+    ) {
 
     private lateinit var onItemClickCallBack: OnItemClickCallBack
 
@@ -24,21 +24,6 @@ class FollowingAdapterPaging :
     fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack) {
         this.onItemClickCallBack = onItemClickCallBack
     }
-
-    companion object {
-        private val FOLLOWING_COMPARATOR = object : DiffUtil.ItemCallback<UserResponseItem>() {
-            override fun areItemsTheSame(
-                oldItem: UserResponseItem,
-                newItem: UserResponseItem,
-            ): Boolean = oldItem.id == newItem.id
-
-            override fun areContentsTheSame(
-                oldItem: UserResponseItem,
-                newItem: UserResponseItem,
-            ): Boolean = oldItem == newItem
-        }
-    }
-
 
     inner class FollowingViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -57,11 +42,7 @@ class FollowingAdapterPaging :
         fun bind(data: UserResponseItem) {
             binding.apply {
                 tvUsername.text = data.username
-
-                Glide.with(itemView.context)
-                    .load(data.avatar)
-                    .placeholder(R.drawable.placeholder_image)
-                    .into(ivAvatar)
+                ivAvatar.loadImage(data.avatar)
             }
         }
     }
@@ -78,5 +59,20 @@ class FollowingAdapterPaging :
     override fun onBindViewHolder(holder: FollowingViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
+
+    companion object {
+        private val FOLLOWING_COMPARATOR = object : DiffUtil.ItemCallback<UserResponseItem>() {
+            override fun areItemsTheSame(
+                oldItem: UserResponseItem,
+                newItem: UserResponseItem,
+            ): Boolean = oldItem.id == newItem.id
+
+            override fun areContentsTheSame(
+                oldItem: UserResponseItem,
+                newItem: UserResponseItem,
+            ): Boolean = oldItem == newItem
+        }
+    }
+
 }
 

@@ -27,7 +27,7 @@ import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
 class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding as FragmentSearchBinding
     private var searchAdapter = SearchAdapter()
     private val searchViewModel: SearchViewModel by viewModels()
 
@@ -84,7 +84,8 @@ class SearchFragment : Fragment() {
 
                 //handling searching
                 if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached && searchAdapter.itemCount <= 0) {
+                    loadState.append.endOfPaginationReached && searchAdapter.itemCount <= 0
+                ) {
                     rvUser.isVisible = false
                     tvSearchNoResult.isVisible = true
                     tvTitlePersons.isVisible = false

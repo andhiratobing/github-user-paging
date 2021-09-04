@@ -15,7 +15,7 @@ import submission.andhiratobing.githubuser.adapter.local.FavoriteAdapter
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentFavoriteBinding
-import submission.andhiratobing.githubuser.util.extension.NumberFormat.asFormattedDecimals
+import submission.andhiratobing.githubuser.util.extension.number.NumberFormat.asFormattedDecimals
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
@@ -24,7 +24,7 @@ import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding as FragmentFavoriteBinding
     private lateinit var favoriteAdapter: FavoriteAdapter
     private val favoriteViewModel: FavoriteViewModel by viewModels()
 

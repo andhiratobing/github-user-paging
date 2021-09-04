@@ -27,7 +27,7 @@ import submission.andhiratobing.githubuser.viewmodel.FollowersViewModel
 class FollowersFragment : Fragment() {
 
     private var _binding: FragmentFollowersBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding as FragmentFollowersBinding
     private val followersViewModel: FollowersViewModel by viewModels()
     private lateinit var followersAdapter: FollowersAdapterPaging
 
