@@ -9,6 +9,7 @@
     <string name="favorite">Favorit</string>
     <string name="icon_following">Icon Mengikuti</string>
     <string name="icon_followers">Icon Pengikut</string>
+    <string name="icon_repos">Icon Repos</string>
     <string name="icon_star">Icon Bintang</string>
     <string name="icon_fork">Icon Fork</string>
     <string name="icon_issue">Icon Masalah</string>
@@ -67,4 +68,22 @@
     <string name="repository_does_not_exist">Data tidak ada</string>
     <string name="image_not_found">Gambar tidak tersedia</string>
     <string name="press_again_to_exit">Tekan sekali lagi untuk keluar</string>
+
+    <!--reminders-->
+    <string name="reminders">Pengingat</string>
+    <string name="reminders_preferences_key">reminders_preferences_key</string>
+    <string name="reminders_category">reminders_category</string>
+    <string name="repeating_set_title">Pengingat aplikasi</string>
+    <string name="repeating_set_content">Jangan lupa temukan dan favoritkan pengguna github untuk belajar macam-macam kode</string>
+    <string name="active_daily_reminder">Pengingat harian aktif</string>
+    <string name="daily_reminder_off">Pengingat harian tidak aktif</string>
+    <string name="app_reminder_at">Pengingat aplikasi jam 09.00</string>
+
+    <string name="icon_next_configuration_language">Icon konfigurasi bahasa</string>
+    <string name="image_user_widget">Gambar pengguna di widget</string>
+    <string name="no_data_in_app">Tidak ada data dalam aplikasi</string>
+
+
+    <string name="empty_favorite">Tidak ada data yang anda simpan sebagai favorite</string>
+
 </resources>

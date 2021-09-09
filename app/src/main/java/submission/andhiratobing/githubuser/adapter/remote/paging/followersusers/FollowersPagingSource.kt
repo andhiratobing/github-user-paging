@@ -1,6 +1,5 @@
 package submission.andhiratobing.githubuser.adapter.remote.paging.followersusers
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import retrofit2.HttpException
@@ -28,7 +27,6 @@ class FollowersPagingSource @Inject constructor(
 
         return try {
             val response = apiService.getFollowers(username, page, perPage)
-            Log.d("Count data", response.size.toString())
             LoadResult.Page(
                 data = response,
                 prevKey = if (page == START_PAGE_INDEX) null else page - 1,

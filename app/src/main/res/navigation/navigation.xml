@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/navSearchFragment">
+    app:startDestination="@id/navHomeFragment">
 
     <fragment
-        android:id="@+id/navSearchFragment"
-        android:name="submission.andhiratobing.githubuser.view.fragments.home.SearchFragment"
+        android:id="@+id/navHomeFragment"
+        android:name="submission.andhiratobing.githubuser.view.fragments.home.HomeFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 
@@ -21,17 +21,5 @@
         android:name="submission.andhiratobing.githubuser.view.fragments.setting.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/layout_toolbar_settings" />
-    <activity
-        android:id="@+id/detailUserActivity"
-        android:name="submission.andhiratobing.githubuser.view.activities.DetailUserActivity"
-        android:label="activity_detail_user"
-        tools:layout="@layout/activity_detail_user" />
-    <fragment
-        android:id="@+id/followingFragment"
-        android:name="submission.andhiratobing.githubuser.view.fragments.home.detailuser.FollowingFragment"
-        android:label="fragment_following"
-        tools:layout="@layout/fragment_following" >
-    </fragment>
-
 
 </navigation>

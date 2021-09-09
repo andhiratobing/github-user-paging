@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1.7dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="fitCenter"
+                app:riv_border_color="#A9F3E2"
+                app:riv_corner_radius="16dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false"
+                tools:src="@drawable/placeholder_image" />
+        </FrameLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/frameLayout"
+            app:layout_constraintTop_toTopOf="@id/frameLayout">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:ems="9"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/color_text"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Andhi Ratobing"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ems="11"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/color_text"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName"
+                tools:text="andhiratobing" />
+
+
+            <TableRow
+                android:id="@+id/trFollowers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvUsername">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/icon_followers"
+                    android:src="@drawable/ic_followers" />
+
+                <TextView
+                    android:id="@+id/tvFollowers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/color_text"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="24" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trFollowing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/trFollowers"
+                app:layout_constraintEnd_toStartOf="@+id/trRepository"
+                app:layout_constraintStart_toEndOf="@+id/trFollowers"
+                app:layout_constraintTop_toTopOf="@+id/trFollowers">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/icon_following"
+                    android:src="@drawable/ic_following" />
+
+                <TextView
+                    android:id="@+id/tvFollowing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/color_text"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="24" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trRepository"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/trFollowing"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/trFollowing"
+                app:layout_constraintTop_toTopOf="@+id/trFollowing">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_repository"
+                    android:contentDescription="@string/icon_repository" />
+
+                <TextView
+                    android:id="@+id/tvRepository"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/color_text"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="24" />
+            </TableRow>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

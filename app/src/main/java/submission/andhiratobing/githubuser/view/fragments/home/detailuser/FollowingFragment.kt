@@ -80,7 +80,8 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
 
                 //handling
                 if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached && followingAdapter.itemCount < 1) {
+                    loadState.append.endOfPaginationReached && followingAdapter.itemCount < 1
+                ) {
                     rvFollowing.isVisible = false
                     ivNotFound.isVisible = true
                     tvMessage.isVisible = true
@@ -112,8 +113,9 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
         }
     }
 
-    private fun onClickItem(){
-        followingAdapter.setOnItemClickCallBack(object : FollowingAdapterPaging.OnItemClickCallBack{
+    private fun onClickItem() {
+        followingAdapter.setOnItemClickCallBack(object :
+            FollowingAdapterPaging.OnItemClickCallBack {
             override fun onItemClick(data: UserResponseItem) {
                 val intent = Intent(requireContext(), DetailUserActivity::class.java)
                 intent.putExtra(DetailUserActivity.DATA_USER, data)

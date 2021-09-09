@@ -80,11 +80,12 @@ class FollowersFragment : Fragment() {
 
                 //handling
                 if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached && followersAdapter.itemCount < 1) {
+                    loadState.append.endOfPaginationReached && followersAdapter.itemCount < 1
+                ) {
                     rvFollowers.isVisible = false
                     ivNotFound.isVisible = true
                     tvMessage.isVisible = true
-                }else {
+                } else {
                     ivNotFound.isVisible = false
                     tvMessage.isVisible = false
                 }
@@ -95,17 +96,26 @@ class FollowersFragment : Fragment() {
                     ?: loadState.prepend as? LoadState.Error
                 errorState?.let {
                     if (errorState.endOfPaginationReached) {
-                        Snackbar.make(binding.rvFollowers, "${R.string.all_data_loaded}", Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            binding.rvFollowers,
+                            "${R.string.all_data_loaded}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     } else {
-                        Snackbar.make(binding.rvFollowers, R.string.no_internet_connection, Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            binding.rvFollowers,
+                            R.string.no_internet_connection,
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
         }
     }
 
-    private fun onClickItem(){
-        followersAdapter.setOnItemClickCallBack(object : FollowersAdapterPaging.OnItemClickCallBack{
+    private fun onClickItem() {
+        followersAdapter.setOnItemClickCallBack(object :
+            FollowersAdapterPaging.OnItemClickCallBack {
             override fun onItemClick(data: UserResponseItem) {
                 val intent = Intent(requireContext(), DetailUserActivity::class.java)
                 intent.putExtra(DATA_USER, data)

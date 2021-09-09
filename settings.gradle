@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Github User"
 include ':app'
+include ':simplegithubconsumer'

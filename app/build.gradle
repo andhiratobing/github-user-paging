@@ -17,7 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String","API_GITHUB_KEY", api_github_key)
+        buildConfigField("String", "API_GITHUB_KEY", api_github_key)
     }
 
     buildTypes {
@@ -25,6 +25,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -52,8 +53,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
 
     //navigation component
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha07'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.0-alpha07'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha08'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.0-alpha08'
 
     //network
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -81,6 +82,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:4.1.0'
 
     //liveData and viewModel
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'

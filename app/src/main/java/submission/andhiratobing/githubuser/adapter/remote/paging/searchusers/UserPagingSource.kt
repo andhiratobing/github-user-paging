@@ -26,8 +26,8 @@ class UserPagingSource @Inject constructor(
         val perPage = params.loadSize
 
         return try {
-                val response = apiService.searchUsers(query, page, perPage)
-                val result = response.items
+            val response = apiService.searchUsers(query, page, perPage)
+            val result = response.items
 
             LoadResult.Page(
                 data = result,

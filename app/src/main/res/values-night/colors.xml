@@ -9,6 +9,7 @@
     <color name="color_text">#FFFFFF</color>
     <color name="color_favorite">#FF3B58</color>
     <color name="color_background_image">#E8EEF6</color>
+    <color name="blue_grey_active">#607d8b</color>
 
     <!--programming language color-->
     <color name="language_color_kotlin">#A97BFF</color>

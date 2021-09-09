@@ -8,6 +8,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import submission.andhiratobing.githubuser.data.local.dao.FavoriteUserDao
+import submission.andhiratobing.githubuser.data.local.dao.provider.FavoriteUserProviderDao
+import submission.andhiratobing.githubuser.data.local.dao.widget.FavoriteUserWidgetDao
 import submission.andhiratobing.githubuser.data.local.db.AppDatabase
 import submission.andhiratobing.githubuser.util.Constants.Companion.DATABASE_NAME
 import javax.inject.Singleton
@@ -26,5 +28,17 @@ object DatabaseModule {
     @Singleton
     fun provideFavoriteDao(appDatabase: AppDatabase): FavoriteUserDao {
         return appDatabase.favoriteUserDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteUserWidgetDao(appDatabase: AppDatabase): FavoriteUserWidgetDao{
+        return appDatabase.favoriteUserWidgetDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteUserProvideDao(appDatabase: AppDatabase): FavoriteUserProviderDao{
+        return appDatabase.favoriteUserProvideDao()
     }
 }

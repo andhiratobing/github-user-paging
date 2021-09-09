@@ -1,5 +1,6 @@
 package submission.andhiratobing.githubuser.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.activity.viewModels
@@ -19,6 +20,7 @@ import submission.andhiratobing.githubuser.util.extension.number.NumberFormat.as
 import submission.andhiratobing.githubuser.util.state.ResourceState
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
+import submission.andhiratobing.githubuser.widget.FavoriteWidget
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
@@ -83,13 +85,13 @@ class DetailUserActivity : AppCompatActivity() {
             }
 
             addFavoriteUser(it)
+            sendDataFavoriteToWidgetUpdte()
         })
     }
 
     private fun initStatusNetwork() {
         detailUserViewModel.setNetworkState().observe(this, { status ->
-            binding.apply {
-                progressBar.visibility =
+            binding.apply { progressBar.visibility =
                     if (status == ResourceState.LOADING) View.VISIBLE else View.GONE
             }
         })
@@ -198,6 +200,11 @@ class DetailUserActivity : AppCompatActivity() {
         }
     }
 
+    private fun sendDataFavoriteToWidgetUpdte() {
+        sendBroadcast(Intent(this, FavoriteWidget::class.java).apply {
+            action = FavoriteWidget.EXTRA_FAVORITE_WIDGET_UPDATE
+        })
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_detail_user, menu)

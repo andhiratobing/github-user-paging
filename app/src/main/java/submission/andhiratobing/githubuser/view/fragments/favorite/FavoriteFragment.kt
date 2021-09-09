@@ -41,7 +41,7 @@ class FavoriteFragment : Fragment() {
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             countFavoriteUser()
-            favoriteViewModel.getAllFavoriteUser().observe(viewLifecycleOwner,{
+            favoriteViewModel.getAllFavoriteUser().observe(viewLifecycleOwner, {
                 favoriteAdapter.submitList(it)
                 binding.swipeRefreshLayout.isRefreshing = false
             })
@@ -56,10 +56,20 @@ class FavoriteFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             val count = favoriteViewModel.getCountUsers()
             if (count > 0) {
-                "(${count.asFormattedDecimals()} ${resources.getString(R.string.users)})".also { binding.tvCountFavorite.text = it }
-                binding.tvCountFavorite.visibility = View.VISIBLE
+                "(${count.asFormattedDecimals()} ${resources.getString(R.string.users)})".also {
+                    binding.tvCountFavorite.text = it
+                }
+                binding.apply {
+                    tvCountFavorite.visibility = View.VISIBLE
+                    ivFavoriteEmpty.visibility = View.GONE
+                    tvEmptyFavorite.visibility = View.GONE
+                }
             } else {
-                binding.tvCountFavorite.visibility = View.GONE
+                binding.apply {
+                    tvCountFavorite.visibility = View.GONE
+                    ivFavoriteEmpty.visibility = View.VISIBLE
+                    tvEmptyFavorite.visibility = View.VISIBLE
+                }
             }
         }
     }

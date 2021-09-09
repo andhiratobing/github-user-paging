@@ -11,8 +11,8 @@
         android:id="@+id/rvFollowing"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="20"
@@ -33,31 +33,29 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_marginTop="32dp"
+        android:contentDescription="@string/image_not_found"
         android:src="@drawable/ic_not_found"
-        android:text="@string/following_does_not_exist"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/image_not_found" />
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/following_does_not_exist"
-        android:visibility="gone"
-        android:fontFamily="@font/poppins_medium"
-        android:textSize="16sp"
         android:ems="10"
+        android:fontFamily="@font/poppins_medium"
         android:gravity="center"
+        android:text="@string/following_does_not_exist"
         android:textColor="@color/color_text"
+        android:textSize="16sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivNotFound"
         tools:visibility="visible" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

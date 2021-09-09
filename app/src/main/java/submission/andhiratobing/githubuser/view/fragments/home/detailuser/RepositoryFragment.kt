@@ -76,7 +76,8 @@ class RepositoryFragment : Fragment() {
 
                 //handling
                 if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached && reposAdapter.itemCount < 1) {
+                    loadState.append.endOfPaginationReached && reposAdapter.itemCount < 1
+                ) {
                     rvRepos.isVisible = false
                     ivNotFound.isVisible = true
                     tvMessage.isVisible = true

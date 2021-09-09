@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Github User</string>
+    <!--navigation bottom-->
     <string name="home">Home</string>
     <string name="icon_home">Icon Home</string>
     <string name="settings">Settings</string>
@@ -8,6 +9,7 @@
     <string name="favorite">Favorite</string>
     <string name="icon_following">Icon following</string>
     <string name="icon_followers">Icon Followers</string>
+    <string name="icon_repos">Icon Repos</string>
     <string name="icon_star">Icon Star</string>
     <string name="icon_fork">Icon Fork</string>
     <string name="icon_issue">Icon Issue</string>
@@ -56,7 +58,7 @@
     <string name="retry">retry</string>
     <string name="search_users">Search username…</string>
     <string name="follow_message">following activity can\'t be done</string>
-    <string name="users">Users</string>
+    <string name="users">users</string>
     <string name="tab_layout">Tab layout</string>
     <string name="success_add_favorite">successfully added to favorites</string>
     <string name="remove_favorite">successfully removed from favorites</string>
@@ -66,5 +68,19 @@
     <string name="image_not_found">Image not found</string>
     <string name="press_again_to_exit">Press again to exit</string>
 
+    <!--reminders-->
+    <string name="reminders">Reminders</string>
+    <string name="reminders_preferences_key">reminders_preferences_key</string>
+    <string name="reminders_category">reminders_category</string>
+    <string name="repeating_set_title">Reminder app</string>
+    <string name="repeating_set_content">Don\'t forget to find and favorite github users to learn various codes</string>
+    <string name="active_daily_reminder">Active daily reminder</string>
+    <string name="daily_reminder_off">Daily reminder off</string>
+    <string name="app_reminder_at">App reminder at 09.00</string>
 
+    <string name="icon_next_configuration_language">Icon next configuration language</string>
+    <string name="image_user_widget">Image user in widget</string>
+    <string name="no_data_in_app">No data in app</string>
+
+    <string name="empty_favorite">There is no data that you save as a favorite</string>
 </resources>

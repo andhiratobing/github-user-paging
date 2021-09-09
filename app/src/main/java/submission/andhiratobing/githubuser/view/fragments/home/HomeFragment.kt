@@ -24,7 +24,7 @@ import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
-class SearchFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding as FragmentSearchBinding

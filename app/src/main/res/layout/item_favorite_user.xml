@@ -157,7 +157,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:contentDescription="@string/icon_star"
+                    android:contentDescription="@string/icon_repos"
                     android:src="@drawable/ic_repository" />
 
                 <TextView

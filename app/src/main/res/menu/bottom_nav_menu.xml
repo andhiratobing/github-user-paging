@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navSearchFragment"
+        android:id="@+id/navHomeFragment"
         android:contentDescription="@string/icon_home"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_home"
         android:title="@string/home" />
 
     <item

@@ -1,36 +1,52 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:key="@string/settings">
+
+        <PreferenceCategory
+            app:icon="@drawable/ic_language"
+            app:iconSpaceReserved="false"
+            app:key="language_category"
+            app:title="@string/language">
+
+            <Preference
+                app:dialogTitle="@string/choose_language"
+                app:iconSpaceReserved="true"
+                app:key="@string/language_preferences_key"
+                app:title="@string/choose_language" />
+
+        </PreferenceCategory>
+
+
+        <PreferenceCategory
+            app:icon="@drawable/ic_theme"
+            app:iconSpaceReserved="false"
+            app:key="theme_category"
+            app:title="@string/theme">
+
+            <ListPreference
+                app:defaultValue="@string/system_theme_preference_value"
+                app:dialogTitle="@string/choose_theme"
+                app:entries="@array/theme_list_array"
+                app:entryValues="@array/theme_entry_array"
+                app:iconSpaceReserved="true"
+                app:key="@string/theme_preferences_key"
+                app:title="@string/choose_theme" />
+
+        </PreferenceCategory>
+
 
     <PreferenceCategory
-        app:icon="@drawable/ic_language"
-        app:iconSpaceReserved="false"
-        app:key="language_category"
-        app:title="@string/language">
+        app:icon="@drawable/ic_alarm_clock"
+        app:key="@string/reminders_category"
+        app:title="@string/reminders">
 
-        <Preference
-            app:dialogTitle="@string/choose_language"
-            app:iconSpaceReserved="true"
-            app:key="@string/language_preferences_key"
-            app:title="@string/choose_language" />
-
-    </PreferenceCategory>
-
-
-    <PreferenceCategory
-        app:icon="@drawable/ic_theme"
-        app:iconSpaceReserved="false"
-        app:key="theme_category"
-        app:title="@string/theme">
-
-        <ListPreference
-            app:defaultValue="@string/system_theme_preference_value"
-            app:dialogTitle="@string/choose_theme"
-            app:entries="@array/theme_list_array"
-            app:entryValues="@array/theme_entry_array"
-            app:iconSpaceReserved="true"
-            app:key="@string/theme_preferences_key"
-            app:title="@string/choose_theme" />
+        <SwitchPreference
+            app:key="@string/reminders_preferences_key"
+            app:defaultValue="false"
+            android:summaryOn="@string/active_daily_reminder"
+            android:summaryOff="@string/daily_reminder_off"
+            app:title="@string/app_reminder_at" />
 
     </PreferenceCategory>
-
 
 </PreferenceScreen>

@@ -13,6 +13,6 @@ object LoadImage {
                 .placeholder(R.drawable.placeholder_image)
                 .centerCrop()
                 .into(this)
-        }else return
+        } else return
     }
 }
