@@ -65,11 +65,12 @@
     <string name="icon_theme">Icon theme</string>
     <string name="theme">Theme</string>
     <string name="icon_reminder">Icon reminder</string>
-    <string name="reminder">Reminder</string>
+    <string name="reminder_at">Reminder at 09.00 AM</string>
     <string name="icon_configurion_theme">Icon configurion theme</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="choose_theme">Choose theme</string>
+    <string name="description_reminders">Reminder to open the app repeatedly at 09.00 AM</string>
 
 
 </resources>

@@ -18,6 +18,8 @@ import submission.andhiratobing.githubuser.adapter.remote.paging.followingusers.
 import submission.andhiratobing.githubuser.adapter.remote.paging.followingusers.FollowingLoadStateAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentFollowingBinding
+import submission.andhiratobing.githubuser.util.extension.hide
+import submission.andhiratobing.githubuser.util.extension.show
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.FollowingViewModel
 
@@ -64,7 +66,6 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
             followingAdapter = FollowingAdapterPaging()
             rvFollowing.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-            rvFollowing.setHasFixedSize(true)
             rvFollowing.adapter = followingAdapter
 
 
@@ -82,12 +83,12 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached && followingAdapter.itemCount < 1
                 ) {
-                    rvFollowing.isVisible = false
-                    ivNotFound.isVisible = true
-                    tvMessage.isVisible = true
+                    rvFollowing.hide()
+                    ivNotFound.show()
+                    tvMessage.show()
                 } else {
-                    ivNotFound.isVisible = false
-                    tvMessage.isVisible = false
+                    ivNotFound.hide()
+                    tvMessage.hide()
                 }
 
                 val errorState = loadState.source.append as? LoadState.Error

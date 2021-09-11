@@ -11,8 +11,7 @@ import javax.inject.Inject
 @HiltAndroidApp
 class Application : Application() {
 
-    @Inject
-    lateinit var dataStoreRepository: DataStoreRepository
+    @Inject lateinit var dataStoreRepository: DataStoreRepository
 
     override fun onCreate() {
         super.onCreate()

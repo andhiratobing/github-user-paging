@@ -16,6 +16,8 @@ import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.ReposAdapterPaging
 import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.ReposLoadStateAdapter
 import submission.andhiratobing.githubuser.databinding.FragmentRepositoryBinding
+import submission.andhiratobing.githubuser.util.extension.hide
+import submission.andhiratobing.githubuser.util.extension.show
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.RepositoryViewModel
 
@@ -60,7 +62,6 @@ class RepositoryFragment : Fragment() {
             reposAdapter = ReposAdapterPaging()
             rvRepos.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-            rvRepos.setHasFixedSize(true)
             rvRepos.adapter = reposAdapter
 
 
@@ -78,12 +79,12 @@ class RepositoryFragment : Fragment() {
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached && reposAdapter.itemCount < 1
                 ) {
-                    rvRepos.isVisible = false
-                    ivNotFound.isVisible = true
-                    tvMessage.isVisible = true
+                    rvRepos.hide()
+                    ivNotFound.show()
+                    tvMessage.show()
                 } else {
-                    ivNotFound.isVisible = false
-                    tvMessage.isVisible = false
+                    ivNotFound.hide()
+                    tvMessage.hide()
                 }
 
                 val errorState = loadState.source.append as? LoadState.Error

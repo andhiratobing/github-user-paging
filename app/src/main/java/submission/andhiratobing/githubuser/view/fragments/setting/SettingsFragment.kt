@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.databinding.FragmentSettingsBinding
 import submission.andhiratobing.githubuser.reminders.ReminderReceiver
+import submission.andhiratobing.githubuser.util.theme.ModalBottomSheet
 import submission.andhiratobing.githubuser.util.theme.Themes.Companion.THEMES_ARRAY
 import submission.andhiratobing.githubuser.viewmodel.SettingsViewModel
 import javax.inject.Inject
@@ -27,6 +28,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding as FragmentSettingsBinding
     private val settingsViewModel: SettingsViewModel by viewModels()
+    @Inject lateinit var modalBottomSheet: ModalBottomSheet
 
     @Inject
     lateinit var reminderReceiver: ReminderReceiver
@@ -46,8 +48,9 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         setRepeatingReminder()
         observerReminderRepeating()
 
-        binding.layoutThemes.setOnClickListener(this)
-        binding.layoutLanguage.setOnClickListener(this)
+        binding.ibNextConfigurationTheme.setOnClickListener(this)
+        binding.ibNextConfigurationLanguage.setOnClickListener(this)
+        binding.layoutReminder.setOnClickListener(this)
     }
 
     private fun observerThemes() {
@@ -131,10 +134,15 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         if (view != null) {
             when (view.id) {
-                R.id.layoutThemes -> setThemesApplication()
-                R.id.layoutLanguage -> gotoSettingLanguage()
+                R.id.ibNextConfigurationTheme -> setThemesApplication()
+                R.id.ibNextConfigurationLanguage -> gotoSettingLanguage()
+                R.id.layoutReminder -> descriptionReminders()
             }
         }
+    }
+
+    private fun descriptionReminders() {
+        modalBottomSheet.show(parentFragmentManager, ModalBottomSheet.TAG)
     }
 
 

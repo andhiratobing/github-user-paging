@@ -17,7 +17,9 @@ import submission.andhiratobing.githubuser.data.remote.responses.detailusers.Det
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ActivityDetailUserBinding
 import submission.andhiratobing.githubuser.util.Constants.Companion.TYPE_SHARE
+import submission.andhiratobing.githubuser.util.extension.hide
 import submission.andhiratobing.githubuser.util.extension.number.NumberFormat.asFormattedDecimals
+import submission.andhiratobing.githubuser.util.extension.show
 import submission.andhiratobing.githubuser.util.state.ResourceState
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
@@ -52,32 +54,32 @@ class DetailUserActivity : AppCompatActivity() {
         detailUserViewModel.setDetailUsers().observe(this, {
             binding.apply {
                 if (it.name.isNullOrEmpty()) {
-                    tvName.visibility = View.GONE
+                    tvName.hide()
                 } else {
                     tvName.text = it.name
-                    tvName.visibility = View.VISIBLE
+                    tvName.show()
                 }
                 if (it.company.isNullOrEmpty()) {
-                    tvCompany.visibility = View.GONE
-                    ivCompany.visibility = View.GONE
+                    tvCompany.hide()
+                    ivCompany.hide()
                 } else {
                     tvCompany.text = it.company
-                    tvCompany.visibility = View.VISIBLE
-                    ivCompany.visibility = View.VISIBLE
+                    tvCompany.show()
+                    ivCompany.show()
                 }
                 if (it.bio.isNullOrEmpty()) {
-                    tvBio.visibility = View.GONE
+                    tvBio.hide()
                 } else {
                     tvBio.text = it.bio
-                    tvBio.visibility = View.VISIBLE
+                    tvBio.show()
                 }
                 if (it.location.isNullOrEmpty()) {
-                    ivLocation.visibility = View.GONE
-                    tvLocation.visibility = View.GONE
+                    ivLocation.hide()
+                    tvLocation.hide()
                 } else {
                     tvLocation.text = it.location
-                    ivLocation.visibility = View.VISIBLE
-                    tvLocation.visibility = View.VISIBLE
+                    ivLocation.show()
+                    tvLocation.show()
                 }
 
                 tvFollowing.text = it.following.asFormattedDecimals()
@@ -92,8 +94,8 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun initStatusNetwork() {
         detailUserViewModel.setNetworkState().observe(this, { status ->
-            binding.apply { progressBar.visibility =
-                    if (status == ResourceState.LOADING) View.VISIBLE else View.GONE
+            binding.apply {
+                progressBar.visibility = if (status == ResourceState.LOADING) View.VISIBLE else View.GONE
             }
         })
     }

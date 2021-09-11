@@ -19,6 +19,8 @@ import submission.andhiratobing.githubuser.adapter.remote.paging.searchusers.Sea
 import submission.andhiratobing.githubuser.adapter.remote.paging.searchusers.SearchLoadStateAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentHomeBinding
+import submission.andhiratobing.githubuser.util.extension.hide
+import submission.andhiratobing.githubuser.util.extension.show
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
 
@@ -71,8 +73,6 @@ class HomeFragment : Fragment() {
             searchAdapter = SearchAdapter()
             rvUser.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-            rvUser.setHasFixedSize(true)
-
 
             rvUser.adapter = searchAdapter.withLoadStateFooter(
                 footer = SearchLoadStateAdapter { searchAdapter.retry() }
@@ -86,17 +86,17 @@ class HomeFragment : Fragment() {
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached && searchAdapter.itemCount <= 0
                 ) {
-                    rvUser.isVisible = false
-                    tvSearchNoResult.isVisible = true
-                    tvTitlePersons.isVisible = false
+                    rvUser.hide()
+                    tvSearchNoResult.show()
+                    tvTitlePersons.hide()
                 } else if (searchAdapter.itemCount <= 0) {
-                    rvUser.isVisible = false
-                    tvSearchNoResult.isVisible = false
-                    tvTitlePersons.isVisible = false
+                    rvUser.hide()
+                    tvSearchNoResult.hide()
+                    tvTitlePersons.hide()
                 } else {
-                    rvUser.isVisible = true
-                    tvSearchNoResult.isVisible = false
-                    tvTitlePersons.isVisible = true
+                    rvUser.show()
+                    tvSearchNoResult.hide()
+                    tvTitlePersons.show()
                 }
 
                 val errorState = loadState.source.append as? LoadState.Error
@@ -134,7 +134,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-                return true
+                return false
             }
         })
     }

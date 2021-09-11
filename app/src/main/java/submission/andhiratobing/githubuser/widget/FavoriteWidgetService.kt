@@ -10,8 +10,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class FavoriteWidgetService : RemoteViewsService() {
 
-    @Inject
-    lateinit var favoriteRepository: FavoriteRepository
+    @Inject lateinit var favoriteRepository: FavoriteRepository
 
     override fun onGetViewFactory(intent: Intent): RemoteViewsFactory =
         FavoriteRemoteViewFactory(this.applicationContext, favoriteRepository)

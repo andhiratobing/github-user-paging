@@ -49,7 +49,7 @@
         android:id="@+id/layoutGeneral"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/card_background_searchview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,18 +93,16 @@
 
             <ImageButton
                 android:id="@+id/ibNextConfigurationLanguage"
-                style="@style/Widget.MaterialComponents.FloatingActionButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/icon_next_configuration_language"
                 android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="@+id/tvLanguage"
+                app:layout_constraintBottom_toBottomOf="@+id/ivLocation"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvLanguage"
+                app:layout_constraintTop_toTopOf="@+id/ivLocation"
                 tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -144,16 +142,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                style="@style/Widget.MaterialComponents.FloatingActionButton"
+                android:id="@+id/ibNextConfigurationTheme"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="16dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/icon_configurion_theme"
                 android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="@+id/theme_description"
+                app:layout_constraintBottom_toBottomOf="@+id/ivTheme"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvSelectThemes"
+                app:layout_constraintTop_toTopOf="@+id/ivTheme"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -164,7 +163,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/color_text"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvSelectThemes"
                 app:layout_constraintTop_toBottomOf="@+id/tvSelectThemes"
@@ -191,9 +190,9 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/icon_reminder"
             android:src="@drawable/ic_reminders"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -204,13 +203,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/reminder"
+            android:text="@string/reminder_at"
             android:textColor="@color/color_text"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivReminder"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="@+id/ivReminder" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchReminder"
@@ -218,9 +215,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:thumb="@drawable/selector_switch_thumb"
-            app:layout_constraintBottom_toBottomOf="@+id/tvReminder"
+            app:layout_constraintBottom_toBottomOf="@+id/ivReminder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvReminder"
+            app:layout_constraintTop_toTopOf="@+id/ivReminder"
             app:track="@drawable/selector_switch_track" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

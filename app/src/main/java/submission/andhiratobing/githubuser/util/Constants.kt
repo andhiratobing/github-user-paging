@@ -23,7 +23,7 @@ class Constants {
         const val START_PAGE_INDEX = 1
         const val NETWORK_PAGE_SIZE = 10
         const val NETWORK_PRE_FETCH_DISTACE = 5
-        const val NETWORK_INITIAL_LOAD_SIZE = 5
+        const val NETWORK_INITIAL_LOAD_SIZE = 10
 
         //datastore preferences
         const val DATA_STORE_NAME = "settingsPref"

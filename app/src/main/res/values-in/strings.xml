@@ -65,10 +65,11 @@
     <string name="icon_theme">Icon Tema</string>
     <string name="theme">Tema</string>
     <string name="icon_reminder">Icon Pengingat</string>
-    <string name="reminder">Pengingat</string>
+    <string name="reminder_at">Pengingat pukul 09.00 AM</string>
     <string name="icon_configurion_theme">Icon konfigurasi tema</string>
     <string name="save">Simpan</string>
     <string name="cancel">Batal</string>
     <string name="choose_theme">Pilih tema</string>
+    <string name="description_reminders">Pengingat untuk membuka aplikasi secara berulang pada jam 09.00 AM</string>
 
 </resources>

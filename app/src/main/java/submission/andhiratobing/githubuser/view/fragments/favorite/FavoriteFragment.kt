@@ -15,7 +15,9 @@ import submission.andhiratobing.githubuser.adapter.local.FavoriteAdapter
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.FragmentFavoriteBinding
+import submission.andhiratobing.githubuser.util.extension.hide
 import submission.andhiratobing.githubuser.util.extension.number.NumberFormat.asFormattedDecimals
+import submission.andhiratobing.githubuser.util.extension.show
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
 
@@ -60,15 +62,15 @@ class FavoriteFragment : Fragment() {
                     binding.tvCountFavorite.text = it
                 }
                 binding.apply {
-                    tvCountFavorite.visibility = View.VISIBLE
-                    ivFavoriteEmpty.visibility = View.GONE
-                    tvEmptyFavorite.visibility = View.GONE
+                    tvCountFavorite.show()
+                    ivFavoriteEmpty.hide()
+                    tvEmptyFavorite.hide()
                 }
             } else {
                 binding.apply {
-                    tvCountFavorite.visibility = View.GONE
-                    ivFavoriteEmpty.visibility = View.VISIBLE
-                    tvEmptyFavorite.visibility = View.VISIBLE
+                    tvCountFavorite.hide()
+                    ivFavoriteEmpty.show()
+                    tvEmptyFavorite.show()
                 }
             }
         }
@@ -79,7 +81,7 @@ class FavoriteFragment : Fragment() {
             favoriteAdapter = FavoriteAdapter()
             rvFavorite.layoutManager = LinearLayoutManager(requireActivity())
             rvFavorite.adapter = favoriteAdapter
-            rvFavorite.setHasFixedSize(true)
+
             //Click item
             favoriteAdapter.setOnItemClickCallBack(object : FavoriteAdapter.OnItemClickCallBack {
 

@@ -63,7 +63,7 @@ class SearchAdapter :
             override fun areItemsTheSame(
                 oldItem: UserResponseItem,
                 newItem: UserResponseItem
-            ): Boolean = (oldItem.id == newItem.id) || (oldItem.username == newItem.username)
+            ): Boolean = (oldItem.id == newItem.id)
 
             override fun areContentsTheSame(
                 oldItem: UserResponseItem,
