@@ -29,4 +29,5 @@ class SectionPageAdapter(fragment: FragmentManager, lifecycle: Lifecycle, bundle
         fragment.arguments = this.bundleData
         return fragment
     }
+
 }

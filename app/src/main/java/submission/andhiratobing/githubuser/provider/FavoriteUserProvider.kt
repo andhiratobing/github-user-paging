@@ -58,8 +58,8 @@ class FavoriteUserProvider : ContentProvider() {
     }
 
     companion object {
-        const val AUTHORITY = BuildConfig.APPLICATION_ID
-        const val TABLE_NAME = "favorite_users"
+        private const val AUTHORITY = BuildConfig.APPLICATION_ID
+        private const val TABLE_NAME = "favorite_users"
         private const val FAVORITE_CODE = 1
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 

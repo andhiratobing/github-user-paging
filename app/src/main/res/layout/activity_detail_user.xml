@@ -207,121 +207,95 @@
                                 android:layout_marginEnd="40dp"
                                 android:layout_marginBottom="8dp"
                                 android:background="@color/color_icon"
-                                app:layout_constraintBottom_toTopOf="@+id/lnFollowing"
+                                app:layout_constraintBottom_toTopOf="@+id/tvFollowing"
                                 app:layout_constraintEnd_toEndOf="@+id/tvLocation"
                                 app:layout_constraintStart_toStartOf="@+id/tvLocation"
                                 app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
 
 
-                            <LinearLayout
-                                android:id="@+id/lnFollowers"
+                            <TextView
+                                android:id="@+id/tvFollowers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="start"
-                                android:layout_margin="16dp"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                app:layout_constraintBottom_toBottomOf="@+id/lnFollowing"
-                                app:layout_constraintEnd_toStartOf="@+id/lnFollowing"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/color_text"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@+id/tvFollowing"
+                                app:layout_constraintEnd_toStartOf="@+id/tvFollowing"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/lnFollowing">
+                                app:layout_constraintTop_toTopOf="@+id/tvFollowing"
+                                tools:text="2" />
 
-                                <TextView
-                                    android:id="@+id/tvFollowers"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:textColor="@color/color_text"
-                                    android:textSize="22sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    tools:text="2" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:text="@string/followers"
-                                    android:textColor="@color/color_text"
-                                    android:textSize="14sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/lnFollowing"
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_margin="16dp"
-                                android:layout_marginBottom="24dp"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/followers"
+                                android:textColor="@color/color_text"
+                                android:textSize="14sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvFollowers"
+                                app:layout_constraintStart_toStartOf="@+id/tvFollowers"
+                                app:layout_constraintTop_toBottomOf="@+id/tvFollowers" />
+
+
+                            <TextView
+                                android:id="@+id/tvFollowing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/color_text"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="@+id/view1"
                                 app:layout_constraintStart_toStartOf="@+id/view1"
-                                app:layout_constraintTop_toBottomOf="@+id/view1">
+                                app:layout_constraintTop_toBottomOf="@+id/view1"
+                                tools:text="5" />
 
-                                <TextView
-                                    android:id="@+id/tvFollowing"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:textColor="@color/color_text"
-                                    android:textSize="22sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    tools:text="5" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:text="@string/following"
-                                    android:textColor="@color/color_text"
-                                    android:textSize="14sp"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:id="@+id/lnRepository"
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:layout_margin="16dp"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                app:layout_constraintBottom_toBottomOf="@+id/lnFollowing"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="24dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/following"
+                                android:textColor="@color/color_text"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/tvFollowing"
+                                app:layout_constraintStart_toStartOf="@+id/tvFollowing"
+                                app:layout_constraintTop_toBottomOf="@+id/tvFollowing" />
+
+
+                            <TextView
+                                android:id="@+id/tvRepository"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/color_text"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@+id/tvFollowing"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/lnFollowing"
-                                app:layout_constraintTop_toTopOf="@+id/lnFollowing">
+                                app:layout_constraintStart_toEndOf="@+id/tvFollowing"
+                                app:layout_constraintTop_toTopOf="@+id/tvFollowing"
+                                tools:text="2" />
 
-                                <TextView
-                                    android:id="@+id/tvRepository"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:textColor="@color/color_text"
-                                    android:textSize="22sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    tools:text="2" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/repository"
+                                android:textColor="@color/color_text"
+                                android:textSize="14sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvRepository"
+                                app:layout_constraintStart_toStartOf="@+id/tvRepository"
+                                app:layout_constraintTop_toBottomOf="@+id/tvRepository" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:text="@string/repository"
-                                    android:textColor="@color/color_text"
-                                    android:textSize="14sp"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </LinearLayout>
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -374,7 +348,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/base_background"
                 android:contentDescription="@string/tab_layout"
-                android:fillViewport="true"
                 android:labelFor="@id/tabLayout"
                 app:tabGravity="fill"
                 app:tabIndicatorAnimationMode="elastic"
@@ -383,7 +356,7 @@
                 app:tabIndicatorGravity="bottom"
                 app:tabIndicatorHeight="1dp"
                 app:tabMode="fixed"
-                app:tabTextAppearance="@style/Widget.MaterialComponents.TabLayout"
+                app:tabTextAppearance="@style/tabLayoutTextCustom"
                 app:tabTextColor="@color/color_text" />
 
         </com.google.android.material.appbar.AppBarLayout>

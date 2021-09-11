@@ -17,7 +17,6 @@ class DetailUserViewModel @Inject constructor(
     private val userRepository: UserRepository,
 ) : ViewModel() {
 
-
     fun setNetworkState(): LiveData<ResourceState> = userRepository.networkState
 
     fun setDetailUsers(): LiveData<DetailUserResponse> {

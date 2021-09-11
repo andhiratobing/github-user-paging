@@ -9,7 +9,7 @@
         android:id="@+id/navHomeFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.home.HomeFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navFavoriteFragment"
@@ -20,6 +20,7 @@
         android:id="@+id/navSettingFragment"
         android:name="submission.andhiratobing.githubuser.view.fragments.setting.SettingsFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/layout_toolbar_settings" />
+        tools:layout="@layout/fragment_settings"/>
+
 
 </navigation>

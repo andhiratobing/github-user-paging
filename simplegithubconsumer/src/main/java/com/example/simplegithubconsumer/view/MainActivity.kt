@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         initFavoriteViewModel()
         setDataListFavoriteUser()
         swipeRefrehLayout()
-
     }
 
 

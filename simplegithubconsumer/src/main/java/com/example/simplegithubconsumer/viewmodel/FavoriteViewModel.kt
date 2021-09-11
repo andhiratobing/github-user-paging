@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class FavoriteViewModel constructor(application: Application) : AndroidViewModel(application) {
 
-    private val _listFavoriteUser = MutableLiveData<ArrayList<FavoriteUser>>()
+    private val listFavoriteUser = MutableLiveData<ArrayList<FavoriteUser>>()
 
 
     fun setListFavoriteUser(context: Context) {
@@ -27,12 +27,12 @@ class FavoriteViewModel constructor(application: Application) : AndroidViewModel
                 null
             )
             val mapper = MappingHelper.cursorToList(cursor)
-            _listFavoriteUser.postValue(mapper)
+            listFavoriteUser.postValue(mapper)
         }
     }
 
     fun getListFavoriteUser(): LiveData<ArrayList<FavoriteUser>> {
-        return _listFavoriteUser
+        return listFavoriteUser
     }
 
 

@@ -25,32 +25,13 @@
     <string name="share_detail_user">"Share %s  "</string>
     <string name="favorite_users">Favorite users</string>
     <!--Themes-->
-    <string name="theme_preferences_key">theme_preferences_key</string>
-    <string name="light_theme_preference_value">0</string>
-    <string name="dark_theme_preference_value">1</string>
-    <string name="system_theme_preference_value">2</string>
+
     <string name="dark_theme_description">Dark mode</string>
     <string name="light_theme_description">Light mode</string>
     <string name="system_theme_description">System default</string>
     <string name="image_splashscreen">Image splashscreen</string>
-    <string-array name="theme_list_array">
-        <item>Light</item>
-        <item>Dark</item>
-        <item>System default</item>
-    </string-array>
 
-    <string-array name="theme_entry_array">
-        <item>@string/light_theme_preference_value</item>
-        <item>@string/dark_theme_preference_value</item>
-        <item>@string/system_theme_preference_value</item>
-    </string-array>
 
-    <!--language-->
-    <string name="language_preferences_key">language_preferences_key</string>
-    <string name="language">Language</string>
-    <string name="choose_language">Choose language</string>
-    <string name="theme">Theme</string>
-    <string name="choose_theme">Choose theme</string>
 
     <string name="all_data_loaded">All data loaded</string>
     <string name="no_internet_connection">No Internet Connection</string>
@@ -69,18 +50,26 @@
     <string name="press_again_to_exit">Press again to exit</string>
 
     <!--reminders-->
-    <string name="reminders">Reminders</string>
-    <string name="reminders_preferences_key">reminders_preferences_key</string>
-    <string name="reminders_category">reminders_category</string>
+
     <string name="repeating_set_title">Reminder app</string>
     <string name="repeating_set_content">Don\'t forget to find and favorite github users to learn various codes</string>
-    <string name="active_daily_reminder">Active daily reminder</string>
-    <string name="daily_reminder_off">Daily reminder off</string>
-    <string name="app_reminder_at">App reminder at 09.00</string>
+
 
     <string name="icon_next_configuration_language">Icon next configuration language</string>
     <string name="image_user_widget">Image user in widget</string>
     <string name="no_data_in_app">No data in app</string>
 
     <string name="empty_favorite">There is no data that you save as a favorite</string>
+    <string name="language">Language</string>
+    <string name="icon_language">Icon language</string>
+    <string name="icon_theme">Icon theme</string>
+    <string name="theme">Theme</string>
+    <string name="icon_reminder">Icon reminder</string>
+    <string name="reminder">Reminder</string>
+    <string name="icon_configurion_theme">Icon configurion theme</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_theme">Choose theme</string>
+
+
 </resources>

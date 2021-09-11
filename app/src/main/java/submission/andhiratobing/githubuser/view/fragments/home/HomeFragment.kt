@@ -18,7 +18,7 @@ import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.adapter.remote.paging.searchusers.SearchAdapter
 import submission.andhiratobing.githubuser.adapter.remote.paging.searchusers.SearchLoadStateAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
-import submission.andhiratobing.githubuser.databinding.FragmentSearchBinding
+import submission.andhiratobing.githubuser.databinding.FragmentHomeBinding
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
 import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
 
@@ -26,8 +26,8 @@ import submission.andhiratobing.githubuser.viewmodel.SearchViewModel
 @ExperimentalCoroutinesApi
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentSearchBinding? = null
-    private val binding get() = _binding as FragmentSearchBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding as FragmentHomeBinding
     private var searchAdapter = SearchAdapter()
     private val searchViewModel: SearchViewModel by viewModels()
 
@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 

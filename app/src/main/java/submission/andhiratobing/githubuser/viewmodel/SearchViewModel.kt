@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import submission.andhiratobing.githubuser.data.repositories.remote.UserRepository
 import javax.inject.Inject
 
@@ -25,7 +26,9 @@ class SearchViewModel @Inject constructor(
     }
 
     fun getSearchUser(query: String) {
-        currentQuery.value = query
+        viewModelScope.launch {
+            currentQuery.value = query
+        }
     }
 
     companion object {

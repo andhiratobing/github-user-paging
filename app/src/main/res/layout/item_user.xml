@@ -7,53 +7,42 @@
     android:padding="8dp">
 
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/ivAvatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:scaleType="fitCenter"
-            app:riv_border_color="#A9F3E2"
-            app:riv_corner_radius="16dp"
-            app:riv_mutate_background="true"
-            app:riv_oval="false"
-            tools:src="@drawable/placeholder_image" />
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_border_color="#A9F3E2"
+        app:riv_corner_radius="12dp"
+        app:riv_mutate_background="true"
+        app:riv_oval="false"
+        tools:src="@drawable/placeholder_image" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clUser"
+    <TextView
+        android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
-        app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toTopOf="@id/frameLayout">
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:ems="11"
+        android:fontFamily="@font/poppins_regular"
+        android:maxLines="1"
+        android:textColor="@color/color_text"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+        app:layout_constraintTop_toTopOf="@+id/ivAvatar"
+        tools:text="andhiratobing" />
 
-        <TextView
-            android:id="@+id/tvUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:ems="11"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/color_text"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="andhiratobing" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -16,6 +16,7 @@ import submission.andhiratobing.githubuser.adapter.SectionPageAdapter
 import submission.andhiratobing.githubuser.data.remote.responses.detailusers.DetailUserResponse
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ActivityDetailUserBinding
+import submission.andhiratobing.githubuser.util.Constants.Companion.TYPE_SHARE
 import submission.andhiratobing.githubuser.util.extension.number.NumberFormat.asFormattedDecimals
 import submission.andhiratobing.githubuser.util.state.ResourceState
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
@@ -85,7 +86,7 @@ class DetailUserActivity : AppCompatActivity() {
             }
 
             addFavoriteUser(it)
-            sendDataFavoriteToWidgetUpdte()
+            sendDataFavoriteToWidgetUpdate()
         })
     }
 
@@ -166,7 +167,7 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun clickShare() {
         val data: UserResponseItem? = intent.getParcelableExtra(DATA_USER)
-        val type = "text/plain"
+        val type = TYPE_SHARE
         ShareCompat.IntentBuilder(this)
             .setType(type)
             .setChooserTitle(getString(R.string.share))
@@ -192,15 +193,24 @@ class DetailUserActivity : AppCompatActivity() {
             //set tablayout mediator
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 when (position) {
-                    0 -> tab.setIcon(R.drawable.ic_followers)
-                    1 -> tab.setIcon(R.drawable.ic_following)
-                    2 -> tab.setIcon(R.drawable.ic_repository)
+                    0 -> {
+                        tab.text = resources.getString(R.string.followers)
+                        tab.setIcon(R.drawable.ic_followers)
+                    }
+                    1 -> {
+                        tab.text = resources.getString(R.string.following)
+                        tab.setIcon(R.drawable.ic_following)
+                    }
+                    2 -> {
+                        tab.text = resources.getString(R.string.repository)
+                        tab.setIcon(R.drawable.ic_repository)
+                    }
                 }
             }.attach()
         }
     }
 
-    private fun sendDataFavoriteToWidgetUpdte() {
+    private fun sendDataFavoriteToWidgetUpdate() {
         sendBroadcast(Intent(this, FavoriteWidget::class.java).apply {
             action = FavoriteWidget.EXTRA_FAVORITE_WIDGET_UPDATE
         })

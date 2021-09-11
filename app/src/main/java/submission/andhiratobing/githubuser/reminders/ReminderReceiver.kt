@@ -15,8 +15,11 @@ import androidx.core.content.ContextCompat
 import submission.andhiratobing.githubuser.MainActivity
 import submission.andhiratobing.githubuser.R
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ReminderReceiver : BroadcastReceiver() {
+@Singleton
+class ReminderReceiver @Inject constructor() : BroadcastReceiver() {
 
     companion object {
         const val TYPE_REPEATING = "RepeatingReminder"

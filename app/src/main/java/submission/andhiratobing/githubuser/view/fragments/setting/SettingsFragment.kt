@@ -3,112 +3,143 @@ package submission.andhiratobing.githubuser.view.fragments.setting
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
-import androidx.preference.ListPreference
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreference
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import submission.andhiratobing.githubuser.R
+import submission.andhiratobing.githubuser.databinding.FragmentSettingsBinding
 import submission.andhiratobing.githubuser.reminders.ReminderReceiver
-import submission.andhiratobing.githubuser.util.theme.ThemeProvider
-import java.security.InvalidParameterException
+import submission.andhiratobing.githubuser.util.theme.Themes.Companion.THEMES_ARRAY
+import submission.andhiratobing.githubuser.viewmodel.SettingsViewModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : Fragment(), View.OnClickListener {
 
-    private val themeProvider by lazy { ThemeProvider(requireActivity()) }
-    private val themePreference by lazy { findPreference<ListPreference>(getString(R.string.theme_preferences_key)) }
-    private val reminderProvider by lazy { ReminderReceiver() }
-    private val reminderPreference by lazy { findPreference<SwitchPreference>(getString(R.string.reminders_preferences_key)) }
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding as FragmentSettingsBinding
+    private val settingsViewModel: SettingsViewModel by viewModels()
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.settings, rootKey)
-
-    }
+    @Inject
+    lateinit var reminderReceiver: ReminderReceiver
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val defaultView = super.onCreateView(inflater, container, savedInstanceState) as View
-        val newLayout =
-            inflater.inflate(R.layout.layout_toolbar_settings, container, false) as ViewGroup
-        newLayout.addView(defaultView)
-        defaultView.setPaddingRelative(0, 120, 0, 0)
-        return newLayout
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        return binding.root
     }
-
-    override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-        return when (preference?.key) {
-            getString(R.string.language_preferences_key) -> {
-                val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-                startActivity(mIntent)
-                true
-            }
-            getString(R.string.theme_preferences_key) -> {
-                setThemePreference()
-                true
-            }
-            getString(R.string.reminders_preferences_key) -> {
-                setReminderPreference()
-                true
-            }
-
-
-            else -> super.onPreferenceTreeClick(preferenceScreen)
-        }
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbarSettings = view.findViewById<Toolbar>(R.id.toolbarSettings)
-        toolbarSettings.apply {
-            title = getString(R.string.settings)
-        }
+
+        observerThemes()
+        setRepeatingReminder()
+        observerReminderRepeating()
+
+        binding.layoutThemes.setOnClickListener(this)
+        binding.layoutLanguage.setOnClickListener(this)
     }
 
-    private fun setThemePreference() {
-        themePreference?.onPreferenceChangeListener =
-            Preference.OnPreferenceChangeListener { _, newValue ->
-                if (newValue is String) {
-                    val theme = themeProvider.getTheme(newValue)
-                    AppCompatDelegate.setDefaultNightMode(theme)
+    private fun observerThemes() {
+        settingsViewModel.getThemes.observe(
+            viewLifecycleOwner, { currentTheme ->
+                val appTheme = THEMES_ARRAY.firstOrNull { it.themeSelected == currentTheme }
+                appTheme?.let {
+                    binding.themeDescription.text = getString(it.themeNameRes)
                 }
-                true
             }
-        themePreference?.summaryProvider =
-            Preference.SummaryProvider<ListPreference> { preference ->
-                themeProvider.getThemeDescriptionForPreference(preference.value)
-            }
+        )
     }
 
-
-    private fun setReminderPreference() {
-        reminderPreference?.setOnPreferenceChangeListener { _, newValue ->
-            when (newValue) {
-                true -> reminderProvider.setRepeatingReminder(
-                        requireActivity(),
-                        ReminderReceiver.Companion.TypeReminder.TYPE_REPEATING
-                    )
-
-                false ->
-                    reminderProvider.cancelReminders(
-                        requireActivity(),
-                        ReminderReceiver.Companion.TypeReminder.TYPE_REPEATING
-                    )
-
-                else -> throw InvalidParameterException("Reminder not defined for $newValue")
+    private fun setThemesApplication() {
+        lifecycleScope.launch {
+            val currentTheme = settingsViewModel.getThemes.value
+            var checkedItem = THEMES_ARRAY.indexOfFirst { it.themeSelected == currentTheme }
+            if (checkedItem >= 0) {
+                val items = THEMES_ARRAY.map {
+                    getText(it.themeNameRes)
+                }.toTypedArray()
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(getString(R.string.choose_theme))
+                    .setSingleChoiceItems(items, checkedItem) { _, it ->
+                        checkedItem = it
+                    }
+                    .setPositiveButton(getString(R.string.save)) { _, _ ->
+                        val mode = THEMES_ARRAY[checkedItem].themeSelected
+                        AppCompatDelegate.setDefaultNightMode(mode)
+                        settingsViewModel.setAppTheme(mode)
+                        // update theme description
+                        binding.themeDescription.text =
+                            getString(THEMES_ARRAY[checkedItem].themeNameRes)
+                    }
+                    .setNegativeButton(getString(R.string.cancel)) { dialogInterface, _ ->
+                        dialogInterface.dismiss()
+                    }.show()
             }
-            true
         }
-
     }
 
+    private fun observerReminderRepeating() {
+        settingsViewModel.getReminder.observe(viewLifecycleOwner, { state ->
+            binding.switchReminder.isChecked = state
+            Log.d("Test observer", "$state")
+        })
+    }
+
+    private fun setRepeatingReminder() {
+        lifecycleScope.launch {
+            binding.apply {
+                switchReminder.setOnCheckedChangeListener { _, isChecked ->
+                    when (isChecked) {
+                        true -> {
+                            settingsViewModel.setReminder(isChecked)
+                            reminderReceiver.setRepeatingReminder(
+                                requireActivity(),
+                                ReminderReceiver.Companion.TypeReminder.TYPE_REPEATING
+                            )
+                            Log.d("Test", "$isChecked")
+                        }
+                        false -> {
+                            settingsViewModel.setReminder(isChecked)
+                            reminderReceiver.cancelReminders(
+                                requireActivity(),
+                                ReminderReceiver.Companion.TypeReminder.TYPE_REPEATING
+                            )
+                            Log.d("Test", "$isChecked")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun gotoSettingLanguage() {
+        val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+        requireActivity().startActivity(intent)
+    }
+
+    override fun onClick(view: View?) {
+        if (view != null) {
+            when (view.id) {
+                R.id.layoutThemes -> setThemesApplication()
+                R.id.layoutLanguage -> gotoSettingLanguage()
+            }
+        }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

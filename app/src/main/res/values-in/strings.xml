@@ -25,32 +25,11 @@
     <string name="share_detail_user">"Bagikan %s  "</string>
     <string name="favorite_users">Pengguna favorit</string>
     <!--Themes-->
-    <string name="theme_preferences_key">tombol preferensi tema</string>
-    <string name="light_theme_preference_value">0</string>
-    <string name="dark_theme_preference_value">1</string>
-    <string name="system_theme_preference_value">2</string>
     <string name="dark_theme_description">Mode gelap</string>
     <string name="light_theme_description">Mode terang</string>
     <string name="system_theme_description">Standart sistem</string>
     <string name="image_splashscreen">Gambar splashscreen</string>
-    <string-array name="theme_list_array">
-        <item>Terang</item>
-        <item>Gelap</item>
-        <item>Standart sistem</item>
-    </string-array>
 
-    <string-array name="theme_entry_array">
-        <item>@string/light_theme_preference_value</item>
-        <item>@string/dark_theme_preference_value</item>
-        <item>@string/system_theme_preference_value</item>
-    </string-array>
-
-    <!--language-->
-    <string name="language_preferences_key">language_preferences_key</string>
-    <string name="language">Bahasa</string>
-    <string name="choose_language">Pilih bahasa</string>
-    <string name="theme">Tema</string>
-    <string name="choose_theme">Pilih tema</string>
 
 
     <string name="all_data_loaded">Semua data telah di muat</string>
@@ -70,14 +49,10 @@
     <string name="press_again_to_exit">Tekan sekali lagi untuk keluar</string>
 
     <!--reminders-->
-    <string name="reminders">Pengingat</string>
-    <string name="reminders_preferences_key">reminders_preferences_key</string>
-    <string name="reminders_category">reminders_category</string>
+
     <string name="repeating_set_title">Pengingat aplikasi</string>
     <string name="repeating_set_content">Jangan lupa temukan dan favoritkan pengguna github untuk belajar macam-macam kode</string>
-    <string name="active_daily_reminder">Pengingat harian aktif</string>
-    <string name="daily_reminder_off">Pengingat harian tidak aktif</string>
-    <string name="app_reminder_at">Pengingat aplikasi jam 09.00</string>
+
 
     <string name="icon_next_configuration_language">Icon konfigurasi bahasa</string>
     <string name="image_user_widget">Gambar pengguna di widget</string>
@@ -85,5 +60,15 @@
 
 
     <string name="empty_favorite">Tidak ada data yang anda simpan sebagai favorite</string>
+    <string name="language">Bahasa</string>
+    <string name="icon_language">Icon Bahasa</string>
+    <string name="icon_theme">Icon Tema</string>
+    <string name="theme">Tema</string>
+    <string name="icon_reminder">Icon Pengingat</string>
+    <string name="reminder">Pengingat</string>
+    <string name="icon_configurion_theme">Icon konfigurasi tema</string>
+    <string name="save">Simpan</string>
+    <string name="cancel">Batal</string>
+    <string name="choose_theme">Pilih tema</string>
 
 </resources>

@@ -12,6 +12,23 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowContentOverlay">@null</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="tabLayoutTextCustom" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/color_text</item>
+    </style>
+
+    <style name="BottomNavMenuTextCustom" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/color_text</item>
+    </style>
+
 </resources>

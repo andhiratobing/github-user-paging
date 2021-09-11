@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplegithubconsumer.data.FavoriteUser
-import com.example.simplegithubconsumer.databinding.ItemFavoriteUserBinding
+import com.example.simplegithubconsumer.databinding.ItemUserWidgetBinding
 import com.example.simplegithubconsumer.util.image.LoadImage.loadImage
 import com.example.simplegithubconsumer.util.number.NumberFormat.asFormattedDecimals
 
 
-class FavoriteAdapter : ListAdapter<FavoriteUser, FavoriteAdapter.FavoriteViewHolder>(FAVORITE_COMPARATOR) {
+class FavoriteAdapter :
+    ListAdapter<FavoriteUser, FavoriteAdapter.FavoriteViewHolder>(FAVORITE_COMPARATOR) {
 
-    inner class FavoriteViewHolder(private val binding: ItemFavoriteUserBinding) :
+    inner class FavoriteViewHolder(private val binding: ItemUserWidgetBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: FavoriteUser) {
@@ -34,7 +35,7 @@ class FavoriteAdapter : ListAdapter<FavoriteUser, FavoriteAdapter.FavoriteViewHo
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         FavoriteViewHolder(
-            ItemFavoriteUserBinding.inflate(
+            ItemUserWidgetBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
