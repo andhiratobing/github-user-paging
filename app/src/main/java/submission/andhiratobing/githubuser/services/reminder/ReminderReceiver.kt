@@ -1,6 +1,5 @@
-package submission.andhiratobing.githubuser.reminders
+package submission.andhiratobing.githubuser.services.reminder
 
-import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -24,8 +23,8 @@ class ReminderReceiver @Inject constructor() : BroadcastReceiver() {
     companion object {
         const val TYPE_REPEATING = "RepeatingReminder"
 
-        enum class TypeReminder(val typeId: Int, val hour: Int, val minutes: Int, val second: Int) {
-            TYPE_REPEATING(1, 9, 0, 0)
+        enum class TypeReminder(val typeId: Int, val hour: Int, val minutes: Int) {
+            TYPE_REPEATING(1, 9, 0)
         }
     }
 
@@ -35,19 +34,24 @@ class ReminderReceiver @Inject constructor() : BroadcastReceiver() {
         }
     }
 
+    /**
+     *Calendar.HOUR = Field number for get and set indicating the hour of the morning or afternoon. HOUR is used for the 12-hour clock.
+     *Calendar.HOUR E.g., at 10:04:15.250 PM the HOUR is 10.
+     *Calendar.HOUR_OF_DAY = Field number for get and set indicating the hour of the day. HOUR_OF_DAY is used for the 24-hour clock.
+     *Calendar.HOUR_OF_DAY E.g., at 10:04:15.250 PM the HOUR_OF_DAY is 22.
+     */
     private fun getCalendarTime(typeReminder: TypeReminder): Calendar {
         return Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, typeReminder.hour)
             set(Calendar.MINUTE, typeReminder.minutes)
-            set(Calendar.SECOND, typeReminder.second)
         }
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
+
     fun setRepeatingReminder(context: Context, typeReminder: TypeReminder) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, ReminderReceiver::class.java)
         intent.putExtra(TYPE_REPEATING, typeReminder.name)
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val pendingIntent = PendingIntent.getBroadcast(context, typeReminder.typeId, intent, 0)
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP,
@@ -58,7 +62,6 @@ class ReminderReceiver @Inject constructor() : BroadcastReceiver() {
     }
 
 
-    @SuppressLint("UnspecifiedImmutableFlag")
     private fun showReminderNotification(context: Context) {
         val channelId = "channel_1"
         val channelName = "repeating_channel"
@@ -76,7 +79,7 @@ class ReminderReceiver @Inject constructor() : BroadcastReceiver() {
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_baseline_access_alarm_24)
+            .setSmallIcon(R.drawable.ic_alarm)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
             .setContentTitle(context.getString(R.string.repeating_set_title))
             .setContentText(context.getString(R.string.repeating_set_content))
@@ -100,7 +103,6 @@ class ReminderReceiver @Inject constructor() : BroadcastReceiver() {
     }
 
 
-    @SuppressLint("UnspecifiedImmutableFlag")
     fun cancelReminders(context: Context, typeReminder: TypeReminder) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, ReminderReceiver::class.java)

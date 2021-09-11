@@ -9,8 +9,8 @@ import submission.andhiratobing.githubuser.data.remote.responses.users.UserRespo
 import submission.andhiratobing.githubuser.databinding.ItemUserBinding
 import submission.andhiratobing.githubuser.util.extension.image.LoadImage.loadImage
 
-class SearchAdapter :
-    PagingDataAdapter<UserResponseItem, SearchAdapter.SearchViewHolder>(SEARCH_USER_COMPARATOR) {
+class SearchAdapterPaging :
+    PagingDataAdapter<UserResponseItem, SearchAdapterPaging.SearchViewHolder>(SEARCH_USER_COMPARATOR) {
 
     private lateinit var onItemClickCallBack: OnItemClickCallBack
 
@@ -63,7 +63,7 @@ class SearchAdapter :
             override fun areItemsTheSame(
                 oldItem: UserResponseItem,
                 newItem: UserResponseItem
-            ): Boolean = (oldItem.id == newItem.id) || (oldItem.username == newItem.username)
+            ): Boolean = (oldItem.id == newItem.id)
 
             override fun areContentsTheSame(
                 oldItem: UserResponseItem,

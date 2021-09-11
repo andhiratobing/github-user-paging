@@ -10,6 +10,8 @@
     <color name="color_favorite">#FF3B58</color>
     <color name="color_background_image">#E8EEF6</color>
     <color name="blue_grey_active">#607d8b</color>
+    <color name="progress_indicator_track">#E3E4E6</color>
+    <color name="progress_indicator">#3e91ff</color>
 
     <!--programming language color-->
     <color name="language_color_kotlin">#A97BFF</color>
@@ -43,6 +45,5 @@
     <color name="language_color_matlab">#e16737</color>
     <color name="language_color_power_shell">#012456</color>
     <color name="language_color_other">#455a64</color>
-
 
 </resources>

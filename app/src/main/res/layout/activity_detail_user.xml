@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutDetailUser"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base_background"
@@ -14,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/base_background"
-        app:elevation="0dp"
+        app:elevation="@dimen/dimen_0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,7 +24,7 @@
             android:id="@+id/toolbarDetailUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_left_arrow" />
@@ -32,8 +33,8 @@
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="@dimen/dimen_0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/base_background"
-            app:elevation="0dp"
+            app:elevation="@dimen/dimen_0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -65,11 +66,11 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/ivAvatar"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="@dimen/dimen_120dp"
+                        android:layout_height="@dimen/dimen_120dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="16dp"
-                        app:civ_border_width="0.5dp"
+                        android:layout_marginTop="@dimen/dimen_16dp"
+                        app:civ_border_width="@dimen/dimen_0_5dp"
                         app:civ_circle_background_color="@color/color_background_image"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -82,11 +83,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|start"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="@dimen/dimen_24dp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center"
                         android:textColor="@color/color_text"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/dimen_16sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/ivAvatar"
                         app:layout_constraintStart_toStartOf="@id/ivAvatar"
@@ -99,11 +100,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|start"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/dimen_8dp"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
                         android:textColor="@color/color_text"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/dimen_16sp"
                         app:layout_constraintEnd_toEndOf="@+id/tvName"
                         app:layout_constraintStart_toStartOf="@id/tvName"
                         app:layout_constraintTop_toBottomOf="@+id/tvName"
@@ -115,12 +116,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|start"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/dimen_16dp"
                         android:ems="10"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
                         android:textColor="@color/color_text"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/dimen_16sp"
                         app:layout_constraintEnd_toEndOf="@+id/tvUsername"
                         app:layout_constraintStart_toStartOf="@id/tvUsername"
                         app:layout_constraintTop_toBottomOf="@+id/tvUsername"
@@ -131,12 +132,12 @@
                         android:id="@+id/cardViewDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginEnd="24dp"
-                        app:cardCornerRadius="14dp"
-                        app:cardElevation="0dp"
-                        app:elevation="0dp"
+                        android:layout_marginStart="@dimen/dimen_24dp"
+                        android:layout_marginTop="@dimen/dimen_24dp"
+                        android:layout_marginEnd="@dimen/dimen_24dp"
+                        app:cardCornerRadius="@dimen/dimen_14dp"
+                        app:cardElevation="@dimen/dimen_0dp"
+                        app:elevation="@dimen/dimen_0dp"
                         app:layout_constraintEnd_toStartOf="@+id/tvBio"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvBio">
@@ -147,8 +148,8 @@
 
                             <ImageView
                                 android:id="@+id/ivCompany"
-                                android:layout_width="37dp"
-                                android:layout_height="35dp"
+                                android:layout_width="@dimen/dimen_37dp"
+                                android:layout_height="@dimen/dimen_35dp"
                                 android:contentDescription="@string/icon_company"
                                 android:src="@drawable/ic_company"
                                 app:layout_constraintBottom_toBottomOf="@+id/tvCompany"
@@ -159,12 +160,12 @@
                                 android:id="@+id/tvCompany"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="24dp"
+                                android:layout_marginTop="@dimen/dimen_24dp"
                                 android:ems="10"
                                 android:fontFamily="@font/poppins_medium"
                                 android:gravity="center"
                                 android:textColor="@color/color_text"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/dimen_12sp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -173,8 +174,8 @@
 
                             <ImageView
                                 android:id="@+id/ivLocation"
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
+                                android:layout_width="@dimen/dimen_35dp"
+                                android:layout_height="@dimen/dimen_35dp"
                                 android:contentDescription="@string/icon_location"
                                 android:src="@drawable/ic_location"
                                 app:layout_constraintBottom_toBottomOf="@+id/tvLocation"
@@ -186,12 +187,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center|end"
-                                android:layout_marginTop="24dp"
+                                android:layout_marginTop="@dimen/dimen_24dp"
                                 android:ems="10"
                                 android:fontFamily="@font/poppins_medium"
                                 android:gravity="center"
                                 android:textColor="@color/color_text"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/dimen_12sp"
                                 app:layout_constraintEnd_toEndOf="@+id/tvCompany"
                                 app:layout_constraintStart_toStartOf="@+id/tvCompany"
                                 app:layout_constraintTop_toBottomOf="@+id/tvCompany"
@@ -201,11 +202,11 @@
                             <View
                                 android:id="@+id/view1"
                                 android:layout_width="match_parent"
-                                android:layout_height="0.3dp"
-                                android:layout_marginStart="40dp"
-                                android:layout_marginTop="24dp"
-                                android:layout_marginEnd="40dp"
-                                android:layout_marginBottom="8dp"
+                                android:layout_height="@dimen/dimen_0_3dp"
+                                android:layout_marginStart="@dimen/dimen_40dp"
+                                android:layout_marginTop="@dimen/dimen_24dp"
+                                android:layout_marginEnd="@dimen/dimen_40dp"
+                                android:layout_marginBottom="@dimen/dimen_8dp"
                                 android:background="@color/color_icon"
                                 app:layout_constraintBottom_toTopOf="@+id/tvFollowing"
                                 app:layout_constraintEnd_toEndOf="@+id/tvLocation"
@@ -219,7 +220,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
                                 android:textColor="@color/color_text"
-                                android:textSize="22sp"
+                                android:textSize="@dimen/dimen_22sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/tvFollowing"
                                 app:layout_constraintEnd_toStartOf="@+id/tvFollowing"
@@ -230,11 +231,11 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="@string/followers"
                                 android:textColor="@color/color_text"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 app:layout_constraintEnd_toEndOf="@+id/tvFollowers"
                                 app:layout_constraintStart_toStartOf="@+id/tvFollowers"
                                 app:layout_constraintTop_toBottomOf="@+id/tvFollowers" />
@@ -244,10 +245,10 @@
                                 android:id="@+id/tvFollowing"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="@dimen/dimen_16dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:textColor="@color/color_text"
-                                android:textSize="22sp"
+                                android:textSize="@dimen/dimen_22sp"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="@+id/view1"
                                 app:layout_constraintStart_toStartOf="@+id/view1"
@@ -257,12 +258,12 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="24dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
+                                android:layout_marginBottom="@dimen/dimen_24dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="@string/following"
                                 android:textColor="@color/color_text"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="@+id/tvFollowing"
                                 app:layout_constraintStart_toStartOf="@+id/tvFollowing"
@@ -275,7 +276,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
                                 android:textColor="@color/color_text"
-                                android:textSize="22sp"
+                                android:textSize="@dimen/dimen_22sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="@+id/tvFollowing"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -286,11 +287,11 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="@dimen/dimen_8dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="@string/repository"
                                 android:textColor="@color/color_text"
-                                android:textSize="14sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 app:layout_constraintEnd_toEndOf="@+id/tvRepository"
                                 app:layout_constraintStart_toStartOf="@+id/tvRepository"
                                 app:layout_constraintTop_toBottomOf="@+id/tvRepository" />
@@ -303,17 +304,17 @@
                     <Button
                         android:id="@+id/btnFollow"
                         style="@style/Widget.MaterialComponents.FloatingActionButton"
-                        android:layout_width="220dp"
+                        android:layout_width="@dimen/dimen_220dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="@dimen/dimen_24dp"
+                        android:layout_marginEnd="@dimen/dimen_8dp"
+                        android:layout_marginBottom="@dimen/dimen_16dp"
                         android:backgroundTint="@color/color_background_button"
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/follow"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/dimen_16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/toggleFav"
                         app:layout_constraintStart_toStartOf="@+id/cardViewDetail"
@@ -323,8 +324,8 @@
 
                     <androidx.appcompat.widget.AppCompatToggleButton
                         android:id="@+id/toggleFav"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="@dimen/dimen_35dp"
+                        android:layout_height="@dimen/dimen_35dp"
                         android:background="@drawable/toggle_favorite"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
@@ -354,7 +355,7 @@
                 app:tabIndicatorColor="@color/color_text"
                 app:tabIndicatorFullWidth="true"
                 app:tabIndicatorGravity="bottom"
-                app:tabIndicatorHeight="1dp"
+                app:tabIndicatorHeight="@dimen/dimen_1dp"
                 app:tabMode="fixed"
                 app:tabTextAppearance="@style/tabLayoutTextCustom"
                 app:tabTextColor="@color/color_text" />
@@ -365,13 +366,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_height="@dimen/dimen_0dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -379,11 +380,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarDetailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -392,3 +394,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

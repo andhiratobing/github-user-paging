@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Text description-->
     <string name="app_name">Github User</string>
     <string name="home">Utama</string>
-    <string name="icon_home">Icon Utama</string>
     <string name="settings">Pengaturan</string>
-    <string name="icon_setting">Icon Pengaturan</string>
-    <string name="icon_favorite">Icon Favorit</string>
     <string name="favorite">Favorit</string>
-    <string name="icon_following">Icon Mengikuti</string>
-    <string name="icon_followers">Icon Pengikut</string>
-    <string name="icon_repos">Icon Repos</string>
-    <string name="icon_star">Icon Bintang</string>
-    <string name="icon_fork">Icon Fork</string>
-    <string name="icon_issue">Icon Masalah</string>
-    <string name="icon_share">Icon Berbagi</string>
     <string name="share">Bagikan</string>
     <string name="follow">Ikuti</string>
     <string name="results">Hasil</string>
     <string name="followers">Pengikut</string>
     <string name="following">Mengikuti</string>
     <string name="repository">Gudang</string>
-    <string name="icon_company">Icon Perusahaan</string>
-    <string name="icon_location">Icon Lokasi</string>
     <string name="share_detail_user">"Bagikan %s  "</string>
     <string name="favorite_users">Pengguna favorit</string>
-    <!--Themes-->
     <string name="dark_theme_description">Mode gelap</string>
     <string name="light_theme_description">Mode terang</string>
     <string name="system_theme_description">Standart sistem</string>
-    <string name="image_splashscreen">Gambar splashscreen</string>
-
-
-
     <string name="all_data_loaded">Semua data telah di muat</string>
     <string name="no_internet_connection">Tidak ada koneksi internet</string>
     <string name="no_results">Tidak ada hasil</string>
@@ -45,30 +29,42 @@
     <string name="following_does_not_exist">Data tidak ada</string>
     <string name="followers_does_not_exist">Data tidak ada</string>
     <string name="repository_does_not_exist">Data tidak ada</string>
-    <string name="image_not_found">Gambar tidak tersedia</string>
     <string name="press_again_to_exit">Tekan sekali lagi untuk keluar</string>
-
-    <!--reminders-->
-
-    <string name="repeating_set_title">Pengingat aplikasi</string>
-    <string name="repeating_set_content">Jangan lupa temukan dan favoritkan pengguna github untuk belajar macam-macam kode</string>
-
-
-    <string name="icon_next_configuration_language">Icon konfigurasi bahasa</string>
-    <string name="image_user_widget">Gambar pengguna di widget</string>
-    <string name="no_data_in_app">Tidak ada data dalam aplikasi</string>
-
-
-    <string name="empty_favorite">Tidak ada data yang anda simpan sebagai favorite</string>
-    <string name="language">Bahasa</string>
-    <string name="icon_language">Icon Bahasa</string>
-    <string name="icon_theme">Icon Tema</string>
-    <string name="theme">Tema</string>
-    <string name="icon_reminder">Icon Pengingat</string>
-    <string name="reminder">Pengingat</string>
-    <string name="icon_configurion_theme">Icon konfigurasi tema</string>
     <string name="save">Simpan</string>
     <string name="cancel">Batal</string>
     <string name="choose_theme">Pilih tema</string>
+    <string name="description_reminders">Pengingat untuk membuka aplikasi secara berulang pada jam 09.00 AM</string>
+    <string name="repeating_set_title">Pengingat aplikasi</string>
+    <string name="repeating_set_content">Jangan lupa temukan dan favoritkan pengguna github untuk belajar macam-macam kode</string>
+    <string name="no_data_in_app">Tidak ada data dalam aplikasi</string>
+    <string name="empty_favorite">Tidak ada data yang anda simpan sebagai favorite</string>
+    <string name="language">Bahasa</string>
+    <string name="theme">Tema</string>
+    <string name="reminder_at">Pengingat pukul 09.00 AM</string>
+
+    <!--Icon description-->
+    <string name="icon_home">Icon Utama</string>
+    <string name="icon_setting">Icon Pengaturan</string>
+    <string name="icon_favorite">Icon Favorit</string>
+    <string name="icon_following">Icon Mengikuti</string>
+    <string name="icon_followers">Icon Pengikut</string>
+    <string name="icon_repos">Icon Repos</string>
+    <string name="icon_star">Icon Bintang</string>
+    <string name="icon_fork">Icon Fork</string>
+    <string name="icon_issue">Icon Masalah</string>
+    <string name="icon_share">Icon Berbagi</string>
+    <string name="icon_company">Icon Perusahaan</string>
+    <string name="icon_location">Icon Lokasi</string>
+    <string name="icon_next_configuration_language">Icon konfigurasi bahasa</string>
+    <string name="icon_language">Icon Bahasa</string>
+    <string name="icon_theme">Icon Tema</string>
+    <string name="icon_reminder">Icon Pengingat</string>
+    <string name="icon_configurion_theme">Icon konfigurasi tema</string>
+    <string name="icon_back_to_app">Icon kembali ke aplikasi</string>
+
+    <!--Image description-->
+    <string name="image_splashscreen">Gambar splashscreen</string>
+    <string name="image_not_found">Gambar tidak tersedia</string>
+    <string name="image_user_widget">Gambar pengguna di widget</string>
 
 </resources>

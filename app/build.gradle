@@ -109,7 +109,7 @@ dependencies {
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
     //datastore preferences
-    //note (Don't update)
+    //note (don't update because the data store of each version currently has a different implementation)
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha06"
 
 }

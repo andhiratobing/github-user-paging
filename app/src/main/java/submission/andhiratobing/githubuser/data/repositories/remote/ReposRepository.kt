@@ -10,7 +10,7 @@ import submission.andhiratobing.githubuser.data.remote.api.ApiService
 import submission.andhiratobing.githubuser.data.remote.responses.repos.ReposResponse
 import submission.andhiratobing.githubuser.util.Constants
 import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PAGE_SIZE
-import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PRE_FETCH_DISTACE
+import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PRE_FETCH_DISTANCE
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,7 +24,7 @@ class ReposRepository @Inject constructor(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false,
-                prefetchDistance = NETWORK_PRE_FETCH_DISTACE,
+                prefetchDistance = NETWORK_PRE_FETCH_DISTANCE,
                 initialLoadSize = Constants.NETWORK_INITIAL_LOAD_SIZE
             ),
             pagingSourceFactory = { ReposPagingSource(apiService, username) }

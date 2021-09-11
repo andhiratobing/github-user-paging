@@ -11,8 +11,7 @@ import submission.andhiratobing.githubuser.util.Constants.Companion.TABLE_NAME_F
 @Parcelize
 @Entity(tableName = TABLE_NAME_FAVORITE)
 data class FavoriteEntity(
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey val id: Int,
     @ColumnInfo(name = "username")
     val username: String,
     val name: String?,

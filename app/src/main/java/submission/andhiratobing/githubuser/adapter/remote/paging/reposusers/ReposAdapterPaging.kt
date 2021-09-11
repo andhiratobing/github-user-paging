@@ -16,8 +16,31 @@ class ReposAdapterPaging :
         REPOS_COMPARATOR
     ) {
 
+    private lateinit var onItemClickCallBack: OnItemClickCallBack
+
+    //Click callback item
+    interface OnItemClickCallBack {
+        fun onItemClick(reposResponse: ReposResponse)
+    }
+
+    fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack) {
+        this.onItemClickCallBack = onItemClickCallBack
+    }
+
     inner class ReposViewHolder(private val binding: ItemReposBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                    val itemPosition = getItem(bindingAdapterPosition)
+                    if (itemPosition != null) {
+                        onItemClickCallBack.onItemClick(itemPosition)
+                    }
+                }
+            }
+        }
+
         fun bind(reposResponse: ReposResponse) {
             binding.apply {
                 val color = ColorLanguage

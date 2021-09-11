@@ -32,13 +32,13 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideFavoriteUserWidgetDao(appDatabase: AppDatabase): FavoriteUserWidgetDao{
+    fun provideFavoriteUserWidgetDao(appDatabase: AppDatabase): FavoriteUserWidgetDao {
         return appDatabase.favoriteUserWidgetDao()
     }
 
     @Provides
     @Singleton
-    fun provideFavoriteUserProvideDao(appDatabase: AppDatabase): FavoriteUserProviderDao{
+    fun provideFavoriteUserProvideDao(appDatabase: AppDatabase): FavoriteUserProviderDao {
         return appDatabase.favoriteUserProvideDao()
     }
 }

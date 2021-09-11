@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.databinding.FragmentSettingsBinding
-import submission.andhiratobing.githubuser.reminders.ReminderReceiver
+import submission.andhiratobing.githubuser.services.reminder.ReminderReceiver
 import submission.andhiratobing.githubuser.util.theme.Themes.Companion.THEMES_ARRAY
 import submission.andhiratobing.githubuser.viewmodel.SettingsViewModel
 import javax.inject.Inject
@@ -27,6 +27,9 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding as FragmentSettingsBinding
     private val settingsViewModel: SettingsViewModel by viewModels()
+
+    @Inject
+    lateinit var modalBottomSheet: BottomSheetReminderFragment
 
     @Inject
     lateinit var reminderReceiver: ReminderReceiver
@@ -46,8 +49,9 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         setRepeatingReminder()
         observerReminderRepeating()
 
-        binding.layoutThemes.setOnClickListener(this)
-        binding.layoutLanguage.setOnClickListener(this)
+        binding.ibNextConfigurationTheme.setOnClickListener(this)
+        binding.ibNextConfigurationLanguage.setOnClickListener(this)
+        binding.layoutReminder.setOnClickListener(this)
     }
 
     private fun observerThemes() {
@@ -92,7 +96,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     private fun observerReminderRepeating() {
         settingsViewModel.getReminder.observe(viewLifecycleOwner, { state ->
             binding.switchReminder.isChecked = state
-            Log.d("Test observer", "$state")
+            Log.d("Test observer reminder", "$state")
         })
     }
 
@@ -102,20 +106,20 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 switchReminder.setOnCheckedChangeListener { _, isChecked ->
                     when (isChecked) {
                         true -> {
-                            settingsViewModel.setReminder(isChecked)
+                            settingsViewModel.setReminder(true)
                             reminderReceiver.setRepeatingReminder(
                                 requireActivity(),
                                 ReminderReceiver.Companion.TypeReminder.TYPE_REPEATING
                             )
-                            Log.d("Test", "$isChecked")
+                            Log.d("Test checked reminder", "$isChecked")
                         }
                         false -> {
-                            settingsViewModel.setReminder(isChecked)
+                            settingsViewModel.setReminder(true)
                             reminderReceiver.cancelReminders(
                                 requireActivity(),
                                 ReminderReceiver.Companion.TypeReminder.TYPE_REPEATING
                             )
-                            Log.d("Test", "$isChecked")
+                            Log.d("Test checked reminder", "$isChecked")
                         }
                     }
                 }
@@ -131,12 +135,16 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         if (view != null) {
             when (view.id) {
-                R.id.layoutThemes -> setThemesApplication()
-                R.id.layoutLanguage -> gotoSettingLanguage()
+                R.id.ibNextConfigurationTheme -> setThemesApplication()
+                R.id.ibNextConfigurationLanguage -> gotoSettingLanguage()
+                R.id.layoutReminder -> descriptionReminders()
             }
         }
     }
 
+    private fun descriptionReminders() {
+        modalBottomSheet.show(parentFragmentManager, BottomSheetReminderFragment.TAG)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

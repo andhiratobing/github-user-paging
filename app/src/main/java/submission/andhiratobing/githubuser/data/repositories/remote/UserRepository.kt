@@ -18,7 +18,7 @@ import submission.andhiratobing.githubuser.data.remote.responses.detailusers.Det
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_INITIAL_LOAD_SIZE
 import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PAGE_SIZE
-import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PRE_FETCH_DISTACE
+import submission.andhiratobing.githubuser.util.Constants.Companion.NETWORK_PRE_FETCH_DISTANCE
 import submission.andhiratobing.githubuser.util.state.ResourceState
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -41,7 +41,7 @@ class UserRepository
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false,
-                prefetchDistance = NETWORK_PRE_FETCH_DISTACE,
+                prefetchDistance = NETWORK_PRE_FETCH_DISTANCE,
                 initialLoadSize = NETWORK_INITIAL_LOAD_SIZE
             ),
             pagingSourceFactory = { UserPagingSource(apiService, query) }

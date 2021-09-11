@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Query
 
 @Dao
-interface FavoriteUserProviderDao  {
+interface FavoriteUserProviderDao {
 
     @Query("SELECT * FROM favorite_users")
     fun getDataFavoriteForProvider(): Cursor

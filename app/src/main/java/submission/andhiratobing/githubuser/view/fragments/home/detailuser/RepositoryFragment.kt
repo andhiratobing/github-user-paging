@@ -1,5 +1,6 @@
 package submission.andhiratobing.githubuser.view.fragments.home.detailuser
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +16,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.ReposAdapterPaging
 import submission.andhiratobing.githubuser.adapter.remote.paging.reposusers.ReposLoadStateAdapter
+import submission.andhiratobing.githubuser.data.remote.responses.repos.ReposResponse
 import submission.andhiratobing.githubuser.databinding.FragmentRepositoryBinding
+import submission.andhiratobing.githubuser.util.extension.hide
+import submission.andhiratobing.githubuser.util.extension.show
 import submission.andhiratobing.githubuser.view.activities.DetailUserActivity
+import submission.andhiratobing.githubuser.view.activities.ReposWebActivity
+import submission.andhiratobing.githubuser.view.activities.ReposWebActivity.Companion.HTML_URL
 import submission.andhiratobing.githubuser.viewmodel.RepositoryViewModel
 
 @ExperimentalCoroutinesApi
@@ -42,11 +48,22 @@ class RepositoryFragment : Fragment() {
         initObserver()
         initAdapter()
         setDataRepos()
+        reposToWebView()
     }
 
     private fun setDataRepos() {
         val username = arguments?.getString(DetailUserActivity.DATA_USER)
         if (username != null) repositoryViewModel.setRepository(username)
+    }
+
+    private fun reposToWebView() {
+        reposAdapter.setOnItemClickCallBack(object : ReposAdapterPaging.OnItemClickCallBack {
+            override fun onItemClick(reposResponse: ReposResponse) {
+                val intent = Intent(requireActivity(), ReposWebActivity::class.java)
+                intent.putExtra(HTML_URL, reposResponse)
+                requireActivity().startActivity(intent)
+            }
+        })
     }
 
     private fun initObserver() {
@@ -60,7 +77,6 @@ class RepositoryFragment : Fragment() {
             reposAdapter = ReposAdapterPaging()
             rvRepos.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-            rvRepos.setHasFixedSize(true)
             rvRepos.adapter = reposAdapter
 
 
@@ -78,12 +94,12 @@ class RepositoryFragment : Fragment() {
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached && reposAdapter.itemCount < 1
                 ) {
-                    rvRepos.isVisible = false
-                    ivNotFound.isVisible = true
-                    tvMessage.isVisible = true
+                    rvRepos.hide()
+                    ivNotFound.show()
+                    tvMessage.show()
                 } else {
-                    ivNotFound.isVisible = false
-                    tvMessage.isVisible = false
+                    ivNotFound.hide()
+                    tvMessage.hide()
                 }
 
                 val errorState = loadState.source.append as? LoadState.Error
@@ -113,4 +129,5 @@ class RepositoryFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 }

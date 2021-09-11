@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.provider
+package submission.andhiratobing.githubuser.services.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -39,7 +39,7 @@ class FavoriteUserProvider : ContentProvider() {
     }
 
     override fun getType(uri: Uri): String {
-        return "vnd.android.cursor.dir/$AUTHORITY.$TABLE_NAME"
+        return "$MIME/$AUTHORITY.$TABLE_NAME"
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
@@ -63,8 +63,9 @@ class FavoriteUserProvider : ContentProvider() {
         private const val FAVORITE_CODE = 1
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
+        //provider
+        const val MIME = "vnd.android.cursor.dir"
     }
-
 
 
 }

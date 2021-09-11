@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/base_background"
-        app:elevation="0dp"
+        app:elevation="@dimen/dimen_0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,13 +29,13 @@
                 android:id="@+id/tvTitleSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:layout_marginEnd="@dimen/dimen_16dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/settings"
                 android:textColor="@color/color_text"
-                android:textSize="18sp"
+                android:textSize="@dimen/dimen_18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,9 +47,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutGeneral"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
         android:background="@drawable/card_background_searchview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,17 +59,17 @@
             android:id="@+id/layoutLanguage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/ivLocation"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
                 android:contentDescription="@string/icon_language"
                 android:src="@drawable/ic_language"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -80,31 +80,29 @@
                 android:id="@+id/tvLanguage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/language"
                 android:textColor="@color/color_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/dimen_14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivLocation"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/ibNextConfigurationLanguage"
-                style="@style/Widget.MaterialComponents.FloatingActionButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:layout_marginEnd="@dimen/dimen_16dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/icon_next_configuration_language"
                 android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="@+id/tvLanguage"
+                app:layout_constraintBottom_toBottomOf="@+id/ivLocation"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvLanguage"
+                app:layout_constraintTop_toTopOf="@+id/ivLocation"
                 tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -113,7 +111,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutThemes"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dimen_0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,10 +119,10 @@
 
             <ImageView
                 android:id="@+id/ivTheme"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
                 android:contentDescription="@string/icon_theme"
                 android:src="@drawable/ic_theme"
                 app:layout_constraintStart_toStartOf="parent"
@@ -134,8 +132,8 @@
                 android:id="@+id/tvSelectThemes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/theme"
                 android:textColor="@color/color_text"
@@ -144,27 +142,28 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                style="@style/Widget.MaterialComponents.FloatingActionButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="16dp"
+                android:id="@+id/ibNextConfigurationTheme"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:layout_marginEnd="@dimen/dimen_16dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/icon_configurion_theme"
                 android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="@+id/theme_description"
+                app:layout_constraintBottom_toBottomOf="@+id/ivTheme"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvSelectThemes"
+                app:layout_constraintTop_toTopOf="@+id/ivTheme"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/theme_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:layout_marginBottom="@dimen/dimen_8dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/color_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/dimen_12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvSelectThemes"
                 app:layout_constraintTop_toBottomOf="@+id/tvSelectThemes"
@@ -178,9 +177,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutReminder"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/dimen_24dp"
         android:background="@drawable/card_background_searchview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -188,12 +187,12 @@
 
         <ImageView
             android:id="@+id/ivReminder"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
             android:contentDescription="@string/icon_reminder"
             android:src="@drawable/ic_reminders"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -202,25 +201,23 @@
             android:id="@+id/tvReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/reminder"
+            android:text="@string/reminder_at"
             android:textColor="@color/color_text"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="@dimen/dimen_14sp"
             app:layout_constraintStart_toEndOf="@+id/ivReminder"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="@+id/ivReminder" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchReminder"
-            android:layout_width="60dp"
+            android:layout_width="@dimen/dimen_60dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
             android:thumb="@drawable/selector_switch_thumb"
-            app:layout_constraintBottom_toBottomOf="@+id/tvReminder"
+            app:layout_constraintBottom_toBottomOf="@+id/ivReminder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvReminder"
+            app:layout_constraintTop_toTopOf="@+id/ivReminder"
             app:track="@drawable/selector_switch_track" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,29 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="1.7dp">
+    android:layout_marginStart="@dimen/dimen_16dp"
+    android:layout_marginEnd="@dimen/dimen_16dp"
+    android:layout_marginBottom="@dimen/dimen_16dp"
+    app:cardCornerRadius="@dimen/dimen_12dp"
+    app:cardElevation="@dimen/dimen_1_7dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="@dimen/dimen_8dp">
 
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/ivAvatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/dimen_60dp"
+            android:layout_height="@dimen/dimen_60dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:riv_border_color="#A9F3E2"
-            app:riv_corner_radius="12dp"
+            app:riv_corner_radius="@dimen/dimen_12dp"
             app:riv_mutate_background="true"
             app:riv_oval="false"
             tools:src="@drawable/placeholder_image" />
@@ -36,12 +36,12 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
             android:ems="9"
             android:fontFamily="@font/poppins_medium"
             android:maxLines="1"
             android:textColor="@color/color_text"
-            android:textSize="16sp"
+            android:textSize="@dimen/dimen_16sp"
             android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/ivAvatar"
@@ -53,12 +53,12 @@
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_4dp"
             android:fontFamily="@font/poppins_regular"
             android:maxLines="1"
             android:textColor="@color/color_text"
-            android:textSize="14sp"
+            android:textSize="@dimen/dimen_14sp"
             app:layout_constraintStart_toEndOf="@+id/ivAvatar"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
             tools:text="andhiratobing" />
@@ -68,17 +68,17 @@
             android:id="@+id/trFollowers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_4dp"
+            android:layout_marginBottom="@dimen/dimen_4dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivAvatar"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
                 android:contentDescription="@string/icon_followers"
                 android:src="@drawable/ic_followers" />
 
@@ -86,10 +86,10 @@
                 android:id="@+id/tvFollowers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="@dimen/dimen_4dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/color_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/dimen_14sp"
                 android:textStyle="normal"
                 tools:text="24" />
         </TableRow>
@@ -98,18 +98,18 @@
             android:id="@+id/trFollowing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_4dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:layout_marginBottom="@dimen/dimen_4dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/trFollowers"
             app:layout_constraintStart_toEndOf="@+id/trFollowers"
             app:layout_constraintTop_toTopOf="@+id/trFollowers">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
                 android:contentDescription="@string/icon_following"
                 android:src="@drawable/ic_following" />
 
@@ -117,10 +117,10 @@
                 android:id="@+id/tvFollowing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="@dimen/dimen_4dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/color_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/dimen_14sp"
                 android:textStyle="normal"
                 tools:text="24" />
         </TableRow>
@@ -129,17 +129,17 @@
             android:id="@+id/trRepository"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_4dp"
+            android:layout_marginBottom="@dimen/dimen_4dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/trFollowing"
             app:layout_constraintStart_toEndOf="@+id/trFollowing"
             app:layout_constraintTop_toTopOf="@+id/trFollowing">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
                 android:contentDescription="@string/icon_repos"
                 android:src="@drawable/ic_repository" />
 
@@ -147,15 +147,14 @@
                 android:id="@+id/tvRepository"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="@dimen/dimen_4dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/color_text"
-                android:textSize="14sp"
+                android:textSize="@dimen/dimen_14sp"
                 android:textStyle="normal"
                 tools:text="24" />
         </TableRow>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.cardview.widget.CardView>

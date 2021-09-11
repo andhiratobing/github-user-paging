@@ -15,5 +15,7 @@ data class ReposResponse(
     @SerializedName("open_issues")
     val issuesCount: Int,
     @SerializedName("stargazers_count")
-    val starCount: Int
+    val starCount: Int,
+    @SerializedName("html_url")
+    val htmlUrl: String
 ) : Parcelable

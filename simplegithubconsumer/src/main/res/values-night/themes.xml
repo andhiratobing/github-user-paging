@@ -15,14 +15,4 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <!--Style text tab layout-->
-    <style name="tabLayoutText" parent="Widget.MaterialComponents.TabLayout">
-        <item name="android:fontFamily">@font/poppins_regular</item>
-        <item name="android:textColor">@color/color_text</item>
-        <item name="textAllCaps">false</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-
-
 </resources>

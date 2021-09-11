@@ -5,8 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <permission android:name="submission.andhiratobing.githubuser.READ_DATABASE"
-        android:protectionLevel="normal"/>
+    <permission
+        android:name="submission.andhiratobing.githubuser.READ_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:name=".Application"
@@ -17,6 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser">
 
+
+        <activity android:name=".view.activities.ReposWebActivity" />
         <activity android:name=".view.activities.DetailUserActivity" />
         <activity
             android:name=".MainActivity"
@@ -34,11 +37,12 @@
 
 
         <receiver
-            android:name=".widget.FavoriteWidget"
+            android:name="submission.andhiratobing.githubuser.view.widget.FavoriteWidget"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="submission.andhiratobing.githubuser.FAVORITE_WIDGET_UPDATE" />
+                <action android:name="submission.andhiratobing.githubuser.TOAST_ACTION" />
             </intent-filter>
 
             <meta-data
@@ -48,21 +52,21 @@
 
 
         <service
-            android:name=".widget.FavoriteWidgetService"
+            android:name="submission.andhiratobing.githubuser.services.widget.FavoriteWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <receiver
-            android:name="submission.andhiratobing.githubuser.reminders.ReminderReceiver"
+            android:name="submission.andhiratobing.githubuser.services.reminder.ReminderReceiver"
             android:enabled="true"
             android:exported="true" />
 
         <provider
-            android:name=".provider.FavoriteUserProvider"
+            android:name="submission.andhiratobing.githubuser.services.provider.FavoriteUserProvider"
             android:authorities="submission.andhiratobing.githubuser"
             android:enabled="true"
             android:exported="true"
             android:grantUriPermissions="true"
-            android:readPermission="submission.andhiratobing.githubuser.READ_DATABASE"/>
+            android:readPermission="submission.andhiratobing.githubuser.READ_DATABASE" />
 
     </application>
 

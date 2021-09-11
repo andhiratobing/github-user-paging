@@ -17,11 +17,13 @@ import submission.andhiratobing.githubuser.data.remote.responses.detailusers.Det
 import submission.andhiratobing.githubuser.data.remote.responses.users.UserResponseItem
 import submission.andhiratobing.githubuser.databinding.ActivityDetailUserBinding
 import submission.andhiratobing.githubuser.util.Constants.Companion.TYPE_SHARE
+import submission.andhiratobing.githubuser.util.extension.hide
 import submission.andhiratobing.githubuser.util.extension.number.NumberFormat.asFormattedDecimals
+import submission.andhiratobing.githubuser.util.extension.show
 import submission.andhiratobing.githubuser.util.state.ResourceState
+import submission.andhiratobing.githubuser.view.widget.FavoriteWidget
 import submission.andhiratobing.githubuser.viewmodel.DetailUserViewModel
 import submission.andhiratobing.githubuser.viewmodel.FavoriteViewModel
-import submission.andhiratobing.githubuser.widget.FavoriteWidget
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
@@ -52,32 +54,32 @@ class DetailUserActivity : AppCompatActivity() {
         detailUserViewModel.setDetailUsers().observe(this, {
             binding.apply {
                 if (it.name.isNullOrEmpty()) {
-                    tvName.visibility = View.GONE
+                    tvName.hide()
                 } else {
                     tvName.text = it.name
-                    tvName.visibility = View.VISIBLE
+                    tvName.show()
                 }
                 if (it.company.isNullOrEmpty()) {
-                    tvCompany.visibility = View.GONE
-                    ivCompany.visibility = View.GONE
+                    tvCompany.hide()
+                    ivCompany.hide()
                 } else {
                     tvCompany.text = it.company
-                    tvCompany.visibility = View.VISIBLE
-                    ivCompany.visibility = View.VISIBLE
+                    tvCompany.show()
+                    ivCompany.show()
                 }
                 if (it.bio.isNullOrEmpty()) {
-                    tvBio.visibility = View.GONE
+                    tvBio.hide()
                 } else {
                     tvBio.text = it.bio
-                    tvBio.visibility = View.VISIBLE
+                    tvBio.show()
                 }
                 if (it.location.isNullOrEmpty()) {
-                    ivLocation.visibility = View.GONE
-                    tvLocation.visibility = View.GONE
+                    ivLocation.hide()
+                    tvLocation.hide()
                 } else {
                     tvLocation.text = it.location
-                    ivLocation.visibility = View.VISIBLE
-                    tvLocation.visibility = View.VISIBLE
+                    ivLocation.show()
+                    tvLocation.show()
                 }
 
                 tvFollowing.text = it.following.asFormattedDecimals()
@@ -92,7 +94,8 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun initStatusNetwork() {
         detailUserViewModel.setNetworkState().observe(this, { status ->
-            binding.apply { progressBar.visibility =
+            binding.apply {
+                progressBarDetailUser.visibility =
                     if (status == ResourceState.LOADING) View.VISIBLE else View.GONE
             }
         })
@@ -108,11 +111,12 @@ class DetailUserActivity : AppCompatActivity() {
         }
     }
 
-    private fun addFavoriteUser(dataFromDetailUserr: DetailUserResponse) {
+
+    private fun addFavoriteUser(dataFromDetailUser: DetailUserResponse) {
         var isChecked = false
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
-                val count: Int = favoriteViewModel.getCountFavoriteUsers(dataFromDetailUserr.id)
+                val count: Int = favoriteViewModel.getCountFavoriteUsers(dataFromDetailUser.id)
                 withContext(Dispatchers.Main) {
                     if (count > 0) {
                         binding.toggleFav.isChecked = true
@@ -128,17 +132,17 @@ class DetailUserActivity : AppCompatActivity() {
         binding.toggleFav.setOnClickListener {
             isChecked = !isChecked
             if (isChecked) {
-                favoriteViewModel.addFavoriteUser(dataFromDetailUserr)
+                favoriteViewModel.addFavoriteUser(dataFromDetailUser)
                 Snackbar.make(
                     it,
-                    "${dataFromDetailUserr.username} ${resources.getString(R.string.success_add_favorite)}",
+                    "${dataFromDetailUser.username} ${resources.getString(R.string.success_add_favorite)}",
                     Snackbar.LENGTH_SHORT
                 ).show()
             } else {
-                favoriteViewModel.deleteFavorite(dataFromDetailUserr.id)
+                favoriteViewModel.deleteFavorite(dataFromDetailUser.id)
                 Snackbar.make(
                     it,
-                    "${dataFromDetailUserr.username} ${resources.getString(R.string.remove_favorite)}",
+                    "${dataFromDetailUser.username} ${resources.getString(R.string.remove_favorite)}",
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
@@ -165,6 +169,7 @@ class DetailUserActivity : AppCompatActivity() {
         }
     }
 
+
     private fun clickShare() {
         val data: UserResponseItem? = intent.getParcelableExtra(DATA_USER)
         val type = TYPE_SHARE
@@ -190,7 +195,7 @@ class DetailUserActivity : AppCompatActivity() {
             sectionPageAdapter = SectionPageAdapter(supportFragmentManager, lifecycle, bundle)
             viewPager.adapter = sectionPageAdapter
 
-            //set tablayout mediator
+            //set tab layout mediator
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 when (position) {
                     0 -> {

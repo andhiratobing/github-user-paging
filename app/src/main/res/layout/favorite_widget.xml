@@ -1,24 +1,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="@dimen/dimen_200dp"
     android:background="@drawable/card_background_widget"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/favorite_users"
         android:textColor="@color/color_text"
-        android:textSize="20sp" />
+        android:textSize="@dimen/dimen_20sp" />
 
     <StackView
         android:id="@+id/listFavoriteWidget"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dimen_0dp"
         android:layout_weight="1"
         android:loopViews="true" />
 
@@ -26,14 +26,14 @@
     <TextView
         android:id="@+id/tvEmptyView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dimen_0dp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/no_data_in_app"
         android:textAlignment="center"
         android:textColor="@color/color_text"
-        android:textSize="20sp"
+        android:textSize="@dimen/dimen_20sp"
         android:textStyle="bold"
         android:visibility="gone"
         tools:text="@string/no_data_in_app"

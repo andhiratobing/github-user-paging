@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable-v21/app_widget_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_baseline_access_alarm_24.xml" value="0.190625" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_background.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/card_alert_dialog.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/card_background.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/card_background_searchview.xml" value="0.190625" />
@@ -31,6 +32,7 @@
         <entry key="app/src/main/res/drawable/ic_following.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_fork.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.190625" />
+        <entry key="app/src/main/res/drawable/ic_idea.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_issue.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_language.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
@@ -50,6 +52,7 @@
         <entry key="app/src/main/res/drawable/toggle_favorite.xml" value="0.190625" />
         <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_repos_web_view.xml" value="0.16111111111111112" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.16111111111111112" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/favorite_widget.xml" value="0.2" />
@@ -57,24 +60,32 @@
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_followers.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_following.xml" value="0.17447916666666666" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17447916666666666" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_reminders.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/fragment_repos_web_view.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_repository.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.1648148148148148" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_settingss.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/item_detail_user_shimmer.xml" value="0.16" />
         <entry key="app/src/main/res/layout/item_favorite_user.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/item_repos.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/item_repos.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/item_user_shimmer.xml" value="0.18" />
         <entry key="app/src/main/res/layout/item_userr.xml" value="0.17447916666666666" />
+        <entry key="app/src/main/res/layout/layout_bottom_sheet_dialog.xml" value="0.17037037037037037" />
+        <entry key="app/src/main/res/layout/layout_bottom_sheet_dialog_reminder.xml" value="0.16111111111111112" />
+        <entry key="app/src/main/res/layout/layout_bottom_sheet_reminders.xml" value="0.18" />
         <entry key="app/src/main/res/layout/layout_checked_favorite.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/layout_favorite_widget_item.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/layout_load_state.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/layout_load_state.xml" value="0.14" />
         <entry key="app/src/main/res/layout/layout_menu_favorite.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/layout_reminders.xml" value="0.17447916666666666" />
+        <entry key="app/src/main/res/layout/layout_repos_web_view.xml" value="0.18" />
         <entry key="app/src/main/res/layout/layout_toolbar_settings.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/repository_fragment.xml" value="0.17447916666666666" />
+        <entry key="app/src/main/res/layout/row_awesome_dialog.xml" value="0.17037037037037037" />
         <entry key="app/src/main/res/layout/toolbar_settings.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/menu/menu_detail_user.xml" value="0.16666666666666666" />

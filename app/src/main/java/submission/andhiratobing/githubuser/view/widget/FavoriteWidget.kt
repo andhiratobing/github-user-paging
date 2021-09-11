@@ -1,4 +1,4 @@
-package submission.andhiratobing.githubuser.widget
+package submission.andhiratobing.githubuser.view.widget
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
@@ -10,11 +10,12 @@ import android.content.Intent
 import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.core.net.toUri
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import submission.andhiratobing.githubuser.BuildConfig
 import submission.andhiratobing.githubuser.R
-import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
+import submission.andhiratobing.githubuser.services.widget.FavoriteWidgetService
 
-
+@ExperimentalCoroutinesApi
 class FavoriteWidget : AppWidgetProvider() {
 
     override fun onUpdate(
@@ -27,6 +28,7 @@ class FavoriteWidget : AppWidgetProvider() {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
     }
+
 
     override fun onReceive(context: Context, intent: Intent?) {
         super.onReceive(context, intent)
@@ -43,12 +45,9 @@ class FavoriteWidget : AppWidgetProvider() {
             }
 
             if (intentAction == TOAST_ACTION) {
-//                val viewIndex = intent?.getIntExtra(EXTRA_ITEM, 0)
-//                Toast.makeText(context, "Touched $viewIndex", Toast.LENGTH_SHORT).show()
-
-                val intentToDetail = intent?.extras?.getParcelable<FavoriteEntity>(EXTRA_ITEM)
-                Toast.makeText(context, "Touched ${intentToDetail?.username}", Toast.LENGTH_SHORT)
-                    .show()
+                val username = intent?.getStringExtra(EXTRA_ITEM)
+                Toast.makeText(context, "Click $username", Toast.LENGTH_SHORT).show()
+                /**when intent to activity, put below code to move to activity**/
             }
         }
     }
@@ -64,9 +63,10 @@ class FavoriteWidget : AppWidgetProvider() {
     }
 
     companion object {
-        private const val TOAST_ACTION = "TOAST_ACTION"
+        private const val TOAST_ACTION = "${BuildConfig.APPLICATION_ID}.TOAST_ACTION"
         const val EXTRA_ITEM = "EXTRA_ITEM"
-        const val EXTRA_FAVORITE_WIDGET_UPDATE = "${BuildConfig.APPLICATION_ID}.FAVORITE_WIDGET_UPDATE"
+        const val EXTRA_FAVORITE_WIDGET_UPDATE =
+            "${BuildConfig.APPLICATION_ID}.FAVORITE_WIDGET_UPDATE"
 
         @SuppressLint("UnspecifiedImmutableFlag")
         fun updateAppWidget(
@@ -84,15 +84,15 @@ class FavoriteWidget : AppWidgetProvider() {
             views.setRemoteAdapter(R.id.listFavoriteWidget, intent)
             views.setEmptyView(R.id.listFavoriteWidget, R.id.tvEmptyView)
 
-            val toasIntent = Intent(context, FavoriteWidget::class.java)
-            toasIntent.action = TOAST_ACTION
-            toasIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+            val toastIntent = Intent(context, FavoriteWidget::class.java)
+            toastIntent.action = TOAST_ACTION
+            toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             intent.data = intent.toUri(Intent.URI_INTENT_SCHEME).toUri()
 
             val toastPendingIntent = PendingIntent.getBroadcast(
                 context,
                 0,
-                toasIntent,
+                toastIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT
             )
             views.setPendingIntentTemplate(R.id.listFavoriteWidget, toastPendingIntent)

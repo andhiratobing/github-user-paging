@@ -1,19 +1,19 @@
-package submission.andhiratobing.githubuser.widget
+package submission.andhiratobing.githubuser.view.widget
 
 import android.content.Context
 import android.content.Intent
 import android.os.Binder
-import android.os.Bundle
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
+import androidx.core.os.bundleOf
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import submission.andhiratobing.githubuser.R
 import submission.andhiratobing.githubuser.data.local.entities.FavoriteEntity
 import submission.andhiratobing.githubuser.data.repositories.local.FavoriteRepository
-import submission.andhiratobing.githubuser.widget.FavoriteWidget.Companion.EXTRA_ITEM
 
-
+@ExperimentalCoroutinesApi
 class FavoriteRemoteViewFactory constructor(
     private val context: Context,
     private val favoriteRepository: FavoriteRepository
@@ -50,14 +50,12 @@ class FavoriteRemoteViewFactory constructor(
 
 
             remoteViews.setImageViewBitmap(R.id.ivItemFavoriteWidget, bitmap)
-//            val extras = bundleOf(FavoriteWidget.EXTRA_ITEM to position)
+            remoteViews.setTextViewText(R.id.tvUsernameWidget, data.username)
+            val extras = bundleOf(FavoriteWidget.EXTRA_ITEM to data.username)
+            val fillInIntent = Intent()
+            fillInIntent.putExtras(extras)
 
-            val bundle = Bundle()
-            bundle.putParcelable(EXTRA_ITEM, data)
-            val fillIntent = Intent(position.toString())
-            fillIntent.putExtra(EXTRA_ITEM, data)
-            fillIntent.putExtras(bundle)
-            remoteViews.setOnClickFillInIntent(R.id.ivItemFavoriteWidget, fillIntent)
+            remoteViews.setOnClickFillInIntent(R.id.ivItemFavoriteWidget, fillInIntent)
         } catch (t: Throwable) {
             t.printStackTrace()
         }

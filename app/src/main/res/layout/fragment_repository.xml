@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rvRepository"
+    android:id="@+id/layoutRepos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.home.detailuser.RepositoryFragment">
@@ -10,8 +10,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRepos"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="@dimen/dimen_0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/dimen_32dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,9 +31,9 @@
 
     <ImageView
         android:id="@+id/ivNotFound"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="@dimen/dimen_160dp"
+        android:layout_height="@dimen/dimen_160dp"
+        android:layout_marginTop="@dimen/dimen_32dp"
         android:contentDescription="@string/image_not_found"
         android:src="@drawable/ic_not_found"
         android:visibility="gone"
@@ -51,11 +51,12 @@
         android:gravity="center"
         android:text="@string/repository_does_not_exist"
         android:textColor="@color/color_text"
-        android:textSize="16sp"
+        android:textSize="@dimen/dimen_16sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivNotFound"
         tools:visibility="visible" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
