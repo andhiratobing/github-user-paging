@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             swipeRefreshLayout.setOnRefreshListener {
                 setDataListFavoriteUser()
+                initFavoriteViewModel()
                 swipeRefreshLayout.isRefreshing = false
             }
         }
