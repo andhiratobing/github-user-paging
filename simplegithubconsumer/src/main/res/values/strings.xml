@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">simplegithubconsumer</string>
-
     <string name="icon_following">Icon following</string>
     <string name="icon_followers">Icon Followers</string>
     <string name="icon_repository">Icon repository</string>

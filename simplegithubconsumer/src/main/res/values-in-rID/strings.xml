@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">simplegithubconsumer</string>
+    <string name="icon_following">Icon Mengikuti</string>
+    <string name="icon_followers">Icon Pengikut</string>
+    <string name="icon_repository">Icon Repos</string>
+    <string name="image_not_found">Gambar tidak tersedia</string>
+    <string name="empty_data">Tidak ada data dalam aplikasi</string>
+    <string name="favorite_users">Pengguna favorit</string>
+</resources>

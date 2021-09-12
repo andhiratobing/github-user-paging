@@ -18,6 +18,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_user_widget"
         android:scaleType="fitCenter"
+        tools:ignore="ImageContrastCheck"
         tools:srcCompat="@drawable/placeholder_image" />
 
     <TextView

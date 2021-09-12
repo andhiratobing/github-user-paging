@@ -74,7 +74,8 @@
                 android:src="@drawable/ic_language"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/tvLanguage"
@@ -126,7 +127,8 @@
                 android:contentDescription="@string/icon_theme"
                 android:src="@drawable/ic_theme"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/tvSelectThemes"
@@ -194,7 +196,8 @@
             android:contentDescription="@string/icon_reminder"
             android:src="@drawable/ic_reminders"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
 
         <TextView

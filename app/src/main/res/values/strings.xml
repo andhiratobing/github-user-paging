@@ -46,24 +46,24 @@
     <string name="icon_home">Icon Home</string>
     <string name="icon_setting">Icon Setting</string>
     <string name="icon_favorite">Icon Favorite</string>
-    <string name="icon_following">Icon following</string>
+    <string name="icon_following">Icon Following</string>
     <string name="icon_followers">Icon Followers</string>
     <string name="icon_repos">Icon Repos</string>
     <string name="icon_star">Icon Star</string>
     <string name="icon_fork">Icon Fork</string>
     <string name="icon_issue">Icon Issue</string>
-    <string name="icon_share">Icon share</string>
+    <string name="icon_share">Icon Share</string>
     <string name="icon_company">Icon Company</string>
     <string name="icon_location">Icon Location</string>
     <string name="icon_back_to_app">Icon back to app</string>
     <string name="icon_next_configuration_language">Icon next configuration language</string>
-    <string name="icon_language">Icon language</string>
+    <string name="icon_language">Icon Language</string>
     <string name="icon_configurion_theme">Icon configurion theme</string>
-    <string name="icon_theme">Icon theme</string>
-    <string name="icon_reminder">Icon reminder</string>
+    <string name="icon_theme">Icon Theme</string>
+    <string name="icon_reminder">Icon Reminder</string>
 
     <!--Image description-->
-    <string name="image_splashscreen">Image splashscreen</string>
+    <string name="image_splashscreen">Image Splashscreen</string>
     <string name="image_user_widget">Image user in widget</string>
     <string name="image_not_found">Image not found</string>
 

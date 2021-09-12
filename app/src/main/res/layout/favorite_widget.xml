@@ -16,7 +16,7 @@
         android:textSize="@dimen/dimen_20sp" />
 
     <StackView
-        android:id="@+id/listFavoriteWidget"
+        android:id="@+id/listStackFavoriteWidget"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_0dp"
         android:layout_weight="1"

@@ -41,7 +41,10 @@ class FavoriteWidget : AppWidgetProvider() {
                         FavoriteWidget::class.java
                     )
                 )
-                appWidgetManager.notifyAppWidgetViewDataChanged(widgetIds, R.id.listFavoriteWidget)
+                appWidgetManager.notifyAppWidgetViewDataChanged(
+                    widgetIds,
+                    R.id.listStackFavoriteWidget
+                )
             }
 
             if (intentAction == TOAST_ACTION) {
@@ -81,8 +84,8 @@ class FavoriteWidget : AppWidgetProvider() {
             intent.data = intent.toUri(Intent.URI_INTENT_SCHEME).toUri()
 
             val views = RemoteViews(context.packageName, R.layout.favorite_widget)
-            views.setRemoteAdapter(R.id.listFavoriteWidget, intent)
-            views.setEmptyView(R.id.listFavoriteWidget, R.id.tvEmptyView)
+            views.setRemoteAdapter(R.id.listStackFavoriteWidget, intent)
+            views.setEmptyView(R.id.listStackFavoriteWidget, R.id.tvEmptyView)
 
             val toastIntent = Intent(context, FavoriteWidget::class.java)
             toastIntent.action = TOAST_ACTION
@@ -95,7 +98,7 @@ class FavoriteWidget : AppWidgetProvider() {
                 toastIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT
             )
-            views.setPendingIntentTemplate(R.id.listFavoriteWidget, toastPendingIntent)
+            views.setPendingIntentTemplate(R.id.listStackFavoriteWidget, toastPendingIntent)
 
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views)

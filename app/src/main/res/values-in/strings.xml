@@ -63,7 +63,7 @@
     <string name="icon_back_to_app">Icon kembali ke aplikasi</string>
 
     <!--Image description-->
-    <string name="image_splashscreen">Gambar splashscreen</string>
+    <string name="image_splashscreen">Gambar Splashscreen</string>
     <string name="image_not_found">Gambar tidak tersedia</string>
     <string name="image_user_widget">Gambar pengguna di widget</string>
 

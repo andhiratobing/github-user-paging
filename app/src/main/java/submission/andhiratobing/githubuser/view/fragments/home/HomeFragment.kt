@@ -61,8 +61,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initProcess() {
 
+    private fun initProcess() {
         searchViewModel.search.observe(viewLifecycleOwner, {
             if (it != null) {
                 searchAdapter.submitData(lifecycle, it)
