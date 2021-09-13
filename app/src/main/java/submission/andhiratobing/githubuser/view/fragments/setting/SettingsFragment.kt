@@ -114,7 +114,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                             Log.d("Test checked reminder", "$isChecked")
                         }
                         false -> {
-                            settingsViewModel.setReminder(true)
+                            settingsViewModel.setReminder(false)
                             reminderReceiver.cancelReminders(
                                 requireActivity(),
                                 ReminderReceiver.Companion.TypeReminder.TYPE_REPEATING
