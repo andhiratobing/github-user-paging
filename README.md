@@ -30,7 +30,7 @@
     - Endpoint : `users/{username}`
     - Example :
         ```
-        @GET("search/users")
+        @GET("users/{username}")
         @Headers("Accept: $ACCEPT_VERSION", "Authorization: token $YOUR_TOKEN_GITHUB")
         fun detailUsers(
             @Path("username") username: String,
