@@ -74,6 +74,10 @@
 
 # How to clone
 - Syntax : ```git clone -b <NAMA_BRANCH>  <GIT_REMOTE_URL> ```
+  - Master
+    ```
+    git clone -b master https://github.com/andhiratobing/github-user-paging
+    ``` 
   - Submission 1
     ```
     git clone -b submission_1 https://github.com/andhiratobing/github-user-paging/tree/submission_1
