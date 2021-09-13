@@ -1,5 +1,8 @@
+# Demo
+https://user-images.githubusercontent.com/43465830/133141095-7dfde779-9bab-4f95-8488-0bf4190b1330.mp4
+
 # API Documentation
- - https://docs.github.com/en/rest
+- https://docs.github.com/en/rest
 
 ## BASE_URL
   ```
@@ -102,11 +105,7 @@
     ```
 
 ## MAD Scorecard
-  <p align="center">
-    <img src="assets/summary.png"
-        style="margin-right: 10px;"
-    />
-  </p>
+![](https://github.com/andhiratobing/github-user-paging/blob/master/app/src/main/assets/summary.png)
 
 ## Dependencies
 
@@ -137,13 +136,13 @@
                         http://www.apache.org/licenses/
 
 
-    Copyright 2021 Andhi Ratobing
+    Copyright © 2021 Andhi Ratobing
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+         http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
