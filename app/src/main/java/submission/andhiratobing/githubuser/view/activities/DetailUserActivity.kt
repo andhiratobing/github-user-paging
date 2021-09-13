@@ -6,6 +6,7 @@ import android.view.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
@@ -114,7 +115,7 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun addFavoriteUser(dataFromDetailUser: DetailUserResponse) {
         var isChecked = false
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch {
             withContext(Dispatchers.Main) {
                 val count: Int = favoriteViewModel.getCountFavoriteUsers(dataFromDetailUser.id)
                 withContext(Dispatchers.Main) {
