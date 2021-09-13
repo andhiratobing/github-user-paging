@@ -1,21 +1,23 @@
-# Dokumentasi API
+# API Documentation
  - https://docs.github.com/en/rest
- 
+
 ## BASE_URL
-  ``` https://api.github.com/ ```
+  ```
+  https://api.github.com/
+  ```
 
 ## Request:
 
-- Method : GET 
+- Method : GET
 - Header :
   - Accept: `application/json`
   - Authorization : `YOUR_TOKEN_GITHUB`
-    
 
-    ### Search user
-    - Endpoint : `search/users`
-    - Example :
-        ```
+
+### Search user
+  - Endpoint : `search/users`
+  - Example :
+    ```
         @GET("search/users")
         @Headers("Accept: $ACCEPT_VERSION", "Authorization: token$YOUR_TOKEN_GITHUB")
         suspend fun searchUsers(
@@ -23,23 +25,23 @@
             @Query("page") page: Int,
             @Query("per_page") perPage: Int,
         ): UserResponse
-        
-        ```  
-    
-    ### Detail user
-    - Endpoint : `users/{username}`
-    - Example :
-        ```
+
+    ```
+
+### Detail user
+  - Endpoint : `users/{username}`
+  - Example :
+    ```
         @GET("users/{username}")
         @Headers("Accept: $ACCEPT_VERSION", "Authorization: token $YOUR_TOKEN_GITHUB")
         fun detailUsers(
             @Path("username") username: String,
         ): Call<DetailUserResponse>
-        ```
-    ### Followers
-    - Endpoint : `users/{username}/followers`
-    - Example : 
-        ```
+    ```
+### Followers
+  - Endpoint : `users/{username}/followers`
+  - Example :
+    ```
         @GET("users/{username}/followers")
         @Headers("Authorization: token $YOUR_TOKEN_GITHUB")
         suspend fun getFollowers(
@@ -48,10 +50,12 @@
             @Query("per_page") perPage: Int,
         ): List<UserResponseItem>
 
-    ### Following
-    - Endpoint : `users/{username}/following`
-    - Example :    
-        ```
+    ```
+
+### Following
+  - Endpoint : `users/{username}/following`
+  - Example :
+    ```
         @GET("users/{username}/following")
         @Headers("Authorization: token $YOUR_TOKEN_GITHUB")
         suspend fun getFollowing(
@@ -59,11 +63,12 @@
             @Query("page") page: Int,
             @Query("per_page") perPage: Int,
         ): List<UserResponseItem>
+    ```
 
-    ### Repositories
-    - Endpoint : `users/{username}/repos`
-    - Example :   
-        ```
+### Repositories
+  - Endpoint : `users/{username}/repos`
+  - Example :
+    ```
         @GET("users/{username}/repos")
         @Headers("Authorization: token $YOUR_TOKEN_GITHUB")
         suspend fun getRepos(
@@ -71,25 +76,37 @@
             @Query("page") page: Int,
             @Query("per_page") perPage: Int,
         ): List<ReposResponse>
+    ```
 
 # How to clone
-- Syntax : ```git clone -b <NAMA_BRANCH>  <GIT_REMOTE_URL> ```
-  - Master
+
+- Syntax :
+
+  ```git clone -b <NAMA_BRANCH>  <GIT_REMOTE_URL> ```
+
+- Master
     ```
     git clone -b master https://github.com/andhiratobing/github-user-paging
-    ``` 
-  - Submission 1
+    ```
+- Submission 1
     ```
     git clone -b submission_1 https://github.com/andhiratobing/github-user-paging/tree/submission_1
     ```
-  - Submission 2
+- Submission 2
     ```
     git clone -b submission_2 https://github.com/andhiratobing/github-user-paging/tree/submission_2
     ```
-  - Submission 3
+- Submission 3
     ```
     git clone -b submission_3 https://github.com/andhiratobing/github-user-paging/tree/submission_3
     ```
+
+## MAD Scorecard
+  <p align="center">
+    <img src="assets/summary.png"
+        style="margin-right: 10px;"
+    />
+  </p>
 
 ## Dependencies
 
@@ -118,8 +135,8 @@
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
-                        
-                        
+
+
     Copyright 2021 Andhi Ratobing
 
     Licensed under the Apache License, Version 2.0 (the "License");
